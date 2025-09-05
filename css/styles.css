@@ -1,0 +1,56 @@
+.card-divider {
+    background-color: red;
+    color: white;
+    padding: 1rem;
+    font-weight: bold;
+}
+.card-section {
+    padding: 1rem;
+}
+.button {
+    background-color: darkblue;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 300ms ease;
+}
+.button:hover {
+    background-color: blue;
+}
+
+.reveal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(31, 41, 55, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    padding: 1rem;
+    display: none;
+}
+.reveal-content {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    max-width: 48rem;
+    width: 100%;
+    position: relative;
+}
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #4b5563;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-button:hover {
+    color: #1f2937;
+}
