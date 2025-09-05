@@ -19,6 +19,7 @@
                     <li><a href="#tipos" class="hover:text-black-400">Tipos</a></li>
                     <li><a href="#planes" class="hover:text-black-400">Planes</a></li>
                     <li><a href="#contacto" class="hover:text-black-400">Contacto</a></li>
+                    <li><a href="#login" class="hover:text-black-400">Iniciar Cesion</a></li>
                 </ul>
             </nav>
         </div>
@@ -26,7 +27,7 @@
 
     <header id="inicio" class="bg-purple-800 text-white py-20 text-center shadow-lg">
         <div class="container mx-auto px-4">
-            <h1 class="text-5xl font-extrabold mb-4">Curso de emprendimiento en Tik Tok</h1>
+            <h1 class="text-5xl font-extrabold mb-4">TikTok Business Mastery</h1>
             <p class="text-xl leading-relaxed">En este curso aprenderas a usar esta red social para generar contenido viral y aumentar las ventas de tu negocio</p>
         </div>
     </header>
@@ -118,12 +119,47 @@
     <section id="planes" class="py-16 bg-white">
         <div class="container mx-auto px-4 flex flex-col md:flex-row-reverse items-center gap-8">
             <div class="md:w-1/2">
-                <h2 class="text-4xl font-bold text-gray-800 mb-6">Inscribete con nosotros</h2>
+                <h2 class="text-4xl font-bold text-gray-800 mb-6">Conoce nuestros palnes de inscripcion</h2>
                 <ul class="list-disc list-inside text-lg text-gray-700 space-y-3">
                 </ul>
             </div>
             <div class="md:w-1/2 flex justify-center">
                 <img src="imagenes/imagen2.jpg" alt="Imagen de Beneficios de Automatización" class="rounded-lg shadow-xl">
+            </div>
+        </div>
+        <br>
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="card-divider">
+                        Plan Basico - Principiantes
+                    </div>
+                    <div class="card-section">
+                        <p class="text-gray-700 mb-4">Plan de inicio</p>
+                        <br>
+                        <button class="button w-full" onclick="openModal('modal7')">Saber Más</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="card-divider">
+                        Plan Intermedio - Pro
+                    </div>
+                    <div class="card-section">
+                        <p class="text-gray-700 mb-4">Plan para avanzados</p>
+                        <br>
+                        <button class="button w-full" onclick="openModal('modal8')">Saber Más</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="card-divider">
+                        Plan Premium – Cracks
+                    </div>
+                    <div class="card-section">
+                        <p class="text-gray-700 mb-4">Plan Premium</p>
+                        <br>
+                        <button class="button w-full" onclick="openModal('modal9')">Saber Más</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -158,10 +194,10 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
                 <div>
                     <h5 class="text-xl font-bold mb-4">Acerca de nosotros</h5>
-                    <p class="text-gray-400">Exploramos el mundo de la automatización de procesos y las tecnologías que lo hacen posible.</p>
+                    <p class="text-gray-400">Curso de emprendimiento en Tik Tok</p>
                 </div>
                 <div>
-                    <h5 class="text-xl font-bold mb-4">Enlaces rápidos</h5>
+                    <h5 class="text-xl font-bold mb-4">Enlaces</h5>
                     <ul class="space-y-2">
                         <li><a href="#" class="text-gray-400 hover:text-white">Términos y condiciones</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Política de privacidad</a></li>
@@ -178,7 +214,7 @@
                 </div>
             </div>
             <div class="text-center mt-8 pt-8 border-t border-gray-700">
-                <p class="text-gray-400">© 2025 Guillermo Solidoro. Todos los derechos reservados.</p>
+                <p class="text-gray-400">©TikTok Business Mastery. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -231,6 +267,40 @@
             <h3 class="text-2xl font-bold mb-4">Curso de monetizacion para creadores de contenido</h3>
             <p>Explora todas las formas posibles de generar ingresos con tu contenido en TikTok. Desde colaboraciones y patrocinios hasta venta de productos digitales y servicios, aprende a diversificar tus fuentes de ingreso y crear una comunidad rentable.</p>
             <button class="close-button" onclick="closeModal('modal6')">×</button>
+        </div>
+    </div>
+
+    <div id="modal7" class="reveal">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-4">Plan Basico - Principiantes $25</h3>
+            <p>- Acceso a contenido inicial (videos + guias)</p>
+            <p>- Comunidad basica (Grupo Privado)</p>
+            <p>- Actualizaciones mensuales</p>
+            <p>- Ideal para los que empiezan sin mucha inversion</p>
+            <button class="close-button" onclick="closeModal('modal7')">×</button>
+        </div>
+    </div>
+
+    <div id="modal8" class="reveal">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-4">Plan Intermedio - Avanzado $60</h3>
+            <p>- Todo el plan basico</p>
+            <p>- Talleres en vivo</p>
+            <p>- Analisis de casos y feedback personalizado</p>
+            <p>- Acceso a herramientas y plantillas personalizadas</p>
+            <button class="close-button" onclick="closeModal('modal8')">×</button>
+        </div>
+    </div>
+
+    <div id="modal9" class="reveal">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-4">Plan Premium - $120</h3>
+            <p>- Todo lo anterior</p>
+            <p>- Mentorias personalizadas o 1 a 1</p>
+            <p>- Acceso anticipado a nuevo contenido</p>
+            <p>- Soporte preferenciado</p>
+            <p>- Contenido VIP exclusivo</p>
+            <button class="close-button" onclick="closeModal('modal9')">×</button>
         </div>
     </div>
 
