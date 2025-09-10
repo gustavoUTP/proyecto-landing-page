@@ -80,3 +80,4 @@ Integrantes
 - Luis Guillermo Solidoro Cueto
 - Ian Piero Bajonero Lopez
 - Gustavo Alonso Inga Tello
+- Fernando Joaquin Palomino Martinez
