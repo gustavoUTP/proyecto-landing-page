@@ -16,11 +16,11 @@
             <nav>
                 <ul class="flex space-x-4">
                     <li><a href="#inicio" class="hover:text-black-400">Inicio</a></li>
-                    <li><a href="#presentacion" class="hover:text-black-400">Presentacion del curso</a></li>
+                    <li><a href="#presentacion" class="hover:text-black-400">Presentacion</a></li>
                     <li><a href="#tipos" class="hover:text-black-400">Tipos</a></li>
                     <li><a href="#planes" class="hover:text-black-400">Planes</a></li>
                     <li><a href="#contacto" class="hover:text-black-400">Contacto</a></li>
-                    <li><a href="#login" class="hover:text-black-400">Iniciar Cesion</a></li>
+                    <li><a href="#modal-login" onclick="openModal('modal-login')">Iniciar Sesion</a></li>
                 </ul>
             </nav>
         </div>
@@ -47,7 +47,7 @@
                 </p>
             </div>
             <div class="md:w-1/2 flex justify-center">
-                <img src="imagenes/imagen1.jpg" alt="Imagen de Automatización de Procesos" class="rounded-lg shadow-xl">
+                <img src="imagen1.jpg" alt="Imagen de Automatización de Procesos" class="rounded-lg shadow-xl">
             </div>
         </div>
     </section>
@@ -313,7 +313,7 @@
         </div>
     </div>
 
-    <!--Modal del formulario de inscripcion-->
+    <!--Formulario de Inscripcion-->
     <div id="modal-suscripcion" class="reveal">
     <div class="reveal-content">
         <h3 class="text-2xl font-bold mb-4 text-center">¡Inscríbete con Nosotros!</h3>
@@ -350,8 +350,37 @@
             </div>
         </form>
         <button class="close-button" onclick="closeModal('modal-suscripcion')">×</button>
-    </div>
-</div>
+    </div></div>
+
+    <!--Formulario Login-->
+    <div id="modal-login" class="reveal">
+    <div class="reveal-content">
+        <h3 class="text-2xl font-bold mb-4 text-center">Inicio de Sesion</h3>
+        <p class="text-gray-700 text-center mb-6">
+            Llena tus datos para acceder
+        </p>
+        <form class="space-y-4">
+            <div>
+                <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" placeholder=""
+                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+                <input type="email" id="email" name="email" placeholder=""
+                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+            <div>
+                <label for="telefono" class="block text-sm font-medium text-gray-700">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" placeholder=""
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+            <div class="flex justify-center mt-6">
+                <button type="submit" class="button">Iniciar Sesion</button>
+            </div>
+        </form>
+        <button class="close-button" onclick="closeModal('modal-login')">×</button>
+    </div></div>
 
     <script>
         function openModal(modalId) {
