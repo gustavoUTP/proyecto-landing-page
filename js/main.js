@@ -54,14 +54,32 @@ function validarCorreo(correo) {
     return regex.test(correo);
 }
 
-enviarBtn.addEventListener("click", function(event) {
-
+enviarBtn.addEventListener("click", async function(event) {
     event.preventDefault();
 
     if (validarFormulario()) {
-       
-        alert("Formulario enviado exitosamente!");
+        const datos = {
+            nombre: nombreInput.value,
+            correo: correoInput.value,
+            mensaje: mensajeInput.value
+        };
 
-        form.reset();
+        try {
+            const respuesta = await fetch('http://localhost:3001/api/formulario', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(datos)
+            });
+
+            if (respuesta.ok) {
+                alert("Formulario enviado y guardado en la base de datos!");
+                form.reset();
+            } else {
+                alert("Hubo un error al guardar los datos.");
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert("No se pudo conectar con el servidor.");
+        }
     }
 });
