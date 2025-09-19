@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const app = express();
-const PORT = 3001; // puerto para el backend
+const PORT = 3001; 
 
-// Middlewares
+
 app.use(cors());
 app.use(express.json());
 
@@ -17,39 +17,43 @@ mongoose.connect('mongodb://127.0.0.1:27017/formularioDB')
 
 // Definir esquema y modelo
 const formularioSchema = new mongoose.Schema({
-    nombre: String,
-    correo: String,
-    mensaje: String,
+    correo: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
     fecha: { type: Date, default: Date.now }
 });
 
-const Formulario = mongoose.model('Formulario', formularioSchema);
+const Usuario = mongoose.model('Usuario', formularioSchema);
 
-// Endpoint para guardar datos
-app.post('/api/formulario', async (req, res) => {
+// Endpoint para registrar usuarios
+app.post('/api/registro', async (req, res) => {
     try {
-        console.log("Datos recibidos en el backend:", req.body); // 👈 Log útil
+        console.log("Datos de registro recibidos:", req.body);
 
-        const { nombre, correo, mensaje } = req.body;
-        const nuevoRegistro = new Formulario({ nombre, correo, mensaje });
+        const { correo, password } = req.body;
 
-        await nuevoRegistro.save();
+        if (!correo || !password) {
+            return res.status(400).json({ message: 'Correo y contraseña son requeridos' });
+        }
 
-        res.status(201).json({ message: 'Formulario guardado con éxito' });
+        // Guardar en MongoDB
+        const nuevoUsuario = new Usuario({ correo, password });
+        await nuevoUsuario.save();
+
+        res.status(201).json({ message: 'Usuario registrado con éxito' });
     } catch (error) {
-        console.error('Error al guardar:', error);
-        res.status(500).json({ message: 'Error al guardar en la base de datos' });
+        console.error('Error al registrar usuario:', error);
+        res.status(500).json({ message: 'Error al guardar el usuario' });
     }
 });
 
 
-// Endpoint para listar datos (opcional, por si luego quieres mostrar lo que se guardó)
-app.get('/api/formulario', async (req, res) => {
+// Endpoint para listar usuarios registrados
+app.get('/api/usuarios', async (req, res) => {
     try {
-        const registros = await Formulario.find().sort({ fecha: -1 });
-        res.json(registros);
+        const usuarios = await Usuario.find().sort({ fecha: -1 });
+        res.json(usuarios);
     } catch (error) {
-        res.status(500).json({ message: 'Error al obtener los registros' });
+        res.status(500).json({ message: 'Error al obtener los usuarios' });
     }
 });
 
