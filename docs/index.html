@@ -10,27 +10,30 @@
 <body class="font-sans antialiased bg-gray-100">
 
     <!--Navbar-->
-    <div class="bg-purple-800 text-white p-4 shadow-md">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="text-xl font-bold">Proyecto Final</div>
-            <nav>
-                <ul class="flex space-x-4">
-                    <li><a href="#inicio" class="hover:text-black-400">Inicio</a></li>
-                    <li><a href="#presentacion" class="hover:text-black-400">Presentacion</a></li>
-                    <li><a href="#tipos" class="hover:text-black-400">Tipos</a></li>
-                    <li><a href="#planes" class="hover:text-black-400">Planes</a></li>
-                    <li><a href="#contacto" class="hover:text-black-400">Contacto</a></li>
-                    <li><a href="#modal-login" onclick="openModal('modal-login')">Iniciar Sesion</a></li>
-                </ul>
-            </nav>
-        </div>
+    <div class="bg-gray-800 text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+        <div class="text-xl font-bold">TikTok Business Academy</div>
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="#inicio" class="hover:text-gray-400">Inicio</a></li>
+                <li><a href="#presentacion" class="hover:text-gray-400">Presentacion</a></li>
+                <li><a href="#tipos" class="hover:text-gray-400">Tipos</a></li>
+                <li><a href="#planes" class="hover:text-gray-400">Planes</a></li>
+                <li><a href="#contacto" class="hover:text-gray-400">Contacto</a></li>
+                <li><a href="#modal-signIn" onclick="openModal('modal-signIn')" class="px-5 py-2 rounded-lg border border-white text-white hover:bg-white hover:text-gray-900 transition font-medium shadow-sm">Iniciar Sesión</a></li>
+                <li><a href="#modal-signUp" onclick="openModal('modal-signUp')" class="px-5 py-2 rounded-lg bg-white text-gray-900 hover:bg-gray-200 transition font-medium shadow-md">Crear Cuenta</a></li>
+            </ul>
+        </nav>
     </div>
+</div>
 
     <!--Header-->
-    <header id="inicio" class="bg-purple-800 text-white py-20 text-center shadow-lg">
+    <header id="inicio" class="bg-gray-800 text-white py-20 text-center shadow-lg">
         <div class="container mx-auto px-4">
-            <h1 class="text-5xl font-extrabold mb-4">TikTok Business Mastery</h1>
-            <p class="text-xl leading-relaxed">En este curso aprenderas a usar esta red social para generar contenido viral y aumentar las ventas de tu negocio</p>
+            <h1 class="text-5xl font-extrabold mb-4">TikTok para Negocios: De 0 a Pro</h1>
+            <p class="text-xl leading-relaxed">
+                En este curso aprenderás a usar esta red social para generar contenido viral y aumentar las ventas de tu negocio
+            </p>
         </div>
     </header>
 
@@ -55,114 +58,102 @@
     <!--Seccion de tipos de cursos-->
     <section id="tipos" class="py-16 bg-gray-100">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-gray-800 text-center mb-12">¿Como atraer mas audiencia para tu negocio?</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="card-divider">
-                        Curso Basico de Creacion de Contenido
-                    </div>
-                    <div class="card-section">
-                        <p class="text-gray-700 mb-4">Aprenderas a crear videos atractivos y virales desde cero.</p>
-                        <br>
-                        <button class="button w-full" onclick="openModal('modal1')">Saber Más</button>
-                    </div>
+            <h2 class="text-4xl font-bold text-gray-800 text-center mb-12">
+            ¿Cómo atraer más audiencia para tu negocio?
+            </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Curso -->
+                <div class="bg-white border border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Curso Básico de Creación de Contenido</h3>
+                    <p class="text-gray-600 mb-4">Aprenderás a crear videos atractivos y virales desde cero.</p>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full transition" onclick="openModal('modal1')">
+                    Saber Más
+                    </button>
                 </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="card-divider">
-                        Curso Avanzado de Marketing y Ventas
-                    </div>
-                    <div class="card-section">
-                        <p class="text-gray-700 mb-4">Estrategias para convertir a tus seguidores en clientes.</p>
-                        <br>
-                        <button class="button w-full" onclick="openModal('modal2')">Saber Más</button>
-                    </div>
+
+                <!-- Curso -->
+                <div class="bg-white border border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Curso Avanzado de Marketing y Ventas</h3>
+                    <p class="text-gray-600 mb-4">Estrategias para convertir a tus seguidores en clientes.</p>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full transition" onclick="openModal('modal2')">
+                    Saber Más
+                    </button>
                 </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="card-divider">
-                        Curso de Branding Personal para Emprendedores
-                    </div>
-                    <div class="card-section">
-                        <p class="text-gray-700 mb-4">Construccion de una marca solida y autentica.</p>
-                        <br>
-                        <button class="button w-full" onclick="openModal('modal3')">Saber Más</button>
-                    </div>
+
+                <!-- Curso -->
+                <div class="bg-white border border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Curso de Branding Personal</h3>
+                    <p class="text-gray-600 mb-4">Construcción de una marca sólida y auténtica.</p>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full transition" onclick="openModal('modal3')">
+                    Saber Más
+                    </button>
                 </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="card-divider">
-                        Curso de Publicidad Efectiva
-                    </div>
-                    <div class="card-section">
-                        <p class="text-gray-700 mb-4">Creacion y gestion de campañas para acelerar tu crecimiento</p>
-                        <br>
-                        <button class="button w-full" onclick="openModal('modal4')">Saber Más</button>
-                    </div>
+
+                <!-- Curso -->
+                <div class="bg-white border border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Curso de Publicidad Efectiva</h3>
+                    <p class="text-gray-600 mb-4">Creación y gestión de campañas para acelerar tu crecimiento.</p>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full transition" onclick="openModal('modal4')">
+                    Saber Más
+                    </button>
                 </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="card-divider">
-                        Curso de Storytelling para Emprendedores
-                    </div>
-                    <div class="card-section">
-                        <p class="text-gray-700 mb-4">Uso de historias para atraer a los clientes</p>
-                        <br><br>
-                        <button class="button w-full" onclick="openModal('modal5')">Saber Más</button>
-                    </div>
+
+                <!-- Curso -->
+                <div class="bg-white border border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Curso de Storytelling</h3>
+                    <p class="text-gray-600 mb-4">Uso de historias para atraer a los clientes.</p>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full transition" onclick="openModal('modal5')">
+                    Saber Más
+                    </button>
                 </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="card-divider">
-                        Curso de monetizacion para creadores de contenido
-                    </div>
-                    <div class="card-section">
-                        <p class="text-gray-700 mb-4">Descubre diferentes formas de crear ingresos con contenido y audiencias.</p>
-                        <button class="button w-full" onclick="openModal('modal6')">Saber Más</button>
-                    </div>
+
+                <!-- Curso -->
+                <div class="bg-white border border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Curso de Monetización</h3>
+                    <p class="text-gray-600 mb-4">Descubre cómo generar ingresos con tu contenido.</p>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full transition" onclick="openModal('modal6')">
+                    Saber Más
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!--Seccion de suscripciones-->
+
+    <!--Seccion de planes-->
     <section id="planes" class="py-16 bg-white">
-    <div class="container mx-auto px-4 text-center">
-        <h2 class="text-4xl font-bold text-white-800 mb-6">Suscríbete ahora</h2>
-        <p class="text-lg text-gray-700 mb-8">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-6">Suscríbete ahora</h2>
+            <p class="text-lg text-gray-700 mb-8">
             Elige el plan que mejor se adapte a tus necesidades para comenzar a transformar tu negocio.
-        </p>
-        <br>
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="card-divider">
-                        Plan Basico - Principiantes
-                    </div>
-                    <div class="card-section">
-                        <p class="text-gray-700 mb-4">Plan de inicio</p>
-                        <br>
-                        <button class="button w-full" onclick="openModal('modal7')">Saber Más</button>
-                    </div>
+            </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Plan Básico -->
+                <div class="bg-gray-50 border border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Plan Básico - $25</h3>
+                    <p class="text-gray-600 mb-4">Ideal para principiantes</p>
+                    <button class="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded w-full transition" onclick="openModal('modal7')">
+                    Saber Más
+                    </button>
                 </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="card-divider">
-                        Plan Intermedio - Pro
-                    </div>
-                    <div class="card-section">
-                        <p class="text-gray-700 mb-4">Plan avanzados</p>
-                        <br>
-                        <button class="button w-full" onclick="openModal('modal8')">Saber Más</button>
-                    </div>
+                <!-- Plan Intermedio -->
+                <div class="bg-gray-50 border border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Plan Intermedio - $60</h3>
+                    <p class="text-gray-600 mb-4">Para quienes buscan crecer más rápido</p>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full transition" onclick="openModal('modal8')">
+                    Saber Más
+                    </button>
                 </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="card-divider">
-                        Plan Premium – Cracks
-                    </div>
-                    <div class="card-section">
-                        <p class="text-gray-700 mb-4">Plan Premium</p>
-                        <br>
-                        <button class="button w-full" onclick="openModal('modal9')">Saber Más</button>
-                    </div>
+                <!-- Plan Premium -->
+                <div class="bg-gray-50 border border-yellow-400 rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                    <h3 class="text-xl font-semibold text-yellow-600 mb-2">Plan Premium - $120</h3>
+                    <p class="text-gray-600 mb-4">Mentorías y acceso VIP</p>
+                    <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded w-full transition" onclick="openModal('modal9')">
+                    Saber Más
+                    </button>
                 </div>
             </div>
         </div>
-    </div>
     </section>
 
     <!--Footer-->
@@ -274,7 +265,7 @@
         </div>
     </div>
 
-    <div id="modal9" class="reveal">
+    <div id="modal9" class="reveal" style="display:none;">
         <div class="reveal-content">
             <h3 class="text-2xl font-bold mb-4">Plan Premium - $120</h3>
             <p>- Todo lo anterior</p>
@@ -326,32 +317,83 @@
         <button class="close-button" onclick="closeModal('modal-suscripcion')">×</button>
     </div></div>
 
-    <!-- Modal Login -->
-    <div id="modal-login" class="reveal" style="display:none;">
+    <!-- Modal SignIn -->
+    <div id="modal-signIn" class="reveal" style="display:none;">
         <div class="reveal-content">
-            <h3 class="text-2xl font-bold mb-4 text-center">Inicio de Sesión</h3>
-            <p class="text-gray-700 text-center mb-6">Llena tus datos para acceder</p>
-            <form class="space-y-4">
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
-                    <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border border-gray-400 bg-white px-3 py-2 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
-                </div>
-                <div>
-                    <label for="contraseña" class="block text-sm font-medium text-gray-700">Contraseña</label>
-                    <input type="password" id="contraseña" name="contraseña" class="mt-1 block w-full rounded-md border border-gray-400 bg-white px-3 py-2 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
-                    <br>
-                    <a href="#modal-reset" onclick="openModal('modal-reset')">¿Olvidaste tu contraseña?</a>
-                </div>
-                <div class="flex justify-center mt-6">
-                    <button type="submit" class="button">Iniciar Sesión</button>
-                </div>
+            <h3 class="text-2xl font-bold mb-4 text-center">Iniciar sesión</h3>
+            <p class="text-gray-700 text-center mb-6">Ingresa tu correo y contraseña</p>
+
+            <form id="loginForm" class="space-y-4">
+            <div>
+                <label for="login-email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+                <input type="email" id="login-email" name="email" required
+                class="mt-1 block w-full rounded-md border border-gray-400 bg-white px-3 py-2 shadow-sm 
+                focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+            </div>
+
+            <div>
+                <label for="login-password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+                <input type="password" id="login-password" name="password" required
+                class="mt-1 block w-full rounded-md border border-gray-400 bg-white px-3 py-2 shadow-sm 
+                focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+                <br>
+                <a href="#modal-reset" onclick="openModal('modal-reset')" class="text-sm text-indigo-600 hover:underline">
+                ¿Olvidaste tu contraseña?
+                </a>
+            </div>
+
+            <div class="flex justify-center mt-6">
+                <button type="submit" 
+                class="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 transition">
+                Iniciar sesión
+                </button>
+            </div>
             </form>
-            <button class="close-button" onclick="closeModal('modal-login')">×</button>
+
+            <p id="loginMsg" class="text-center mt-4 text-sm text-red-500"></p>
+
+            <button class="close-button" onclick="closeModal('modal-signIn')">×</button>
         </div>
     </div>
+
+    <!-- Modal SignUp -->
+    <div id="modal-signUp" class="reveal" style="display:none;">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-4 text-center">Crear cuenta</h3>
+            <p class="text-gray-700 text-center mb-6">Ingresa tu correo y contraseña</p>
+
+            <form id="registerForm" class="space-y-4">
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+                <input type="email" id="email" name="email" required
+                class="mt-1 block w-full rounded-md border border-gray-400 bg-white px-3 py-2 shadow-sm 
+                focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+            </div>
+
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+                <input type="password" id="password" name="password" required minlength="6"
+                class="mt-1 block w-full rounded-md border border-gray-400 bg-white px-3 py-2 shadow-sm 
+                focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+            </div>
+
+            <div class="flex justify-center mt-6">
+                <button type="submit" 
+                class="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition">
+                Crear cuenta
+                </button>
+            </div>
+            </form>
+
+            <p id="msg" class="text-center mt-4 text-sm text-red-500"></p>
+
+            <button class="close-button" onclick="closeModal('modal-signUp')">×</button>
+        </div>
+    </div>
+
     
     <!-- Modal Reset Password -->
-     <div id="modal-reset" class="reveal" style="display:none;">
+    <div id="modal-reset" class="reveal" style="display:none;">
         <div class="reveal-content">
             <h3 class="text-2xl font-bold mb-4 text-center">Recuperar contraseña</h3>
             <form action="/send-reset-link" method="POST" class="space-y-4">

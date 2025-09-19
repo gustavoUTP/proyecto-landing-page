@@ -26,19 +26,19 @@
     bottom: 0;
     left: 0;
     background-color: rgba(31, 41, 55, 0.75);
-    display: flex;
+    display: none; /* los modales inician ocultos */
     align-items: center;
     justify-content: center;
     z-index: 50;
     padding: 1rem;
-    display: none;
 }
 .reveal-content {
     background-color: white;
     padding: 1.5rem;
     border-radius: 0.5rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    max-width: 48rem;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 
+                0 4px 6px -2px rgba(0,0,0,0.05);
+    max-width: 28rem;
     width: 100%;
     position: relative;
 }
@@ -54,3 +54,4 @@
 .close-button:hover {
     color: #1f2937;
 }
+
