@@ -62,7 +62,7 @@ Phillip será uno de los invitados especiales en el curso y compartirá su enfoq
 
 - **HTML5** y **CSS3** para una estructura sólida y diseño responsive.
 - **JavaScript** para interactividad (ej. validación de formularios, animaciones).
-- **Bootstrap** para un diseño rápido y adaptable a dispositivos móviles.
+- **Tailwind** para un diseño rápido y adaptable a dispositivos móviles.
 - **SEO** optimizado para aumentar la visibilidad en motores de búsqueda.
 - Integración con **Google Analytics** para rastrear conversiones e interacciones.
 
