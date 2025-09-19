@@ -75,3 +75,9 @@ Para comenzar a trabajar con el proyecto, sigue los siguientes pasos:
 1. **Clona el repositorio**:
    ```bash
    git clone https://github.com/tuusuario/nombre-del-repositorio.git
+
+Integrantes
+- Luis Guillermo Solidoro Cueto
+- Ian Piero Bajonero Lopez
+- Gustavo Alonso Inga Tello
+- Fernando Joaquin Palomino Martinez

@@ -1,0 +1,5 @@
+1. Instalar MongoDB
+2. Abrir MongoDB Compass
+3. Url conexion: mongodb://localhost:27017
+4. En gitbash ubicar y entrar a la carpeta "backend"
+5. levantar servidor: node server.js
