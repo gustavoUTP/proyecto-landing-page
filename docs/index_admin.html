@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Suscripciones</title>
+  <script>
+    async function cargarSuscripciones() {
+      try {
+        const res = await fetch("http://localhost:3001/api/suscripciones");
+        const data = await res.json();
+
+        const lista = document.getElementById("lista-suscripciones");
+        lista.innerHTML = ""; // limpiar
+
+        data.forEach(s => {
+          const li = document.createElement("li");
+          li.textContent = `${s.nombreApellido} | ${s.correo} | ${s.telefono} | ${s.plan} | ${new Date(s.fechaRegistro).toLocaleString()}`;
+          lista.appendChild(li);
+        });
+      } catch (err) {
+        console.error("Error cargando suscripciones:", err);
+      }
+    }
+
+    window.onload = cargarSuscripciones;
+  </script>
+</head>
+<body>
+  <h2>Suscripciones registradas</h2>
+  <ul id="lista-suscripciones"></ul>
+</body>
+</html>

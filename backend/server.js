@@ -15,7 +15,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/formularioDB')
 .then(() => console.log('Conectado a MongoDB'))
 .catch(err => console.error('Error al conectar a MongoDB:', err));
 
-// Definir esquema y modelo
+// modelo de usuario (login)
 const formularioSchema = new mongoose.Schema({
     correo: { type: String, required: true, unique: true },
     password: { type: String, required: true },
@@ -23,6 +23,16 @@ const formularioSchema = new mongoose.Schema({
 });
 
 const Usuario = mongoose.model('Usuario', formularioSchema);
+
+// modelo de suscripciones
+const suscripcionSchema = new mongoose.Schema({
+    nombreApellido: {type: String, required: true},
+    correo:{type: String, required: true},
+    telefono:{type:String, required: true},
+    plan:{type: String, enum: ['basico', 'intermedio', 'premium'],required:true},
+    fechaRegistro:{type:Date, default: Date.now}
+})
+const Suscripcion = mongoose.model('Suscripcion',suscripcionSchema);
 
 // Endpoint para registrar usuarios
 app.post('/api/registro', async (req, res) => {
@@ -46,16 +56,34 @@ app.post('/api/registro', async (req, res) => {
     }
 });
 
+//Endpoint Guardar suscripcion
+app.post('/api/suscripciones',async (req,res) =>{
+    try{
+        console.log("Datos de Subscripcion recibidos:", req.body);
+
+        const{ nombreApellido,correo,telefono,plan } =req.body;
+        if (!nombreApellido || !correo || !telefono || !plan){
+            return res.status(400).json({ message: 'Todos los campos son requeridos'});
+        }
+
+        const nuevaSuscripcion = new Suscripcion({nombreApellido,correo,telefono,plan});
+        await nuevaSuscripcion.save();
+        res.status(201).json({ message: 'Suscripción registrada con éxito' });
+    }catch (error) {
+        console.error('Error al registrar suscripción:', error);
+        res.status(500).json({ message: 'Error al guardar la suscripción' });
+    }
+})
 
 // Endpoint para listar usuarios registrados
-app.get('/api/usuarios', async (req, res) => {
+app.get('/api/suscripciones', async (req, res) => {
     try {
-        const usuarios = await Usuario.find().sort({ fecha: -1 });
-        res.json(usuarios);
+        const suscripciones = await Suscripcion.find().sort({ fechaRegistro: -1 });
+        res.json(suscripciones);
     } catch (error) {
-        res.status(500).json({ message: 'Error al obtener los usuarios' });
+        res.status(500).json({ message: 'Error al obtener las suscripciones' });
     }
-});
+})
 
 app.listen(PORT, () => {
     console.log(`Servidor backend corriendo en http://localhost:${PORT}`);

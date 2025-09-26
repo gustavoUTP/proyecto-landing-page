@@ -286,7 +286,7 @@
         <p class="text-gray-700 text-center mb-6">
             Completa este formulario con tus datos
         </p>
-        <form class="space-y-4">
+        <form id="form-suscripcion" class="space-y-4">
             <div>
                 <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre y Apellido</label>
                 <input type="text" id="nombre" name="nombre" placeholder=""
@@ -413,6 +413,8 @@
     <script src="../js/main.js"></script>
     <script src="../js/main.js"></script>
 
+
+<!--Script Registrar Usuario-->
 <script>
 const registerForm = document.getElementById('registerForm');
 const msg = document.getElementById('msg');
@@ -445,6 +447,47 @@ registerForm.addEventListener('submit', async (e) => {
         msg.style.color = 'red';
         msg.textContent = 'Error al conectar con el servidor';
         console.error(err);
+    }
+});
+</script>
+
+<!--Script Registrar Suscripciones-->
+<script>
+document.getElementById("form-suscripcion").addEventListener("submit", async function(e) {
+    e.preventDefault(); // Evita recargar la página
+
+    // Obtener valores del formulario
+    const nombreApellido = document.getElementById("nombre").value;
+    const correo = document.getElementById("email").value;
+    const telefono = document.getElementById("telefono").value;
+    const plan = document.getElementById("plan").value;
+
+    // Validación básica
+    if (!nombreApellido || !correo || !telefono || !plan) {
+        alert("Por favor completa todos los campos.");
+        return;
+    }
+
+    try {
+        // Enviar datos al backend
+        const response = await fetch("http://localhost:3001/api/suscripciones", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nombreApellido, correo, telefono, plan })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("Suscripción registrada con éxito");
+            document.getElementById("form-suscripcion").reset(); // Limpia formulario
+            closeModal('modal-suscripcion'); // Cierra modal (ya tienes tu función)
+        } else {
+            alert("Error: " + data.message);
+        }
+    } catch (error) {
+        console.error("Error en la suscripción:", error);
+        alert(" No se pudo enviar la suscripción");
     }
 });
 </script>
