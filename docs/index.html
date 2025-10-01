@@ -17,9 +17,8 @@
             <ul class="flex space-x-4">
                 <li><a href="#inicio" class="hover:text-gray-400">Inicio</a></li>
                 <li><a href="#presentacion" class="hover:text-gray-400">Presentacion</a></li>
-                <li><a href="#tipos" class="hover:text-gray-400">Tipos</a></li>
+                <li><a href="#tipos" class="hover:text-gray-400">Cursos</a></li>
                 <li><a href="#planes" class="hover:text-gray-400">Planes</a></li>
-                <li><a href="#contacto" class="hover:text-gray-400">Contacto</a></li>
                 <li><a href="#modal-signIn" onclick="openModal('modal-signIn')" class="px-5 py-2 rounded-lg border border-white text-white hover:bg-white hover:text-gray-900 transition font-medium shadow-sm">Iniciar Sesión</a></li>
                 <li><a href="#modal-signUp" onclick="openModal('modal-signUp')" class="px-5 py-2 rounded-lg bg-white text-gray-900 hover:bg-gray-200 transition font-medium shadow-md">Crear Cuenta</a></li>
             </ul>
@@ -132,26 +131,33 @@
                 <!-- Plan Básico -->
                 <div class="bg-gray-50 border border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition">
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Plan Básico - $25</h3>
-                    <p class="text-gray-600 mb-4">Ideal para principiantes</p>
-                    <button class="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded w-full transition" onclick="openModal('modal7')">
-                    Saber Más
-                    </button>
+                    <p>- Acceso a contenido inicial (videos + guias)</p>
+                    <p>- Comunidad basica (Grupo Privado)</p>
+                    <p>- Actualizaciones mensuales</p>
+                    <p>- Ideal para los que empiezan sin mucha inversion</p>
+                    <br><br>
+                    <button class="button" onclick="openModal('modal-suscripcion')">Suscribirse</button>
                 </div>
                 <!-- Plan Intermedio -->
-                <div class="bg-gray-50 border border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Plan Intermedio - $60</h3>
-                    <p class="text-gray-600 mb-4">Para quienes buscan crecer más rápido</p>
-                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full transition" onclick="openModal('modal8')">
-                    Saber Más
-                    </button>
+                <div class="bg-gray-50 border border-blue-200 rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-2">Plan Intermedio - $60</h3>
+                    <p>- Todo el plan basico</p>
+                    <p>- Talleres en vivo</p>
+                    <p>- Analisis de casos y feedback personalizado</p>
+                    <p>- Acceso a herramientas y plantillas personalizadas</p>
+                    <br><br>
+                    <button button class="button" onclick="openModal('modal-suscripcion')">Suscribirse</button>
                 </div>
                 <!-- Plan Premium -->
                 <div class="bg-gray-50 border border-yellow-400 rounded-lg shadow-md p-6 hover:shadow-lg transition">
                     <h3 class="text-xl font-semibold text-yellow-600 mb-2">Plan Premium - $120</h3>
-                    <p class="text-gray-600 mb-4">Mentorías y acceso VIP</p>
-                    <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded w-full transition" onclick="openModal('modal9')">
-                    Saber Más
-                    </button>
+                    <p>- Todo lo anterior</p>
+                    <p>- Mentorias personalizadas o 1 a 1</p>
+                    <p>- Acceso anticipado a nuevo contenido</p>
+                    <p>- Soporte preferenciado</p>
+                    <p>- Contenido VIP exclusivo</p>
+                    <br>
+                    <button class="button" onclick="openModal('modal-suscripcion')">Suscribirse</button>
                 </div>
             </div>
         </div>
@@ -237,45 +243,6 @@
             <h3 class="text-2xl font-bold mb-4">Curso de monetizacion para creadores de contenido</h3>
             <p>Explora todas las formas posibles de generar ingresos con tu contenido en TikTok. Desde colaboraciones y patrocinios hasta venta de productos digitales y servicios, aprende a diversificar tus fuentes de ingreso y crear una comunidad rentable.</p>
             <button class="close-button" onclick="closeModal('modal6')">×</button>
-        </div>
-    </div>
-
-    <!--Modals para las suscripciones-->
-    <div id="modal7" class="reveal">
-        <div class="reveal-content">
-            <h3 class="text-2xl font-bold mb-4">Plan Basico - Principiantes $25</h3>
-            <p>- Acceso a contenido inicial (videos + guias)</p>
-            <p>- Comunidad basica (Grupo Privado)</p>
-            <p>- Actualizaciones mensuales</p>
-            <p>- Ideal para los que empiezan sin mucha inversion</p>
-            <button class="button" onclick="openModal('modal-suscripcion')">Suscribirse</button>
-            <button class="close-button" onclick="closeModal('modal7')">×</button>
-        </div>
-    </div>
-
-    <div id="modal8" class="reveal">
-        <div class="reveal-content">
-            <h3 class="text-2xl font-bold mb-4">Plan Intermedio - Avanzado $60</h3>
-            <p>- Todo el plan basico</p>
-            <p>- Talleres en vivo</p>
-            <p>- Analisis de casos y feedback personalizado</p>
-            <p>- Acceso a herramientas y plantillas personalizadas</p>
-            <br>
-            <button class="button" onclick="openModal('modal-suscripcion')">Suscribirse</button>
-            <button class="close-button" onclick="closeModal('modal8')">×</button>
-        </div>
-    </div>
-
-    <div id="modal9" class="reveal" style="display:none;">
-        <div class="reveal-content">
-            <h3 class="text-2xl font-bold mb-4">Plan Premium - $120</h3>
-            <p>- Todo lo anterior</p>
-            <p>- Mentorias personalizadas o 1 a 1</p>
-            <p>- Acceso anticipado a nuevo contenido</p>
-            <p>- Soporte preferenciado</p>
-            <p>- Contenido VIP exclusivo</p>
-            <button class="button" onclick="openModal('modal-suscripcion')">Suscribirse</button>
-            <button class="close-button" onclick="closeModal('modal9')">×</button>
         </div>
     </div>
 
