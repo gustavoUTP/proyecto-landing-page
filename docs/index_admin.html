@@ -2,31 +2,133 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Lista de Suscripciones</title>
+  <title>Dashboard de Suscripciones</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+      <div class="bg-gray-800 text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+        <img src="../img/imagen_logo.png" alt="Imagen logo" class="rounded-lg w-24 h-25">
+    </div>
+</div>
+  <h1>📊 Dashboard de Suscripciones</h1>
+
+  <div class="dashboard">
+    <!-- Contador de suscripciones -->
+    <div class="card">
+      <h2>Total de Suscriptores</h2>
+      <p class="counter" id="total-suscriptores">0</p>
+    </div>
+
+    <!-- Gráfico -->
+    <div class="card">
+      <h2>Suscripciones por Plan</h2>
+      <canvas id="chartPlanes"></canvas>
+    </div>
+  </div>
+
+  <!-- Tabla de suscriptores -->
+  <div class="card" style="margin-top:20px;">
+    <h2>Lista de Suscriptores</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+          <th>Plan</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-suscripciones"></tbody>
+    </table>
+  </div>
+      <footer class="bg-gray-800 text-white py-8 ">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                <div>
+                    <h5 class="text-xl font-bold mb-4">Acerca de nosotros</h5>
+                    <p class="text-gray-400">Curso de emprendimiento en Tik Tok</p>
+                </div>
+                <div>
+                    <h5 class="text-xl font-bold mb-4">Enlaces</h5>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Términos y condiciones</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Política de privacidad</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Ayuda</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-xl font-bold mb-4">Redes sociales</h5>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Facebook</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Instagram</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-8 pt-8 border-t border-gray-700">
+                <p class="text-gray-400">©TikTok Business Academy. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
   <script>
-    async function cargarSuscripciones() {
+    async function cargarDashboard() {
       try {
         const res = await fetch("http://localhost:3001/api/suscripciones");
         const data = await res.json();
 
-        const lista = document.getElementById("lista-suscripciones");
-        lista.innerHTML = ""; // limpiar
+        // 1. Contador total
+        document.getElementById("total-suscriptores").textContent = data.length;
 
+        // 2. Tabla
+        const tabla = document.getElementById("tabla-suscripciones");
+        tabla.innerHTML = "";
         data.forEach(s => {
-          const li = document.createElement("li");
-          li.textContent = `${s.nombreApellido} | ${s.correo} | ${s.telefono} | ${s.plan} | ${new Date(s.fechaRegistro).toLocaleString()}`;
-          lista.appendChild(li);
+          const row = `
+            <tr>
+              <td>${s.nombreApellido}</td>
+              <td>${s.correo}</td>
+              <td>${s.telefono}</td>
+              <td>${s.plan}</td>
+              <td>${new Date(s.fechaRegistro).toLocaleString()}</td>
+            </tr>
+          `;
+          tabla.innerHTML += row;
         });
+
+        // 3. Gráfico por plan
+        const conteoPlanes = { basico: 0, intermedio: 0, premium: 0 };
+        data.forEach(s => {
+          if (conteoPlanes[s.plan] !== undefined) conteoPlanes[s.plan]++;
+        });
+
+        const ctx = document.getElementById("chartPlanes").getContext("2d");
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: ["Básico", "Intermedio", "Premium"],
+            datasets: [{
+              label: "Cantidad de Suscripciones",
+              data: [conteoPlanes.basico, conteoPlanes.intermedio, conteoPlanes.premium],
+              backgroundColor: ["#3498db", "#f39c12", "#2ecc71"]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: { legend: { display: false } }
+          }
+        });
+
       } catch (err) {
         console.error("Error cargando suscripciones:", err);
       }
     }
 
-    window.onload = cargarSuscripciones;
+    window.onload = cargarDashboard;
   </script>
-</head>
-<body>
-  <h2>Suscripciones registradas</h2>
-  <ul id="lista-suscripciones"></ul>
 </body>
 </html>

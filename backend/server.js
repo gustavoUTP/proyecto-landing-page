@@ -15,7 +15,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/formularioDB')
 .then(() => console.log('Conectado a MongoDB'))
 .catch(err => console.error('Error al conectar a MongoDB:', err));
 
-// modelo de usuario (login)
+// modelo de usuario (login)    
 const formularioSchema = new mongoose.Schema({
     nombre: {type: String},
     correo: { type: String, required: true, unique: true },
