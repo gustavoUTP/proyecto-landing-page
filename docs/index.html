@@ -256,7 +256,7 @@
         <form id="form-suscripcion" class="space-y-4">
             <div>
                 <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre y Apellido</label>
-                <input type="text" id="nombre" name="nombre" placeholder=""
+                <input type="text" id="nombre_sus" name="nombre" placeholder=""
                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
             </div>
             <div>
@@ -330,7 +330,13 @@
             <h3 class="text-2xl font-bold mb-4 text-center">Crear cuenta</h3>
             <p class="text-gray-700 text-center mb-6">Ingresa tu correo y contraseña</p>
 
-            <form id="registerForm" action="http://localhost:3001/api/registro" method="POST" class="space-y-4">
+            <form id="registerForm" class="space-y-4">
+                <div>
+                    <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+                    <input type="text" id="nombre_log" name="nombre" required
+                    class="mt-1 block w-full rounded-md border border-gray-400 bg-white px-3 py-2 shadow-sm
+                    focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+                </div>
                 <div>
                     <label for="correo" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
                     <input type="email" id="correo" name="correo" required
@@ -378,7 +384,7 @@
 
 
     <script src="../js/main.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="../js/login.js"></script>
 
 
 <!--Script Registrar Usuario-->
@@ -387,21 +393,24 @@ const registerForm = document.getElementById('registerForm');
 const msg = document.getElementById('msg');
 
 registerForm.addEventListener('submit', async (e) => {
-    e.preventDefault(); // evita recargar la página
+    e.preventDefault();
 
-    const correo = document.getElementById('correo').value;
-    const password = document.getElementById('password').value;
+    const nombre = document.getElementById('nombre_log').value.trim();
+    const correo = document.getElementById('correo').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    console.log("Valores a enviar:", { nombre, correo, password }); // debug
 
     try {
         const res = await fetch('http://localhost:3001/api/registro', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ correo, password })
+            body: JSON.stringify({ nombre, correo, password })
         });
 
         const data = await res.json();
 
-        if(res.ok){
+        if (res.ok) {
             msg.style.color = 'green';
             msg.textContent = data.message;
             registerForm.reset();
@@ -421,15 +430,15 @@ registerForm.addEventListener('submit', async (e) => {
 <!--Script Registrar Suscripciones-->
 <script>
 document.getElementById("form-suscripcion").addEventListener("submit", async function(e) {
-    e.preventDefault(); // Evita recargar la página
+    e.preventDefault(); 
 
-    // Obtener valores del formulario
-    const nombreApellido = document.getElementById("nombre").value;
+    
+    const nombreApellido = document.getElementById("nombre_sus").value;
     const correo = document.getElementById("email").value;
     const telefono = document.getElementById("telefono").value;
     const plan = document.getElementById("plan").value;
 
-    // Validación básica
+    // Validación 
     if (!nombreApellido || !correo || !telefono || !plan) {
         alert("Por favor completa todos los campos.");
         return;
@@ -447,8 +456,8 @@ document.getElementById("form-suscripcion").addEventListener("submit", async fun
 
         if (response.ok) {
             alert("Suscripción registrada con éxito");
-            document.getElementById("form-suscripcion").reset(); // Limpia formulario
-            closeModal('modal-suscripcion'); // Cierra modal (ya tienes tu función)
+            document.getElementById("form-suscripcion").reset(); 
+            closeModal('modal-suscripcion'); 
         } else {
             alert("Error: " + data.message);
         }

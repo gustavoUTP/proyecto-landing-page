@@ -17,8 +17,10 @@ mongoose.connect('mongodb://127.0.0.1:27017/formularioDB')
 
 // modelo de usuario (login)
 const formularioSchema = new mongoose.Schema({
+    nombre: {type: String},
     correo: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    rol:{ type: String, enum: ['user', 'admin'], default: 'user'},
     fecha: { type: Date, default: Date.now }
 });
 
@@ -39,14 +41,14 @@ app.post('/api/registro', async (req, res) => {
     try {
         console.log("Datos de registro recibidos:", req.body);
 
-        const { correo, password } = req.body;
+        const { nombre, correo, password } = req.body;
 
         if (!correo || !password) {
             return res.status(400).json({ message: 'Correo y contraseña son requeridos' });
         }
 
         // Guardar en MongoDB
-        const nuevoUsuario = new Usuario({ correo, password });
+        const nuevoUsuario = new Usuario({ nombre, correo, password, rol: 'user' });
         await nuevoUsuario.save();
 
         res.status(201).json({ message: 'Usuario registrado con éxito' });
