@@ -91,3 +91,31 @@ app.listen(PORT, () => {
     console.log(`Servidor backend corriendo en http://localhost:${PORT}`);
 });
 
+// Endpoint de Login
+app.post('/api/login', async (req, res) => {
+    try {
+        const { correo, password } = req.body;
+
+        if (!correo || !password) {
+            return res.status(400).json({ message: 'Correo y contraseña requeridos' });
+        }
+
+        // Buscar usuario por correo y password
+        const usuario = await Usuario.findOne({ correo, password });
+
+        if (!usuario) {
+            return res.status(401).json({ message: 'Credenciales inválidas' });
+        }
+
+        // Si es correcto, devolvemos su info básica
+        res.json({
+            message: 'Inicio de sesión exitoso',
+            nombre: usuario.nombre,
+            rol: usuario.rol
+        });
+
+    } catch (error) {
+        console.error('Error en login:', error);
+        res.status(500).json({ message: 'Error en el servidor' });
+    }
+});
