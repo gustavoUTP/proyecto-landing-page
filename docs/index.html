@@ -17,182 +17,213 @@
         🎃 ¡Ofertas por Halloween! Descuentos hasta el 31/10 👻
     </div>
 
-    <div class="text-white p-4 bg-transparent"> 
-    <div class="container mx-auto flex flex-col md:flex-row justify-center md:justify-between items-center">
-        
-        <img src="../img/imagen_logo.png" alt="Imagen logo" class="rounded-lg w-28 h-28 mb-4 md:mb-0"> 
-        
-        <nav class="w-full md:w-auto">
-            <ul class="flex flex-col md:flex-row space-y-2 md:space-x-4 md:space-y-0 text-center">
-                <li><a href="#inicio" class="hover:text-gray-400">Inicio</a></li>
-                <li><a href="#presentacion" class="hover:text-gray-400">Presentacion</a></li>
-                <li><a href="#tipos" class="hover:text-gray-400">Cursos</a></li>
-                <li><a href="#planes" class="hover:text-gray-400">Planes</a></li>
-                <li class="mt-2 md:mt-0">
-                    <a href="#modal-signIn" onclick="openModal('modal-signIn')" class="inline-block w-full md:w-auto px-5 py-2 rounded-lg border border-white text-white hover:bg-white hover:text-gray-900 transition font-medium shadow-sm">Iniciar Sesión</a>
-                </li>
-                <li class="mt-2 md:mt-0">
-                    <a href="#modal-signUp" onclick="openModal('modal-signUp')" class="inline-block w-full md:w-auto px-5 py-2 rounded-lg bg-white text-gray-900 hover:bg-gray-200 transition font-medium shadow-md">Crear Cuenta</a>
-                </li>
-            </ul>
-        </nav> 
-    </div></div>
+    <header class="bg-gray-800 text-white shadow-md">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <!-- Logo -->
+            <a href="#inicio">
+            <img src="../img/imagen_logo.png" alt="Logo" class="rounded-lg w-24 h-auto">
+            </a>
 
-    <header id="inicio" class="text-white py-20 text-center">
-        <div class="container mx-auto px-4">
-            <h1 class="text-5xl font-extrabold mb-4">TikTok para Negocios: De 0 a Pro</h1>
-            <p class="text-xl leading-relaxed">
-                En este curso aprenderás a usar esta red social para generar contenido viral y aumentar las ventas de tu negocio
-            </p>
+            <!-- Botón Hamburger (móvil) -->
+            <button id="menu-btn" class="sm:hidden focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            </button>
+
+            <!-- Menú -->
+            <nav id="menu" class="hidden sm:flex space-x-4 items-center">
+            <a href="#inicio" class="hover:text-gray-400">Inicio</a>
+            <a href="#presentacion" class="hover:text-gray-400">Presentacion</a>
+            <a href="#tipos" class="hover:text-gray-400">Cursos</a>
+            <a href="#planes" class="hover:text-gray-400">Planes</a>
+            <a href="#modal-signIn" onclick="openModal('modal-signIn')" 
+                class="px-4 py-2 rounded-lg border border-white text-white hover:bg-white hover:text-gray-900 transition font-medium shadow-sm">
+                Iniciar Sesión
+            </a>
+            <a href="#modal-signUp" onclick="openModal('modal-signUp')" 
+                class="px-4 py-2 rounded-lg bg-white text-gray-900 hover:bg-gray-200 transition font-medium shadow-md">
+                Crear Cuenta
+            </a>
+            </nav>
+        </div>
+
+        <!-- Menú desplegable móvil -->
+        <div id="menu-mobile" class="sm:hidden hidden bg-gray-800">
+            <nav class="flex flex-col space-y-2 p-4">
+            <a href="#inicio" class="hover:text-gray-400">Inicio</a>
+            <a href="#presentacion" class="hover:text-gray-400">Presentacion</a>
+            <a href="#tipos" class="hover:text-gray-400">Cursos</a>
+            <a href="#planes" class="hover:text-gray-400">Planes</a>
+            <a href="#modal-signIn" onclick="openModal('modal-signIn')" 
+                class="px-4 py-2 rounded-lg border border-white text-white hover:bg-white hover:text-gray-900 transition font-medium shadow-sm">
+                Iniciar Sesión
+            </a>
+            <a href="#modal-signUp" onclick="openModal('modal-signUp')" 
+                class="px-4 py-2 rounded-lg bg-white text-gray-900 hover:bg-gray-200 transition font-medium shadow-md">
+                Crear Cuenta
+            </a>
+            </nav>
         </div>
     </header>
     </div>
 
     <!--Inicio-->
     <section id="presentacion" class="py-16 bg-white">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center sm:gap-6 md:gap-8">
             <div class="md:w-1/2">
-                <h2 class="text-4xl font-bold text-gray-800 mb-6">¿Qué aprenderas en este curso?</h2>
-                <p class="text-lg leading-relaxed text-gray-700 mb-4">
-                    En este curso vas a conocer como puedes usar esta aplicacion para tener un mayor alcance para tu marca.
-                </p>
-                <p class="text-lg leading-relaxed text-gray-700">
-                    El objetivo principal es usar las tendencias del momento o temas virales para atraer mas audiencias.
-                </p>
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-6">¿Qué aprenderas en este curso?</h2>
+            <p class="text-base sm:text-lg leading-relaxed text-gray-700 mb-4">
+                En este curso vas a conocer como puedes usar esta aplicacion para tener un mayor alcance para tu marca.
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed text-gray-700">
+                El objetivo principal es usar las tendencias del momento o temas virales para atraer mas audiencias.
+            </p>
             </div>
             <div class="md:w-1/2 flex justify-center">
-                <img src="../img/imagen1.jpg" alt="Imagen de Automatización de Procesos" class="rounded-lg shadow-xl">
+            <img src="../img/imagen1.jpg" alt="Imagen de Automatización de Procesos" class="rounded-lg shadow-xl w-full md:max-w-md object-cover">
             </div>
         </div>
     </section>
 
-    <!--Seccion de tipos de cursos-->
+
+    <!--Sección de tipos de cursos-->
     <section id="tipos" class="py-16 bg-gray-100">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-gray-800 text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 text-center mb-12">
             ¿Cómo atraer más audiencia para tu negocio?
             </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Curso -->
-                <div class="relative bg-cover bg-center rounded-lg shadow-md hover:shadow-lg transition overflow-hidden" style="background-image: url('../img/imagen_curso_1.png');">
-                    <div class="relative p-6 text-center">
-                    <br><br><br><br>
-                    <button class="bg-black text-white px-2 py-2 rounded transition" onclick="openModal('modal1')">
-                        Curso Básico de Creación de Contenido
-                    </button>
-                </div></div>
 
-                <!-- Curso -->
-                <div class="relative bg-cover bg-center rounded-lg shadow-md hover:shadow-lg transition overflow-hidden" style="background-image: url('../img/imagen_curso_2.png');">
-                    <div class="relative p-6 text-center">
-                    <br><br><br><br>
-                    <button class="bg-black text-white px-2 py-2 rounded transition" onclick="openModal('modal2')">
-                        Curso Avanzado de Marketing y Ventas
-                    </button>
-                </div></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Curso -->
+            <div class="relative rounded-lg shadow-md overflow-hidden group">
+                <img src="../img/imagen_curso_1.png" alt="Curso Básico" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button class="bg-white text-gray-900 px-4 py-2 rounded font-medium" onclick="openModal('modal1')">
+                    Curso Básico de Creación de Contenido
+                </button>
+                </div>
+            </div>
 
+            <!-- Curso -->
+            <div class="relative rounded-lg shadow-md overflow-hidden group">
+                <img src="../img/imagen_curso_2.png" alt="Curso Avanzado" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button class="bg-white text-gray-900 px-4 py-2 rounded font-medium" onclick="openModal('modal2')">
+                    Curso Avanzado de Marketing y Ventas
+                </button>
+                </div>
+            </div>
 
-                <!-- Curso -->
-                <div class="relative bg-cover bg-center rounded-lg shadow-md hover:shadow-lg transition overflow-hidden" style="background-image: url('../img/imagen_curso_3.png');">
-                    <div class="relative p-6 text-center">
-                    <br><br><br><br>
-                    <button class="bg-black text-white px-2 py-2 rounded transition" onclick="openModal('modal3')">
-                        Curso de Branding Personal
-                    </button>
-                </div></div>
+            <!-- Curso -->
+            <div class="relative rounded-lg shadow-md overflow-hidden group">
+                <img src="../img/imagen_curso_3.png" alt="Curso Branding" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button class="bg-white text-gray-900 px-4 py-2 rounded font-medium" onclick="openModal('modal3')">
+                    Curso de Branding Personal
+                </button>
+                </div>
+            </div>
 
-                <!-- Curso -->
-                <div class="relative bg-cover bg-center rounded-lg shadow-md hover:shadow-lg transition overflow-hidden" style="background-image: url('../img/imagen_curso_4.png');">
-                    <div class="relative p-6 text-center">
-                    <br><br><br><br>
-                    <button class="bg-black text-white px-2 py-2 rounded transition" onclick="openModal('modal4')">
-                        Curso de Publicidad Efectiva
-                    </button>
-                </div></div>
+            <!-- Curso -->
+            <div class="relative rounded-lg shadow-md overflow-hidden group">
+                <img src="../img/imagen_curso_4.png" alt="Curso Publicidad" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button class="bg-white text-gray-900 px-4 py-2 rounded font-medium" onclick="openModal('modal4')">
+                    Curso de Publicidad Efectiva
+                </button>
+                </div>
+            </div>
 
-                <!-- Curso -->
-                <div class="relative bg-cover bg-center rounded-lg shadow-md hover:shadow-lg transition overflow-hidden" style="background-image: url('../img/imagen_curso_5.png');">
-                    <div class="relative p-6 text-center">
-                        <br><br><br><br>
-                    <button class="bg-black text-white px-2 py-2 rounded transition" onclick="openModal('modal5')">
-                        Curso de Storytelling
-                    </button>
-                </div></div>
+            <!-- Curso -->
+            <div class="relative rounded-lg shadow-md overflow-hidden group">
+                <img src="../img/imagen_curso_5.png" alt="Curso Storytelling" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button class="bg-white text-gray-900 px-4 py-2 rounded font-medium" onclick="openModal('modal5')">
+                    Curso de Storytelling
+                </button>
+                </div>
+            </div>
 
-                <!-- Curso -->
-                <div class="relative bg-cover bg-center rounded-lg shadow-md hover:shadow-lg transition overflow-hidden" style="background-image: url('../img/imagen_curso_6.png');">
-                    <div class="relative p-6 text-center">
-                        <br><br><br><br>
-                    <button class="bg-black text-white px-2 py-2 rounded transition" onclick="openModal('modal6')">
-                        Curso de Monetización
-                    </button>
-                </div></div>
+            <!-- Curso -->
+            <div class="relative rounded-lg shadow-md overflow-hidden group">
+                <img src="../img/imagen_curso_6.png" alt="Curso Monetización" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button class="bg-white text-gray-900 px-4 py-2 rounded font-medium" onclick="openModal('modal6')">
+                    Curso de Monetización
+                </button>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!--Planes-->
+    <section id="planes" class="py-16 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-6">Suscríbete ahora</h2>
+            <p class="text-lg text-gray-700 mb-8">
+                Elige el plan que mejor se adapte a tus necesidades para comenzar a transformar tu negocio.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-gray-50 border border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Plan Básico</h3>
+                    
+                    <div class="mb-4">
+                        <p class="text-lg text-gray-500 line-through mb-1">$25</p>
+                        <p class="text-5xl font-extrabold text-orange-600">$19</p>
+                    </div>
+                    
+                    <p>- Acceso a contenido inicial (videos + guias)</p>
+                    <p>- Comunidad basica (Grupo Privado)</p>
+                    <p>- Actualizaciones mensuales</p>
+                    <p>- Ideal para los que empiezan sin mucha inversion</p>
+                    <div class="mt-8"> <button class="button" onclick="openModal('modal-suscripcion')">Suscribirse</button>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 border border-blue-200 rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-2">Plan Intermedio</h3>
+                    
+                    <div class="mb-4">
+                        <p class="text-lg text-gray-500 line-through mb-1">$60</p>
+                        <p class="text-5xl font-extrabold text-orange-600">$49</p>
+                    </div>
+
+                    <p>- Todo el plan basico</p>
+                    <p>- Talleres en vivo</p>
+                    <p>- Analisis de casos y feedback personalizado</p>
+                    <p>- Acceso a herramientas y plantillas personalizadas</p>
+                    <div class="mt-8">
+                        <button class="button" onclick="openModal('modal-suscripcion')">Suscribirse</button>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 border border-yellow-400 rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                    <h3 class="text-xl font-semibold text-yellow-600 mb-2">Plan Premium</h3>
+                    
+                    <div class="mb-4">
+                        <p class="text-lg text-gray-500 line-through mb-1">$120</p>
+                        <p class="text-5xl font-extrabold text-orange-600">$99</p>
+                    </div>
+
+                    <p>- Todo lo anterior</p>
+                    <p>- Mentorias personalizadas o 1 a 1</p>
+                    <p>- Acceso anticipado a nuevo contenido</p>
+                    <p>- Soporte preferenciado</p>
+                    <p>- Contenido VIP exclusivo</p>
+                    <div class="mt-8">
+                        <button class="button" onclick="openModal('modal-suscripcion')">Suscribirse</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
 
-    <section id="planes" class="py-16 bg-white">
-    <div class="container mx-auto px-4 text-center">
-        <h2 class="text-4xl font-bold text-gray-800 mb-6">Suscríbete ahora</h2>
-        <p class="text-lg text-gray-700 mb-8">
-            Elige el plan que mejor se adapte a tus necesidades para comenzar a transformar tu negocio.
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <div class="bg-gray-50 border border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">Plan Básico</h3>
-                
-                <div class="mb-4">
-                    <p class="text-lg text-gray-500 line-through mb-1">$25</p>
-                    <p class="text-5xl font-extrabold text-orange-600">$19</p>
-                </div>
-                
-                <p>- Acceso a contenido inicial (videos + guias)</p>
-                <p>- Comunidad basica (Grupo Privado)</p>
-                <p>- Actualizaciones mensuales</p>
-                <p>- Ideal para los que empiezan sin mucha inversion</p>
-                <div class="mt-8"> <button class="button" onclick="openModal('modal-suscripcion')">Suscribirse</button>
-                </div>
-            </div>
-            
-            <div class="bg-gray-50 border border-blue-200 rounded-lg shadow-md p-6 hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-blue-800 mb-2">Plan Intermedio</h3>
-                
-                <div class="mb-4">
-                    <p class="text-lg text-gray-500 line-through mb-1">$60</p>
-                    <p class="text-5xl font-extrabold text-orange-600">$49</p>
-                </div>
-
-                <p>- Todo el plan basico</p>
-                <p>- Talleres en vivo</p>
-                <p>- Analisis de casos y feedback personalizado</p>
-                <p>- Acceso a herramientas y plantillas personalizadas</p>
-                <div class="mt-8">
-                    <button class="button" onclick="openModal('modal-suscripcion')">Suscribirse</button>
-                </div>
-            </div>
-            
-            <div class="bg-gray-50 border border-yellow-400 rounded-lg shadow-md p-6 hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-yellow-600 mb-2">Plan Premium</h3>
-                
-                <div class="mb-4">
-                    <p class="text-lg text-gray-500 line-through mb-1">$120</p>
-                    <p class="text-5xl font-extrabold text-orange-600">$99</p>
-                </div>
-
-                <p>- Todo lo anterior</p>
-                <p>- Mentorias personalizadas o 1 a 1</p>
-                <p>- Acceso anticipado a nuevo contenido</p>
-                <p>- Soporte preferenciado</p>
-                <p>- Contenido VIP exclusivo</p>
-                <div class="mt-8">
-                    <button class="button" onclick="openModal('modal-suscripcion')">Suscribirse</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
     <!--Footer-->
     <footer class="bg-gray-800 text-white py-8">
@@ -284,10 +315,10 @@
         <p class="text-gray-700 text-center mb-6">
             Completa este formulario con tus datos
         </p>
-        <form class="space-y-4">
+        <form id="form-suscripcion" class="space-y-4">
             <div>
                 <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre y Apellido</label>
-                <input type="text" id="nombre" name="nombre" placeholder=""
+                <input type="text" id="nombre_sus" name="nombre" placeholder=""
                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
             </div>
             <div>
@@ -361,7 +392,13 @@
             <h3 class="text-2xl font-bold mb-4 text-center">Crear cuenta</h3>
             <p class="text-gray-700 text-center mb-6">Ingresa tu correo y contraseña</p>
 
-            <form id="registerForm" action="http://localhost:3001/api/registro" method="POST" class="space-y-4">
+            <form id="registerForm" class="space-y-4">
+                <div>
+                    <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+                    <input type="text" id="nombre_log" name="nombre" required
+                    class="mt-1 block w-full rounded-md border border-gray-400 bg-white px-3 py-2 shadow-sm
+                    focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+                </div>
                 <div>
                     <label for="correo" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
                     <input type="email" id="correo" name="correo" required
@@ -409,28 +446,33 @@
 
 
     <script src="../js/main.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="../js/login.js"></script>
 
+
+<!--Script Registrar Usuario-->
 <script>
 const registerForm = document.getElementById('registerForm');
 const msg = document.getElementById('msg');
 
 registerForm.addEventListener('submit', async (e) => {
-    e.preventDefault(); // evita recargar la página
+    e.preventDefault();
 
-    const correo = document.getElementById('correo').value;
-    const password = document.getElementById('password').value;
+    const nombre = document.getElementById('nombre_log').value.trim();
+    const correo = document.getElementById('correo').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    console.log("Valores a enviar:", { nombre, correo, password }); // debug
 
     try {
         const res = await fetch('http://localhost:3001/api/registro', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ correo, password })
+            body: JSON.stringify({ nombre, correo, password })
         });
 
         const data = await res.json();
 
-        if(res.ok){
+        if (res.ok) {
             msg.style.color = 'green';
             msg.textContent = data.message;
             registerForm.reset();
@@ -443,6 +485,47 @@ registerForm.addEventListener('submit', async (e) => {
         msg.style.color = 'red';
         msg.textContent = 'Error al conectar con el servidor';
         console.error(err);
+    }
+});
+</script>
+
+<!--Script Registrar Suscripciones-->
+<script>
+document.getElementById("form-suscripcion").addEventListener("submit", async function(e) {
+    e.preventDefault(); 
+
+    
+    const nombreApellido = document.getElementById("nombre_sus").value;
+    const correo = document.getElementById("email").value;
+    const telefono = document.getElementById("telefono").value;
+    const plan = document.getElementById("plan").value;
+
+    // Validación 
+    if (!nombreApellido || !correo || !telefono || !plan) {
+        alert("Por favor completa todos los campos.");
+        return;
+    }
+
+    try {
+        // Enviar datos al backend
+        const response = await fetch("http://localhost:3001/api/suscripciones", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nombreApellido, correo, telefono, plan })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("Suscripción registrada con éxito");
+            document.getElementById("form-suscripcion").reset(); 
+            closeModal('modal-suscripcion'); 
+        } else {
+            alert("Error: " + data.message);
+        }
+    } catch (error) {
+        console.error("Error en la suscripción:", error);
+        alert(" No se pudo enviar la suscripción");
     }
 });
 </script>
