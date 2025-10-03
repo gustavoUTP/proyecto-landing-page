@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Final</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body class="font-sans antialiased bg-gray-100">
+
+    <!--Seccion de navbar-->
+    <div id="seccion-superior-halloween">
+    
+    <div class="bg-orange-600 text-white p-2 text-center font-bold text-lg">
+        🎃 ¡Ofertas por Halloween! Descuentos hasta el 31/10 👻
+    </div>
+
+    <header class="bg-gray-800 text-white shadow-md">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <!-- Logo -->
+            <a href="#inicio">
+            <img src="../img/imagen_logo.png" alt="Logo" class="rounded-lg w-24 h-auto">
+            </a>
+
+            <!-- Botón Hamburger (móvil) -->
+            <button id="menu-btn" class="sm:hidden focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            </button>
+
+            <!-- Menú -->
+            <nav id="menu" class="hidden sm:flex space-x-4 items-center">
+            <a href="#modal-signIn" onclick="openModal('modal-signIn')" 
+                class="px-4 py-2 rounded-lg border border-white text-white hover:bg-white hover:text-gray-900 transition font-medium shadow-sm">
+                Iniciar Sesión
+            </a>
+            <a href="#modal-signUp" onclick="openModal('modal-signUp')" 
+                class="px-4 py-2 rounded-lg bg-white text-gray-900 hover:bg-gray-200 transition font-medium shadow-md">
+                Crear Cuenta
+            </a>
+            </nav>
+        </div>
+
+        <!-- Menú desplegable móvil -->
+        <div id="menu-mobile" class="sm:hidden hidden bg-gray-800">
+            <nav class="flex flex-col space-y-2 p-4">
+            <a href="#modal-signIn" onclick="openModal('modal-signIn')" 
+                class="px-4 py-2 rounded-lg border border-white text-white hover:bg-white hover:text-gray-900 transition font-medium shadow-sm">
+                Iniciar Sesión
+            </a>
+            <a href="#modal-signUp" onclick="openModal('modal-signUp')" 
+                class="px-4 py-2 rounded-lg bg-white text-gray-900 hover:bg-gray-200 transition font-medium shadow-md">
+                Crear Cuenta
+            </a>
+            </nav>
+        </div>
+    </header>
+    </div>
+
+    <!--Sección de tipos de cursos-->
+    <section id="tipos" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 text-center mb-12">
+            ¿Cómo atraer más audiencia para tu negocio?
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Curso -->
+            <div class="relative rounded-lg shadow-md overflow-hidden group">
+                <img src="../img/imagen_curso_1.png" alt="Curso Básico" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button class="bg-white text-gray-900 px-4 py-2 rounded font-medium" onclick="openModal('modal1')">
+                    Curso Básico de Creación de Contenido
+                </button>
+                </div>
+            </div>
+
+            <!-- Curso -->
+            <div class="relative rounded-lg shadow-md overflow-hidden group">
+                <img src="../img/imagen_curso_2.png" alt="Curso Avanzado" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button class="bg-white text-gray-900 px-4 py-2 rounded font-medium" onclick="openModal('modal2')">
+                    Curso Avanzado de Marketing y Ventas
+                </button>
+                </div>
+            </div>
+
+            <!-- Curso -->
+            <div class="relative rounded-lg shadow-md overflow-hidden group">
+                <img src="../img/imagen_curso_3.png" alt="Curso Branding" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button class="bg-white text-gray-900 px-4 py-2 rounded font-medium" onclick="openModal('modal3')">
+                    Curso de Branding Personal
+                </button>
+                </div>
+            </div>
+
+            <!-- Curso -->
+            <div class="relative rounded-lg shadow-md overflow-hidden group">
+                <img src="../img/imagen_curso_4.png" alt="Curso Publicidad" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button class="bg-white text-gray-900 px-4 py-2 rounded font-medium" onclick="openModal('modal4')">
+                    Curso de Publicidad Efectiva
+                </button>
+                </div>
+            </div>
+
+            <!-- Curso -->
+            <div class="relative rounded-lg shadow-md overflow-hidden group">
+                <img src="../img/imagen_curso_5.png" alt="Curso Storytelling" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button class="bg-white text-gray-900 px-4 py-2 rounded font-medium" onclick="openModal('modal5')">
+                    Curso de Storytelling
+                </button>
+                </div>
+            </div>
+
+            <!-- Curso -->
+            <div class="relative rounded-lg shadow-md overflow-hidden group">
+                <img src="../img/imagen_curso_6.png" alt="Curso Monetización" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button class="bg-white text-gray-900 px-4 py-2 rounded font-medium" onclick="openModal('modal6')">
+                    Curso de Monetización
+                </button>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!--Footer-->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                <div>
+                    <h5 class="text-xl font-bold mb-4">Acerca de nosotros</h5>
+                    <p class="text-gray-400">Curso de emprendimiento en Tik Tok</p>
+                </div>
+                <div>
+                    <h5 class="text-xl font-bold mb-4">Enlaces</h5>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Términos y condiciones</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Política de privacidad</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Ayuda</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-xl font-bold mb-4">Redes sociales</h5>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Facebook</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Instagram</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-8 pt-8 border-t border-gray-700">
+                <p class="text-gray-400">©TikTok Business Academy. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!--Modals para los tipos de cursos-->
+    <div id="modal1" class="reveal">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-8">Curso Avanzado de Marketing y Ventas</h3>
+            <p>Aprende desde cero cómo diseñar y producir videos que llamen la atención y se vuelvan virales en TikTok. Descubre las técnicas básicas para captar la audiencia, utilizar efectos 
+                y música, y sacar el máximo provecho de las tendencias, sin necesidad de experiencia previa.</p>
+                <a href="#modal-signIn" onclick="openModal('modal-signIn')" 
+                class="px-4 py-2 rounded-lg border border-white text-white hover:bg-white hover:text-gray-900 transition font-medium shadow-sm">
+                Iniciar Sesión</a>
+            <button class="close-button" onclick="closeModal('modal1')">×</button>
+        </div>
+    </div>
+
+    <div id="modal2" class="reveal">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-4">Curso Avanzado de Marketing y Ventas</h3>
+            <p>Domina las estrategias avanzadas para transformar seguidores en clientes reales. Aprende a diseñar funnels de ventas dentro de TikTok, crear llamados a la acción efectivos y 
+                aprovechar las herramientas de la plataforma para aumentar tus ingresos de forma constante.</p>
+            <button class="close-button" onclick="closeModal('modal2')">×</button>
+        </div>
+    </div>
+
+    <div id="modal3" class="reveal">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-4">Curso de Branding Personal para Emprendedores</h3>
+            <p>Construye una marca auténtica y memorable que te permita destacar en TikTok. Descubre cómo comunicar tu propuesta de valor, crear una identidad visual coherente y conectar 
+                emocionalmente con tu audiencia para generar confianza y fidelidad.</p>
+            <button class="close-button" onclick="closeModal('modal3')">×</button>
+        </div>
+    </div>
+
+    <div id="modal4" class="reveal">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-4">Curso de Publicidad Efectiva</h3>
+            <p>Conviértete en un experto en la creación y gestión de campañas publicitarias en TikTok Ads. Aprende a segmentar a tu audiencia ideal, diseñar anuncios que conviertan y optimizar tu inversión para obtener el mejor retorno en ventas y crecimiento.</p>
+            <button class="close-button" onclick="closeModal('modal4')">×</button>
+        </div>
+    </div>
+
+    <div id="modal5" class="reveal">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-4">Curso de Storytelling para Emprendedores</h3>
+            <p>Aprende a contar historias que capturen la atención y generen conexión con tus seguidores. Descubre técnicas narrativas y formatos ideales para TikTok que te ayudarán a humanizar tu marca, transmitir valores y motivar a tu audiencia a tomar acción.</p>
+            <button class="close-button" onclick="closeModal('modal5')">×</button>
+        </div>
+    </div>
+
+    <div id="modal6" class="reveal">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-4">Curso de monetizacion para creadores de contenido</h3>
+            <p>Explora todas las formas posibles de generar ingresos con tu contenido en TikTok. Desde colaboraciones y patrocinios hasta venta de productos digitales y servicios, aprende a diversificar tus fuentes de ingreso y crear una comunidad rentable.</p>
+            <button class="close-button" onclick="closeModal('modal6')">×</button>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/login.js"></script>
+</body>
+</html>
