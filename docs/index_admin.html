@@ -6,129 +6,103 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="../css/admin.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 </head>
-<body>
-      <div class="bg-gray-800 text-white p-4 shadow-md">
-    <div class="container mx-auto flex justify-between items-center">
-        <img src="../img/imagen_logo.png" alt="Imagen logo" class="rounded-lg w-24 h-25">
-    </div>
-</div>
-  <h1>📊 Dashboard de Suscripciones</h1>
+<body class="bg-gray-50">
 
-  <div class="dashboard">
-    <!-- Contador de suscripciones -->
-    <div class="card">
-      <h2>Total de Suscriptores</h2>
-      <p class="counter" id="total-suscriptores">0</p>
+  <!-- Navbar -->
+<nav class="bg-gray-800 text-white p-4 shadow-md">
+  <div class="container mx-auto flex justify-between items-center">
+    
+    <!-- Logo -->
+    <div class="flex items-center">
+      <img src="../img/imagen_logo.png" alt="Imagen logo" class="w-16 h-auto rounded-lg">
     </div>
 
-    <!-- Gráfico -->
-    <div class="card">
-      <h2>Suscripciones por Plan</h2>
+    <!-- Perfil Admin -->
+    <div class="relative">
+      <button id="user-menu-button" class="flex items-center space-x-2 focus:outline-none">
+        <!-- Foto admin -->
+        <img src="../img/admin1.png" alt="Foto admin" class="w-10 h-10 rounded-full border-2 border-white">
+        <!-- Nombre admin -->
+        <span id="admin-name" class="hidden sm:inline">Admin</span>
+        <!-- Icono flecha -->
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+
+      <!-- Dropdown -->
+      <div id="user-dropdown" 
+           class="hidden absolute right-0 mt-2 w-40 bg-white text-gray-700 rounded-md shadow-lg z-10">
+        <a href="#" class="block px-4 py-2 hover:bg-gray-100">Mi Perfil</a>
+        <a href="../docs/index.html" id="logout-btn" class="block px-4 py-2 hover:bg-gray-100">Cerrar Sesión</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <h1 class="text-2xl font-bold text-center my-6">📊 Dashboard de Suscripciones</h1>
+
+  <!-- Estadísticas -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-4 sm:px-6">
+    <div class="bg-white p-4 sm:p-6 shadow rounded-lg">
+      <h2 class="text-lg font-semibold mb-2">Total de Suscriptores</h2>
+      <p class="text-3xl font-bold text-indigo-600" id="total-suscriptores">0</p>
+    </div>
+    <div class="bg-white p-4 sm:p-6 shadow rounded-lg">
+      <h2 class="text-lg font-semibold mb-2">Suscripciones por Plan</h2>
       <canvas id="chartPlanes"></canvas>
     </div>
   </div>
 
-  <!-- Tabla de suscriptores -->
-  <div class="card" style="margin-top:20px;">
-    <h2>Lista de Suscriptores</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Correo</th>
-          <th>Teléfono</th>
-          <th>Plan</th>
-          <th>Fecha</th>
-        </tr>
-      </thead>
-      <tbody id="tabla-suscripciones"></tbody>
-    </table>
+  <!-- Tabla y Buscador-->
+  <div class="bg-white p-4 sm:p-6 shadow rounded-lg mx-2 sm:mx-6 my-6">
+    
+    <!-- Buscador-->
+    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
+      <input type="text" id="buscador" placeholder="Buscar por nombre o correo..."
+        class="w-full sm:w-1/2 p-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300">
+
+      <button id="btn-pdf" class="flex justify-center items-center bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
+        📄 Exportar PDF
+      </button>
+    </div>
+
+    <!-- Tabla-->
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse min-w-[700px]">
+        <thead>
+          <tr class="bg-gray-100 text-left">
+            <th class="border p-2">#</th>
+            <th class="border p-2">Nombre</th>
+            <th class="border p-2">Correo</th>
+            <th class="border p-2">Teléfono</th>
+            <th class="border p-2">Plan</th>
+            <th class="border p-2">Fecha</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-suscripciones"></tbody>
+      </table>
+    </div>
+
+
+    <!-- Paginación -->
+    <div class="flex flex-col sm:flex-row justify-between items-center mt-4 gap-3">
+      <p id="info-paginacion" class="text-sm text-gray-600 text-center sm:text-left">Mostrando 0 - 0</p>
+      <div class="flex gap-2">
+        <button id="prev" class="px-4 py-2 border rounded bg-gray-200 hover:bg-gray-300">⬅</button>
+        <button id="next" class="px-4 py-2 border rounded bg-gray-200 hover:bg-gray-300">➡</button>
+      </div>
+    </div>
   </div>
-      <footer class="bg-gray-800 text-white py-8 ">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-                <div>
-                    <h5 class="text-xl font-bold mb-4">Acerca de nosotros</h5>
-                    <p class="text-gray-400">Curso de emprendimiento en Tik Tok</p>
-                </div>
-                <div>
-                    <h5 class="text-xl font-bold mb-4">Enlaces</h5>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Términos y condiciones</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Política de privacidad</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Ayuda</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="text-xl font-bold mb-4">Redes sociales</h5>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Facebook</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Instagram</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Twitter</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="text-center mt-8 pt-8 border-t border-gray-700">
-                <p class="text-gray-400">©TikTok Business Academy. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
 
-  <script>
-    async function cargarDashboard() {
-      try {
-        const res = await fetch("http://localhost:3001/api/suscripciones");
-        const data = await res.json();
+  <footer class="bg-gray-900 text-gray-400 py-4 text-center text-sm">
+    © 2025 Panel de Administración - TikTok Business Academy
+  </footer>
 
-        // 1. Contador total
-        document.getElementById("total-suscriptores").textContent = data.length;
-
-        // 2. Tabla
-        const tabla = document.getElementById("tabla-suscripciones");
-        tabla.innerHTML = "";
-        data.forEach(s => {
-          const row = `
-            <tr>
-              <td>${s.nombreApellido}</td>
-              <td>${s.correo}</td>
-              <td>${s.telefono}</td>
-              <td>${s.plan}</td>
-              <td>${new Date(s.fechaRegistro).toLocaleString()}</td>
-            </tr>
-          `;
-          tabla.innerHTML += row;
-        });
-
-        // 3. Gráfico por plan
-        const conteoPlanes = { basico: 0, intermedio: 0, premium: 0 };
-        data.forEach(s => {
-          if (conteoPlanes[s.plan] !== undefined) conteoPlanes[s.plan]++;
-        });
-
-        const ctx = document.getElementById("chartPlanes").getContext("2d");
-        new Chart(ctx, {
-          type: "bar",
-          data: {
-            labels: ["Básico", "Intermedio", "Premium"],
-            datasets: [{
-              label: "Cantidad de Suscripciones",
-              data: [conteoPlanes.basico, conteoPlanes.intermedio, conteoPlanes.premium],
-              backgroundColor: ["#3498db", "#f39c12", "#2ecc71"]
-            }]
-          },
-          options: {
-            responsive: true,
-            plugins: { legend: { display: false } }
-          }
-        });
-
-      } catch (err) {
-        console.error("Error cargando suscripciones:", err);
-      }
-    }
-
-    window.onload = cargarDashboard;
-  </script>
+  <script src="../js/admin.js"></script>
 </body>
 </html>
+

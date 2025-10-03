@@ -28,6 +28,7 @@ const Usuario = mongoose.model('Usuario', formularioSchema);
 
 // modelo de suscripciones
 const suscripcionSchema = new mongoose.Schema({
+    codigo: {type:String, unique: true},
     nombreApellido: {type: String, required: true},
     correo:{type: String, required: true},
     telefono:{type:String, required: true},
@@ -59,23 +60,41 @@ app.post('/api/registro', async (req, res) => {
 });
 
 //Endpoint Guardar suscripcion
-app.post('/api/suscripciones',async (req,res) =>{
-    try{
+app.post('/api/suscripciones', async (req, res) => {
+    try {
         console.log("Datos de Subscripcion recibidos:", req.body);
 
-        const{ nombreApellido,correo,telefono,plan } =req.body;
-        if (!nombreApellido || !correo || !telefono || !plan){
-            return res.status(400).json({ message: 'Todos los campos son requeridos'});
+        const { nombreApellido, correo, telefono, plan } = req.body;
+        if (!nombreApellido || !correo || !telefono || !plan) {
+            return res.status(400).json({ message: 'Todos los campos son requeridos' });
         }
 
-        const nuevaSuscripcion = new Suscripcion({nombreApellido,correo,telefono,plan});
+        // Obtener la última suscripción para generar el código
+        const ultimaSuscripcion = await Suscripcion.findOne().sort({ fechaRegistro: -1 });
+        let nuevoCodigo = "S0001";
+
+        if (ultimaSuscripcion && ultimaSuscripcion.codigo) {
+            // Extraer número del código anterior
+            const numero = parseInt(ultimaSuscripcion.codigo.substring(1)) + 1;
+            nuevoCodigo = "S" + numero.toString().padStart(4, '0');
+        }
+
+        const nuevaSuscripcion = new Suscripcion({
+            codigo: nuevoCodigo,
+            nombreApellido,
+            correo,
+            telefono,
+            plan
+        });
+
         await nuevaSuscripcion.save();
-        res.status(201).json({ message: 'Suscripción registrada con éxito' });
-    }catch (error) {
+        res.status(201).json({ message: 'Suscripción registrada con éxito', codigo: nuevoCodigo });
+
+    } catch (error) {
         console.error('Error al registrar suscripción:', error);
         res.status(500).json({ message: 'Error al guardar la suscripción' });
     }
-})
+});
 
 // Endpoint para listar usuarios registrados
 app.get('/api/suscripciones', async (req, res) => {
