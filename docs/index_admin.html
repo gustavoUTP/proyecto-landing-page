@@ -75,12 +75,12 @@
       <table class="w-full border-collapse min-w-[700px]">
         <thead>
           <tr class="bg-gray-100 text-left">
-            <th class="border p-2">#</th>
-            <th class="border p-2">Nombre</th>
-            <th class="border p-2">Correo</th>
+            <th class="border p-2 cursor-pointer" data-col="codigo">#</th>
+            <th class="border p-2 cursor-pointer" data-col="nombre">Nombre</th>
+            <th class="border p-2 cursor-pointer" data-col="correo">Correo</th>
             <th class="border p-2">Teléfono</th>
-            <th class="border p-2">Plan</th>
-            <th class="border p-2">Fecha</th>
+            <th class="border p-2 cursor-pointer" data-col="plan">Plan</th>
+            <th class="border p-2 cursor-pointer" data-col="fecha">Fecha</th>
           </tr>
         </thead>
         <tbody id="tabla-suscripciones"></tbody>
@@ -101,6 +101,37 @@
   <footer class="bg-gray-900 text-gray-400 py-4 text-center text-sm">
     © 2025 Panel de Administración - TikTok Business Academy
   </footer>
+
+  <!-- Modal Planes -->
+  <div id="modal-planes" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+    <div class="bg-white p-4 rounded shadow-lg">
+      <h2 class="text-lg font-bold mb-2">Filtrar por plan</h2>
+      <div>
+        <label><input type="checkbox" value="basico" checked> Básico</label><br>
+        <label><input type="checkbox" value="intermedio" checked> Intermedio</label><br>
+        <label><input type="checkbox" value="premium" checked> Premium</label>
+      </div>
+      <div class="mt-3 flex justify-end gap-2">
+        <button id="aplicar-plan" class="bg-blue-500 text-white px-3 py-1 rounded">Aplicar</button>
+        <button id="cerrar-plan" class="bg-gray-300 px-3 py-1 rounded">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Fechas -->
+  <div id="modal-fechas" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+    <div class="bg-white p-4 rounded shadow-lg">
+      <h2 class="text-lg font-bold mb-2">Filtrar por fecha</h2>
+      <div class="flex flex-col gap-2">
+        <label>Desde: <input type="date" id="fecha-inicio" class="border p-1"></label>
+        <label>Hasta: <input type="date" id="fecha-fin" class="border p-1"></label>
+      </div>
+      <div class="mt-3 flex justify-end gap-2">
+        <button id="aplicar-fecha" class="bg-blue-500 text-white px-3 py-1 rounded">Aplicar</button>
+        <button id="cerrar-fecha" class="bg-gray-300 px-3 py-1 rounded">Cerrar</button>
+      </div>
+    </div>
+  </div>
 
   <script src="../js/admin.js"></script>
 </body>

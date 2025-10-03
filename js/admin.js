@@ -10,13 +10,12 @@ async function cargarDashboard() {
     suscripcionesData = data;
     suscripcionesFiltrados = data; // al inicio mostrar todos
 
-    // 1. Contador total
+    // contador
     document.getElementById("total-suscriptores").textContent = data.length;
 
-    // 2. Mostrar tabla inicial con paginación
     mostrarTablaPaginada();
 
-    // 3. Gráfico por plan
+    // grafico
     const conteoPlanes = { basico: 0, intermedio: 0, premium: 0 };
     data.forEach(s => {
       if (conteoPlanes[s.plan] !== undefined) conteoPlanes[s.plan]++;
@@ -90,14 +89,14 @@ document.getElementById("next").addEventListener("click", () => {
   }
 });
 
-// 🔎 Filtro en tiempo real
+// busqueda en tiempo real
 document.addEventListener("DOMContentLoaded", () => {
   const buscador = document.getElementById("buscador");
   buscador.addEventListener("input", () => {
     const texto = buscador.value.toLowerCase();
 
     if (texto === "") {
-      // si está vacío, mostramos todos
+      
       suscripcionesFiltrados = suscripcionesData;
     } else {
       suscripcionesFiltrados = suscripcionesData.filter(s =>
@@ -137,3 +136,102 @@ if (userBtn) {
     }
   });
 }
+
+let orden = { columna: null, asc: true }; 
+let filtrosPlanes = ["basico", "intermedio", "premium"];
+let filtroFechas = { inicio: null, fin: null };
+
+// ignorando la hora
+function soloFecha(d) {
+  const f = new Date(d);
+  return new Date(f.getFullYear(), f.getMonth(), f.getDate());
+}
+
+// Cabecera (event click)
+document.querySelectorAll("th[data-col]").forEach(th => {
+  th.addEventListener("click", () => {
+    const col = th.dataset.col;
+
+    if (col === "plan") {
+      document.getElementById("modal-planes").classList.remove("hidden");
+    } else if (col === "fecha") {
+      document.getElementById("modal-fechas").classList.remove("hidden");
+    } else {
+      if (orden.columna === col) {
+        orden.asc = !orden.asc;
+      } else {
+        orden.columna = col;
+        orden.asc = true;
+      }
+      aplicarFiltrosYOrden();
+    }
+  });
+});
+
+// --- MODAL PLANES ---
+document.getElementById("aplicar-plan").addEventListener("click", () => {
+  const checks = document.querySelectorAll("#modal-planes input[type=checkbox]");
+  filtrosPlanes = Array.from(checks)
+    .filter(c => c.checked)
+    .map(c => c.value);
+  document.getElementById("modal-planes").classList.add("hidden");
+  aplicarFiltrosYOrden();
+});
+document.getElementById("cerrar-plan").addEventListener("click", () => {
+  document.getElementById("modal-planes").classList.add("hidden");
+});
+
+// --- MODAL FECHAS ---
+document.getElementById("aplicar-fecha").addEventListener("click", () => {
+  filtroFechas.inicio = document.getElementById("fecha-inicio").value 
+    ? soloFecha(document.getElementById("fecha-inicio").value) 
+    : null;
+  filtroFechas.fin = document.getElementById("fecha-fin").value 
+    ? soloFecha(document.getElementById("fecha-fin").value) 
+    : null;
+  document.getElementById("modal-fechas").classList.add("hidden");
+  aplicarFiltrosYOrden();
+});
+document.getElementById("cerrar-fecha").addEventListener("click", () => {
+  document.getElementById("modal-fechas").classList.add("hidden");
+});
+
+
+function aplicarFiltrosYOrden() {
+  // aplicar filtro por planes
+  let datos = suscripcionesData.filter(s => filtrosPlanes.includes(s.plan));
+
+  // aplicar filtro por fechas 
+  if (filtroFechas.inicio || filtroFechas.fin) {
+    datos = datos.filter(s => {
+      const f = soloFecha(s.fechaRegistro);
+      return (!filtroFechas.inicio || f >= filtroFechas.inicio) &&
+             (!filtroFechas.fin || f <= filtroFechas.fin);
+    });
+  }
+
+  // ordenar
+  if (orden.columna) {
+    datos.sort((a, b) => {
+      let v1, v2;
+      if (orden.columna === "codigo") {
+        v1 = a.codigo || "";
+        v2 = b.codigo || "";
+      } else if (orden.columna === "nombre") {
+        v1 = a.nombreApellido.toLowerCase();
+        v2 = b.nombreApellido.toLowerCase();
+      } else if (orden.columna === "correo") {
+        v1 = a.correo.toLowerCase();
+        v2 = b.correo.toLowerCase();
+      }
+      if (v1 < v2) return orden.asc ? -1 : 1;
+      if (v1 > v2) return orden.asc ? 1 : -1;
+      return 0;
+    });
+  }
+
+  suscripcionesFiltrados = datos;
+  paginaActual = 1;
+  mostrarTablaPaginada();
+}
+
