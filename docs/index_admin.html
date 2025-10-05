@@ -1,139 +1,147 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Dashboard de Suscripciones</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="../css/admin.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta charset="UTF-8">
+    <title>Dashboard de Suscripciones</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/admin.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 </head>
 <body class="bg-gray-50">
 
-  <!-- Navbar -->
-<nav class="bg-gray-800 text-white p-4 shadow-md">
-  <div class="container mx-auto flex justify-between items-center">
-    
-    <!-- Logo -->
-    <div class="flex items-center">
-      <img src="../img/imagen_logo.png" alt="Imagen logo" class="w-16 h-auto rounded-lg">
-    </div>
+    <nav class="bg-gray-800 text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+        
+        <div class="flex items-center">
+            <img src="../img/imagen_logo.png" alt="Imagen logo" class="w-16 h-auto rounded-lg">
+        </div>
 
-    <!-- Perfil Admin -->
-    <div class="relative">
-      <button id="user-menu-button" class="flex items-center space-x-2 focus:outline-none">
-        <!-- Foto admin -->
-        <img src="../img/admin1.png" alt="Foto admin" class="w-10 h-10 rounded-full border-2 border-white">
-        <!-- Nombre admin -->
-        <span id="admin-name" class="hidden sm:inline">Admin</span>
-        <!-- Icono flecha -->
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                d="M19 9l-7 7-7-7"/>
-        </svg>
-      </button>
+        <div class="relative">
+            <button id="user-menu-button" class="flex items-center space-x-2 focus:outline-none">
+                <img src="../img/admin1.png" alt="Foto admin" class="w-10 h-10 rounded-full border-2 border-white">
+                <span id="admin-name" class="hidden sm:inline">Admin</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                          d="M19 9l-7 7-7-7"/>
+                </svg>
+            </button>
 
-      <!-- Dropdown -->
-      <div id="user-dropdown" 
-           class="hidden absolute right-0 mt-2 w-40 bg-white text-gray-700 rounded-md shadow-lg z-10">
-        <a href="#" class="block px-4 py-2 hover:bg-gray-100">Mi Perfil</a>
-        <a href="../docs/index.html" id="logout-btn" class="block px-4 py-2 hover:bg-gray-100">Cerrar Sesión</a>
-      </div>
+            <div id="user-dropdown" 
+                   class="hidden absolute right-0 mt-2 w-40 bg-white text-gray-700 rounded-md shadow-lg z-10">
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Mi Perfil</a>
+                <a href="../docs/index.html" id="logout-btn" class="block px-4 py-2 hover:bg-gray-100">Cerrar Sesión</a>
+            </div>
+        </div>
     </div>
-  </div>
 </nav>
 
-  <h1 class="text-2xl font-bold text-center my-6">📊 Dashboard de Suscripciones</h1>
+    <h1 class="text-2xl font-bold text-center my-6">📊 Dashboard de Suscripciones</h1>
 
-  <!-- Estadísticas -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-4 sm:px-6">
-    <div class="bg-white p-4 sm:p-6 shadow rounded-lg">
-      <h2 class="text-lg font-semibold mb-2">Total de Suscriptores</h2>
-      <p class="text-3xl font-bold text-indigo-600" id="total-suscriptores">0</p>
-    </div>
-    <div class="bg-white p-4 sm:p-6 shadow rounded-lg">
-      <h2 class="text-lg font-semibold mb-2">Suscripciones por Plan</h2>
-      <canvas id="chartPlanes"></canvas>
-    </div>
-  </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 sm:px-6">
+        
+        <div class="bg-white p-4 sm:p-6 shadow rounded-lg">
+            <h2 class="text-lg font-semibold mb-2">Total de Suscriptores</h2>
+            <p class="text-3xl font-bold text-indigo-600" id="total-suscriptores">0</p>
+        </div>
+        
+        <div class="md:col-span-2 bg-white p-4 sm:p-6 shadow rounded-lg flex flex-col items-center">
+            <h2 id="chart-title" class="text-lg font-semibold mb-2 text-center"></h2>
+            
+            <div id="chart-carousel" class="w-full relative">
+                
+                <div id="chart-page-1" class="chart-page">
+                    <canvas id="chartPlanes"></canvas>
+                </div>
 
-  <!-- Tabla y Buscador-->
-  <div class="bg-white p-4 sm:p-6 shadow rounded-lg mx-2 sm:mx-6 my-6">
+                <div id="chart-page-2" class="chart-page hidden">
+                    <canvas id="chartNuevosSuscriptores"></canvas>
+                </div>
+            </div>
+
+            <div class="flex justify-center items-center mt-4 space-x-4">
+                <button id="prev-chart" class="px-4 py-2 border rounded bg-gray-200 hover:bg-gray-300 transition">
+                    ⬅ 
+                </button>
+                <span id="chart-index" class="text-sm font-medium text-gray-600">1 / 2</span>
+                <button id="next-chart" class="px-4 py-2 border rounded bg-gray-200 hover:bg-gray-300 transition">
+                    ➡
+                </button>
+            </div>
+
+        </div>
+    </div>
     
-    <!-- Buscador-->
-    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
-      <input type="text" id="buscador" placeholder="Buscar por nombre o correo..."
-        class="w-full sm:w-1/2 p-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300">
+    <div class="bg-white p-4 sm:p-6 shadow rounded-lg mx-2 sm:mx-6 my-6">
+        
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
+            <input type="text" id="buscador" placeholder="Buscar por nombre o correo..."
+                class="w-full sm:w-1/2 p-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300">
 
-      <button id="btn-pdf" class="flex justify-center items-center bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
-        📄 Exportar PDF
-      </button>
+            <button id="btn-pdf" class="flex justify-center items-center bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
+                📄 Exportar PDF
+            </button>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full border-collapse min-w-[700px]">
+                <thead>
+                    <tr class="bg-gray-100 text-left">
+                        <th class="border p-2 cursor-pointer" data-col="codigo">#</th>
+                        <th class="border p-2 cursor-pointer" data-col="nombre">Nombre</th>
+                        <th class="border p-2 cursor-pointer" data-col="correo">Correo</th>
+                        <th class="border p-2">Teléfono</th>
+                        <th class="border p-2 cursor-pointer" data-col="plan">Plan</th>
+                        <th class="border p-2 cursor-pointer" data-col="fecha">Fecha</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-suscripciones"></tbody>
+            </table>
+        </div>
+
+
+        <div class="flex flex-col sm:flex-row justify-between items-center mt-4 gap-3">
+            <p id="info-paginacion" class="text-sm text-gray-600 text-center sm:text-left">Mostrando 0 - 0</p>
+            <div class="flex gap-2">
+                <button id="prev" class="px-4 py-2 border rounded bg-gray-200 hover:bg-gray-300">⬅</button>
+                <button id="next" class="px-4 py-2 border rounded bg-gray-200 hover:bg-gray-300">➡</button>
+            </div>
+        </div>
     </div>
 
-    <!-- Tabla-->
-    <div class="overflow-x-auto">
-      <table class="w-full border-collapse min-w-[700px]">
-        <thead>
-          <tr class="bg-gray-100 text-left">
-            <th class="border p-2 cursor-pointer" data-col="codigo">#</th>
-            <th class="border p-2 cursor-pointer" data-col="nombre">Nombre</th>
-            <th class="border p-2 cursor-pointer" data-col="correo">Correo</th>
-            <th class="border p-2">Teléfono</th>
-            <th class="border p-2 cursor-pointer" data-col="plan">Plan</th>
-            <th class="border p-2 cursor-pointer" data-col="fecha">Fecha</th>
-          </tr>
-        </thead>
-        <tbody id="tabla-suscripciones"></tbody>
-      </table>
+    <footer class="bg-gray-900 text-gray-400 py-4 text-center text-sm">
+        © 2025 Panel de Administración - TikTok Business Academy
+    </footer>
+
+    <div id="modal-planes" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white p-4 rounded shadow-lg">
+            <h2 class="text-lg font-bold mb-2">Filtrar por plan</h2>
+            <div>
+                <label><input type="checkbox" value="basico" checked> Básico</label><br>
+                <label><input type="checkbox" value="intermedio" checked> Intermedio</label><br>
+                <label><input type="checkbox" value="premium" checked> Premium</label>
+            </div>
+            <div class="mt-3 flex justify-end gap-2">
+                <button id="aplicar-plan" class="bg-blue-500 text-white px-3 py-1 rounded">Aplicar</button>
+                <button id="cerrar-plan" class="bg-gray-300 px-3 py-1 rounded">Cerrar</button>
+            </div>
+        </div>
     </div>
 
-
-    <!-- Paginación -->
-    <div class="flex flex-col sm:flex-row justify-between items-center mt-4 gap-3">
-      <p id="info-paginacion" class="text-sm text-gray-600 text-center sm:text-left">Mostrando 0 - 0</p>
-      <div class="flex gap-2">
-        <button id="prev" class="px-4 py-2 border rounded bg-gray-200 hover:bg-gray-300">⬅</button>
-        <button id="next" class="px-4 py-2 border rounded bg-gray-200 hover:bg-gray-300">➡</button>
-      </div>
+    <div id="modal-fechas" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white p-4 rounded shadow-lg">
+            <h2 class="text-lg font-bold mb-2">Filtrar por fecha</h2>
+            <div class="flex flex-col gap-2">
+                <label>Desde: <input type="date" id="fecha-inicio" class="border p-1"></label>
+                <label>Hasta: <input type="date" id="fecha-fin" class="border p-1"></label>
+            </div>
+            <div class="mt-3 flex justify-end gap-2">
+                <button id="aplicar-fecha" class="bg-blue-500 text-white px-3 py-1 rounded">Aplicar</button>
+                <button id="cerrar-fecha" class="bg-gray-300 px-3 py-1 rounded">Cerrar</button>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <footer class="bg-gray-900 text-gray-400 py-4 text-center text-sm">
-    © 2025 Panel de Administración - TikTok Business Academy
-  </footer>
-
-  <!-- Modal Planes -->
-  <div id="modal-planes" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-    <div class="bg-white p-4 rounded shadow-lg">
-      <h2 class="text-lg font-bold mb-2">Filtrar por plan</h2>
-      <div>
-        <label><input type="checkbox" value="basico" checked> Básico</label><br>
-        <label><input type="checkbox" value="intermedio" checked> Intermedio</label><br>
-        <label><input type="checkbox" value="premium" checked> Premium</label>
-      </div>
-      <div class="mt-3 flex justify-end gap-2">
-        <button id="aplicar-plan" class="bg-blue-500 text-white px-3 py-1 rounded">Aplicar</button>
-        <button id="cerrar-plan" class="bg-gray-300 px-3 py-1 rounded">Cerrar</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal Fechas -->
-  <div id="modal-fechas" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-    <div class="bg-white p-4 rounded shadow-lg">
-      <h2 class="text-lg font-bold mb-2">Filtrar por fecha</h2>
-      <div class="flex flex-col gap-2">
-        <label>Desde: <input type="date" id="fecha-inicio" class="border p-1"></label>
-        <label>Hasta: <input type="date" id="fecha-fin" class="border p-1"></label>
-      </div>
-      <div class="mt-3 flex justify-end gap-2">
-        <button id="aplicar-fecha" class="bg-blue-500 text-white px-3 py-1 rounded">Aplicar</button>
-        <button id="cerrar-fecha" class="bg-gray-300 px-3 py-1 rounded">Cerrar</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="../js/admin.js"></script>
+    <script src="../js/admin.js"></script>
 </body>
 </html>
-
