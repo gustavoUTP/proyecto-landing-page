@@ -33,6 +33,7 @@ const suscripcionSchema = new mongoose.Schema({
     correo:{type: String, required: true},
     telefono:{type:String, required: true},
     plan:{type: String, enum: ['basico', 'intermedio', 'premium'],required:true},
+    precio:{type:Number, required: true},
     fechaRegistro:{type:Date, default: Date.now}
 })
 const Suscripcion = mongoose.model('Suscripcion',suscripcionSchema);
@@ -64,13 +65,13 @@ app.post('/api/suscripciones', async (req, res) => {
     try {
         console.log("Datos de Subscripcion recibidos:", req.body);
 
-        const { nombreApellido, correo, telefono, plan } = req.body;
-        if (!nombreApellido || !correo || !telefono || !plan) {
+        const { nombreApellido, correo, telefono, plan, precio } = req.body;
+        if (!nombreApellido || !correo || !telefono || !plan || !precio) {
             return res.status(400).json({ message: 'Todos los campos son requeridos' });
         }
 
         // Obtener la última suscripción para generar el código
-        const ultimaSuscripcion = await Suscripcion.findOne().sort({ fechaRegistro: -1 });
+        const ultimaSuscripcion = await Suscripcion.findOne().sort({ codigo: -1 });
         let nuevoCodigo = "S0001";
 
         if (ultimaSuscripcion && ultimaSuscripcion.codigo) {
@@ -84,7 +85,8 @@ app.post('/api/suscripciones', async (req, res) => {
             nombreApellido,
             correo,
             telefono,
-            plan
+            plan,
+            precio
         });
 
         await nuevaSuscripcion.save();
