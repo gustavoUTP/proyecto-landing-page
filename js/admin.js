@@ -19,7 +19,7 @@ async function cargarDashboard() {
         mostrarTablaPaginada();
 
         // Creación de gráficos
-        crearGraficoPlanes(data); 
+        crearGraficoPlanes(data);
         crearGraficoNuevosSuscriptores(data);
 
         // Inicializar el carrusel de gráficos
@@ -64,7 +64,7 @@ function crearGraficoPlanes(data) {
 // Función para crear el Gráfico de Pastel
 function crearGraficoNuevosSuscriptores(data) {
     const conteo = obtenerConteoPlanes(data);
-    
+
     const ctx = document.getElementById("chartNuevosSuscriptores").getContext("2d");
     new Chart(ctx, {
         type: "pie",
@@ -74,7 +74,7 @@ function crearGraficoNuevosSuscriptores(data) {
                 label: "Distribución por Plan",
                 data: [conteo.basico, conteo.intermedio, conteo.premium],
                 backgroundColor: [
-                    '#3498db', 
+                    '#3498db',
                     '#f39c12',
                     '#2ecc71'
                 ],
@@ -85,7 +85,7 @@ function crearGraficoNuevosSuscriptores(data) {
             responsive: true,
             aspectRatio: 2,
             plugins: {
-                legend: { position: 'bottom' }, 
+                legend: { position: 'bottom' },
                 title: { display: false }
             }
         }
@@ -102,7 +102,7 @@ function alternarGrafico(index) {
     ];
     const title = document.getElementById('chart-title');
     const indexSpan = document.getElementById('chart-index');
-    
+
     pages.forEach(p => p.classList.add('hidden'));
 
     const currentPage = document.getElementById(`chart-page-${index}`);
@@ -113,9 +113,9 @@ function alternarGrafico(index) {
     if (index === 1) {
         title.textContent = "Total de Suscripciones por Plan";
     } else if (index === 2) {
-        title.textContent = "Monto Total por Suscripcion"; 
+        title.textContent = "Monto Total por Suscripcion";
     }
-    
+
     indexSpan.textContent = `${index} / ${totalGraficos}`;
     graficoActual = index;
 }
@@ -179,15 +179,15 @@ function mostrarTablaPaginada() {
     const total = suscripcionesFiltrados.length;
     const mostrandoInicio = total > 0 ? inicio + 1 : 0;
     const mostrandoFin = Math.min(fin, total);
-    document.getElementById("info-paginacion").textContent = 
+    document.getElementById("info-paginacion").textContent =
         `Mostrando ${mostrandoInicio} - ${mostrandoFin} de ${total}`;
 }
 
 //evento para mostrar detalles
-function mostrarDetalleSus(s){
+function mostrarDetalleSus(s) {
     const info = document.getElementById("info-sus");
-    const detalle=document.getElementById("detalle-sus");
-     info.innerHTML = `
+    const detalle = document.getElementById("detalle-sus");
+    info.innerHTML = `
         <p><strong>Código:</strong> ${s.codigo}</p>
         <p><strong>Nombre:</strong> ${s.nombreApellido}</p>
         <p><strong>Correo:</strong> ${s.correo}</p>
@@ -227,7 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
             );
         }
 
-        paginaActual = 1; 
+        paginaActual = 1;
         mostrarTablaPaginada();
     });
 });
@@ -247,8 +247,8 @@ if (userBtn) {
     const logoutBtn = document.getElementById("logout-btn");
     logoutBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        localStorage.removeItem("usuario"); 
-        window.location.href = "../docs/index.html"; 
+        localStorage.removeItem("usuario");
+        window.location.href = "../docs/index.html";
     });
 
     window.addEventListener("click", (e) => {
@@ -258,7 +258,7 @@ if (userBtn) {
     });
 }
 
-let orden = { columna: null, asc: true }; 
+let orden = { columna: null, asc: true };
 let filtrosPlanes = ["basico", "intermedio", "premium"];
 let filtroFechas = { inicio: null, fin: null };
 
@@ -306,11 +306,11 @@ document.getElementById("cerrar-plan").addEventListener("click", () => {
 // --- MODAL FECHAS ---
 // Aplicar filtros de fechas
 document.getElementById("aplicar-fecha").addEventListener("click", () => {
-    filtroFechas.inicio = document.getElementById("fecha-inicio").value 
-        ? soloFecha(document.getElementById("fecha-inicio").value) 
+    filtroFechas.inicio = document.getElementById("fecha-inicio").value
+        ? soloFecha(document.getElementById("fecha-inicio").value)
         : null;
-    filtroFechas.fin = document.getElementById("fecha-fin").value 
-        ? soloFecha(document.getElementById("fecha-fin").value) 
+    filtroFechas.fin = document.getElementById("fecha-fin").value
+        ? soloFecha(document.getElementById("fecha-fin").value)
         : null;
     document.getElementById("modal-fechas").classList.add("hidden");
     aplicarFiltrosYOrden();
@@ -329,7 +329,7 @@ function aplicarFiltrosYOrden() {
         datos = datos.filter(s => {
             const f = soloFecha(s.fechaRegistro);
             return (!filtroFechas.inicio || f >= filtroFechas.inicio) &&
-                   (!filtroFechas.fin || f <= filtroFechas.fin);
+                (!filtroFechas.fin || f <= filtroFechas.fin);
         });
     }
 
@@ -361,3 +361,76 @@ function aplicarFiltrosYOrden() {
     paginaActual = 1;
     mostrarTablaPaginada();
 }
+
+// --- EXPORTAR TABLA A PDF ---
+document.getElementById("btn-pdf").addEventListener("click", () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Título principal
+    doc.setFontSize(16);
+    doc.text("Recuento de Suscripciones", 14, 20);
+
+    // Generar tabla a partir de los datos filtrados actuales (toda la lista, no solo la página)
+    const datos = suscripcionesFiltrados.map((s, index) => [
+        s.codigo || index + 1,
+        s.nombreApellido,
+        s.correo,
+        s.telefono,
+        s.plan,
+        new Date(s.fechaRegistro).toLocaleString()
+    ]);
+
+    // Cabecera de la tabla
+    const cabecera = ["#", "Nombre", "Correo", "Teléfono", "Plan", "Fecha"];
+
+    // Insertar tabla con autoTable
+    doc.autoTable({
+        head: [cabecera],
+        body: datos,
+        startY: 30,
+        styles: { fontSize: 10, halign: "center" },
+        headStyles: { fillColor: [66, 99, 235], textColor: 255 },
+        margin: { left: 10, right: 10 },
+    });
+
+    // Total de suscripciones
+    const total = datos.length;
+    doc.setFontSize(12);
+    doc.text(`Total de suscripciones: ${total}`, 14, doc.lastAutoTable.finalY + 10);
+
+    // Guardar el archivo
+    doc.save("recuento_suscripciones.pdf");
+});
+// --- EXPORTAR DATOS DEL SUSCRIPTOR ---
+document.getElementById("btn-exportar-suscriptor").addEventListener("click", () => {
+    const detalle = document.getElementById("info-sus");
+
+    // Verificar si hay datos visibles
+    if (!detalle || detalle.innerHTML.trim() === "") {
+        alert("Primero selecciona un suscriptor de la tabla.");
+        return;
+    }
+
+    // Obtener los datos del HTML
+    const lineas = detalle.querySelectorAll("p");
+    const datos = Array.from(lineas).map(p => p.innerText);
+
+    // Crear el PDF
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    doc.setFontSize(16);
+    doc.text("Detalles del Suscriptor", 14, 20);
+    doc.setFontSize(12);
+
+    let y = 35;
+    datos.forEach(linea => {
+        doc.text(linea, 14, y);
+        y += 10;
+    });
+
+    // Guardar PDF
+    doc.save("detalle_suscriptor.pdf");
+});
+

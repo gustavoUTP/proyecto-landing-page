@@ -1,45 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Dashboard de Suscripciones</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../css/admin.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body class="bg-gray-50">
 
     <nav class="bg-gray-800 text-white p-4 shadow-md">
-    <div class="container mx-auto flex justify-between items-center">
-        
-        <div class="flex items-center">
-            <img src="../img/imagen_logo.png" alt="Imagen logo" class="w-16 h-auto rounded-lg">
-        </div>
+        <div class="container mx-auto flex justify-between items-center">
 
-        <div class="relative">
-            <button id="user-menu-button" class="flex items-center space-x-2 focus:outline-none">
-                <img src="../img/admin1.png" alt="Foto admin" class="w-10 h-10 rounded-full border-2 border-white">
-                <span id="admin-name" class="hidden sm:inline">Admin</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                          d="M19 9l-7 7-7-7"/>
-                </svg>
-            </button>
+            <div class="flex items-center">
+                <img src="../img/imagen_logo.png" alt="Imagen logo" class="w-16 h-auto rounded-lg">
+            </div>
 
-            <div id="user-dropdown" 
-                   class="hidden absolute right-0 mt-2 w-40 bg-white text-gray-700 rounded-md shadow-lg z-10">
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Mi Perfil</a>
-                <a href="../docs/index.html" id="logout-btn" class="block px-4 py-2 hover:bg-gray-100">Cerrar Sesión</a>
+            <div class="relative">
+                <button id="user-menu-button" class="flex items-center space-x-2 focus:outline-none">
+                    <img src="../img/admin1.png" alt="Foto admin" class="w-10 h-10 rounded-full border-2 border-white">
+                    <span id="admin-name" class="hidden sm:inline">Admin</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+
+                <div id="user-dropdown"
+                    class="hidden absolute right-0 mt-2 w-40 bg-white text-gray-700 rounded-md shadow-lg z-10">
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Mi Perfil</a>
+                    <a href="../docs/index.html" id="logout-btn" class="block px-4 py-2 hover:bg-gray-100">Cerrar
+                        Sesión</a>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <h1 class="text-2xl font-bold text-center my-6">📊 Dashboard de Suscripciones</h1>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 sm:px-6">
-        
+
         <div class="bg-white p-4 sm:p-6 shadow rounded-lg">
             <h2 class="text-lg font-semibold mb-2">Total de Suscriptores</h2>
             <p class="text-3xl font-bold text-indigo-600" id="total-suscriptores">0</p>
@@ -50,13 +52,17 @@
 
                 </div>
             </div>
+            <button id="btn-exportar-suscriptor"
+                class="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition w-full">
+                📄 Exportar Datos del Suscriptor
+            </button>
         </div>
-        
+
         <div class="md:col-span-2 bg-white p-4 sm:p-6 shadow rounded-lg flex flex-col items-center">
             <h2 id="chart-title" class="text-lg font-semibold mb-2 text-center"></h2>
-            
+
             <div id="chart-carousel" class="w-full relative">
-                
+
                 <div id="chart-page-1" class="chart-page">
                     <canvas id="chartPlanes"></canvas>
                 </div>
@@ -68,7 +74,7 @@
 
             <div class="flex justify-center items-center mt-4 space-x-4">
                 <button id="prev-chart" class="px-4 py-2 border rounded bg-gray-200 hover:bg-gray-300 transition">
-                    ⬅ 
+                    ⬅
                 </button>
                 <span id="chart-index" class="text-sm font-medium text-gray-600">1 / 2</span>
                 <button id="next-chart" class="px-4 py-2 border rounded bg-gray-200 hover:bg-gray-300 transition">
@@ -78,14 +84,15 @@
 
         </div>
     </div>
-    
+
     <div class="bg-white p-4 sm:p-6 shadow rounded-lg mx-2 sm:mx-6 my-6">
-        
+
         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
             <input type="text" id="buscador" placeholder="Buscar por nombre o correo..."
                 class="w-full sm:w-1/2 p-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300">
 
-            <button id="btn-pdf" class="flex justify-center items-center bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
+            <button id="btn-pdf"
+                class="flex justify-center items-center bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
                 📄 Exportar PDF
             </button>
         </div>
@@ -150,5 +157,9 @@
     </div>
 
     <script src="../js/admin.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+
 </body>
+
 </html>
