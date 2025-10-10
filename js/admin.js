@@ -157,19 +157,23 @@ function mostrarTablaPaginada() {
     const tabla = document.getElementById("tabla-suscripciones");
     tabla.innerHTML = "";
 
-    // Rellenar la tabla con las filas correspondientes
+    // Rellenar la tabla 
     paginaDatos.forEach((s, index) => {
-        const row = `
-            <tr>
-                <td class="border p-2">${s.codigo || "-"}</td>
-                <td class="border p-2">${s.nombreApellido}</td>
-                <td class="border p-2">${s.correo}</td>
-                <td class="border p-2">${s.telefono}</td>
-                <td class="border p-2">${s.plan}</td>
-                <td class="border p-2">${new Date(s.fechaRegistro).toLocaleString()}</td>
-            </tr>
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td class="border p-2">${s.codigo || "-"}</td>
+            <td class="border p-2">${s.nombreApellido}</td>
+            <td class="border p-2">${s.correo}</td>
+            <td class="border p-2">${s.telefono}</td>
+            <td class="border p-2">${s.plan}</td>
+            <td class="border p-2">${new Date(s.fechaRegistro).toLocaleString()}</td>
         `;
-        tabla.innerHTML += row;
+
+        // evento para detalles
+        row.addEventListener("click", () => mostrarDetalleSus(s));
+        row.classList.add("hover:bg-gray-100", "cursor-pointer", "transition");
+
+        tabla.appendChild(row);
     });
 
     const total = suscripcionesFiltrados.length;
@@ -177,6 +181,22 @@ function mostrarTablaPaginada() {
     const mostrandoFin = Math.min(fin, total);
     document.getElementById("info-paginacion").textContent = 
         `Mostrando ${mostrandoInicio} - ${mostrandoFin} de ${total}`;
+}
+
+//evento para mostrar detalles
+function mostrarDetalleSus(s){
+    const info = document.getElementById("info-sus");
+    const detalle=document.getElementById("detalle-sus");
+     info.innerHTML = `
+        <p><strong>Código:</strong> ${s.codigo}</p>
+        <p><strong>Nombre:</strong> ${s.nombreApellido}</p>
+        <p><strong>Correo:</strong> ${s.correo}</p>
+        <p><strong>Teléfono:</strong> ${s.telefono}</p>
+        <p><strong>Plan:</strong> ${s.plan}</p>
+        <p><strong>Precio:</strong> $${s.precio || obtenerPrecio(s.plan)}</p>
+        <p><strong>Fecha de Registro:</strong> ${new Date(s.fechaRegistro).toLocaleString()}</p>
+    `;
+    detalle.classList.remove("hidden");
 }
 
 document.getElementById("prev").addEventListener("click", () => {
