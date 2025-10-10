@@ -44,7 +44,7 @@ function mostrarCursos(cursos) {
         card.className = "bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden";
 
         card.innerHTML = `
-            <img src="${curso.imagen || '../img/curso_default.jpg'}" alt="Curso" class="w-full h-40 object-cover">
+            <img src="${curso.imagen || '../img/curso_default.png'}" alt="Curso" class="w-full h-40 object-cover">
             <div class="p-4">
                 <h3 class="font-semibold text-lg mb-1 text-gray-800">${curso.titulo}</h3>
                 <p class="text-gray-600 text-sm mb-3">${curso.descripcion}</p>
