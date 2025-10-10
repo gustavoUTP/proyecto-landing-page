@@ -22,16 +22,21 @@ document.addEventListener("DOMContentLoaded", () => {
         loginMsg.style.color = "green";
         loginMsg.textContent = data.message;
 
+        // Guardamos el usuario en localStorage
+        localStorage.setItem("usuario", JSON.stringify({
+          nombre: data.nombre,
+          rol: data.rol,
+          correo: correo
+        }));
+
+        // Redirecciones según el rol
         if (data.rol === "admin") {
           window.location.href = "index_admin.html";
+        } else if (data.rol === "user") {
+          window.location.href = "index_user.html";
         } else {
-          // para que no se vuelva a loguear si cierra y entra
-          localStorage.setItem("usuario", JSON.stringify({
-            nombre: data.nombre,
-            rol: data.rol,
-            correo: correo
-          }));
-          window.location.href = "index.html"; 
+          // Si no tiene rol reconocido
+          window.location.href = "index.html";
         }
 
       } else {

@@ -3,140 +3,226 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const app = express();
-const PORT = 3001; 
-
+const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
 
-// Conexión a MongoDB
+// ===== Conexión a MongoDB =====
 mongoose.connect('mongodb://127.0.0.1:27017/formularioDB')
+  .then(() => console.log('✅ Conectado a MongoDB'))
+  .catch(err => console.error('❌ Error al conectar a MongoDB:', err));
 
-.then(() => console.log('Conectado a MongoDB'))
-.catch(err => console.error('Error al conectar a MongoDB:', err));
 
-// modelo de usuario (login)    
-const formularioSchema = new mongoose.Schema({
-    nombre: {type: String},
-    correo: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    rol:{ type: String, enum: ['user', 'admin'], default: 'user'},
-    fecha: { type: Date, default: Date.now }
+// ===== MODELOS =====
+
+// --- Modelo de cursos ---
+const cursoSchema = new mongoose.Schema({
+  id: { type: String, required: true, unique: true },
+  titulo: { type: String, required: true },
+  descripcion: { type: String, required: true },
+  nivel: { type: String, enum: ['Básico', 'Intermedio', 'Avanzado'], required: true },
+  estado: { type: String, enum: ['pendiente', 'en progreso', 'completado'], default: 'pendiente' },
+  imagen: { type: String }
 });
+const Curso = mongoose.model('Curso', cursoSchema);
 
+// --- Modelo de usuario ---
+const formularioSchema = new mongoose.Schema({
+  nombre: { type: String },
+  correo: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  rol: { type: String, enum: ['user', 'admin'], default: 'user' },
+  fecha: { type: Date, default: Date.now },
+  cursos: [{
+    id: String,
+    titulo: String,
+    descripcion: String,
+    nivel: String,
+    estado: { type: String, enum: ['pendiente', 'en progreso', 'completado'], default: 'pendiente' },
+    imagen: String
+  }]
+});
 const Usuario = mongoose.model('Usuario', formularioSchema);
 
-// modelo de suscripciones
+// --- Modelo de suscripción ---
 const suscripcionSchema = new mongoose.Schema({
-    codigo: {type:String, unique: true},
-    nombreApellido: {type: String, required: true},
-    correo:{type: String, required: true},
-    telefono:{type:String, required: true},
-    plan:{type: String, enum: ['basico', 'intermedio', 'premium'],required:true},
-    precio:{type:Number, required: true},
-    fechaRegistro:{type:Date, default: Date.now}
-})
-const Suscripcion = mongoose.model('Suscripcion',suscripcionSchema);
+  codigo: { type: String, unique: true },
+  nombreApellido: { type: String, required: true },
+  correo: { type: String, required: true },
+  telefono: { type: String, required: true },
+  plan: { type: String, enum: ['basico', 'intermedio', 'premium'], required: true },
+  precio: { type: Number, required: true },
+  fechaRegistro: { type: Date, default: Date.now }
+});
+const Suscripcion = mongoose.model('Suscripcion', suscripcionSchema);
 
-// Endpoint para registrar usuarios
+
+// ===== ENDPOINTS =====
+
+// --- Registro de usuario con cursos base ---
 app.post('/api/registro', async (req, res) => {
-    try {
-        console.log("Datos de registro recibidos:", req.body);
+  try {
+    console.log("📩 Datos de registro recibidos:", req.body);
+    const { nombre, correo, password } = req.body;
 
-        const { nombre, correo, password } = req.body;
-
-        if (!correo || !password) {
-            return res.status(400).json({ message: 'Correo y contraseña son requeridos' });
-        }
-
-        // Guardar en MongoDB
-        const nuevoUsuario = new Usuario({ nombre, correo, password, rol: 'user' });
-        await nuevoUsuario.save();
-
-        res.status(201).json({ message: 'Usuario registrado con éxito' });
-    } catch (error) {
-        console.error('Error al registrar usuario:', error);
-        res.status(500).json({ message: 'Error al guardar el usuario' });
+    if (!correo || !password) {
+      return res.status(400).json({ message: 'Correo y contraseña son requeridos' });
     }
+
+    // Obtener cursos base
+    const cursosBase = await Curso.find();
+    const cursosAsignados = cursosBase.map(c => ({
+      id: c.id,
+      titulo: c.titulo,
+      descripcion: c.descripcion,
+      nivel: c.nivel,
+      estado: 'pendiente',
+      imagen: c.imagen
+    }));
+
+    // Crear nuevo usuario con cursos incluidos
+    const nuevoUsuario = new Usuario({
+      nombre,
+      correo,
+      password,
+      rol: 'user',
+      cursos: cursosAsignados
+    });
+
+    await nuevoUsuario.save();
+    res.status(201).json({ message: 'Usuario registrado con éxito', usuario: nuevoUsuario });
+
+  } catch (error) {
+    console.error('❌ Error al registrar usuario:', error);
+    res.status(500).json({ message: 'Error al guardar el usuario' });
+  }
 });
 
-//Endpoint Guardar suscripcion
-app.post('/api/suscripciones', async (req, res) => {
-    try {
-        console.log("Datos de Subscripcion recibidos:", req.body);
-
-        const { nombreApellido, correo, telefono, plan, precio } = req.body;
-        if (!nombreApellido || !correo || !telefono || !plan || !precio) {
-            return res.status(400).json({ message: 'Todos los campos son requeridos' });
-        }
-
-        // Obtener la última suscripción para generar el código
-        const ultimaSuscripcion = await Suscripcion.findOne().sort({ codigo: -1 });
-        let nuevoCodigo = "S0001";
-
-        if (ultimaSuscripcion && ultimaSuscripcion.codigo) {
-            // Extraer número del código anterior
-            const numero = parseInt(ultimaSuscripcion.codigo.substring(1)) + 1;
-            nuevoCodigo = "S" + numero.toString().padStart(4, '0');
-        }
-
-        const nuevaSuscripcion = new Suscripcion({
-            codigo: nuevoCodigo,
-            nombreApellido,
-            correo,
-            telefono,
-            plan,
-            precio
-        });
-
-        await nuevaSuscripcion.save();
-        res.status(201).json({ message: 'Suscripción registrada con éxito', codigo: nuevoCodigo });
-
-    } catch (error) {
-        console.error('Error al registrar suscripción:', error);
-        res.status(500).json({ message: 'Error al guardar la suscripción' });
-    }
-});
-
-// Endpoint para listar usuarios registrados
-app.get('/api/suscripciones', async (req, res) => {
-    try {
-        const suscripciones = await Suscripcion.find().sort({ fechaRegistro: -1 });
-        res.json(suscripciones);
-    } catch (error) {
-        res.status(500).json({ message: 'Error al obtener las suscripciones' });
-    }
-})
-
-app.listen(PORT, () => {
-    console.log(`Servidor backend corriendo en http://localhost:${PORT}`);
-});
-
-// Endpoint de Login
+// --- Endpoint de login ---
 app.post('/api/login', async (req, res) => {
-    try {
-        const { correo, password } = req.body;
+  try {
+    const { correo, password } = req.body;
 
-        if (!correo || !password) {
-            return res.status(400).json({ message: 'Correo y contraseña requeridos' });
-        }
-
-        // Buscar usuario por correo y password
-        const usuario = await Usuario.findOne({ correo, password });
-
-        if (!usuario) {
-            return res.status(401).json({ message: 'Credenciales inválidas' });
-        }
-
-        // Si es correcto, devolvemos su info básica
-        res.json({
-            message: 'Inicio de sesión exitoso',
-            nombre: usuario.nombre,
-            rol: usuario.rol
-        });
-
-    } catch (error) {
-        console.error('Error en login:', error);
-        res.status(500).json({ message: 'Error en el servidor' });
+    if (!correo || !password) {
+      return res.status(400).json({ message: 'Correo y contraseña requeridos' });
     }
+
+    const usuario = await Usuario.findOne({ correo, password });
+
+    if (!usuario) {
+      return res.status(401).json({ message: 'Credenciales inválidas' });
+    }
+
+    res.json({
+      message: 'Inicio de sesión exitoso',
+      nombre: usuario.nombre,
+      correo: usuario.correo,
+      rol: usuario.rol
+    });
+
+  } catch (error) {
+    console.error('Error en login:', error);
+    res.status(500).json({ message: 'Error en el servidor' });
+  }
+});
+
+// --- Guardar suscripción ---
+app.post('/api/suscripciones', async (req, res) => {
+  try {
+    const { nombreApellido, correo, telefono, plan, precio } = req.body;
+    if (!nombreApellido || !correo || !telefono || !plan || !precio) {
+      return res.status(400).json({ message: 'Todos los campos son requeridos' });
+    }
+
+    const ultimaSuscripcion = await Suscripcion.findOne().sort({ codigo: -1 });
+    let nuevoCodigo = "S0001";
+
+    if (ultimaSuscripcion && ultimaSuscripcion.codigo) {
+      const numero = parseInt(ultimaSuscripcion.codigo.substring(1)) + 1;
+      nuevoCodigo = "S" + numero.toString().padStart(4, '0');
+    }
+
+    const nuevaSuscripcion = new Suscripcion({
+      codigo: nuevoCodigo,
+      nombreApellido,
+      correo,
+      telefono,
+      plan,
+      precio
+    });
+
+    await nuevaSuscripcion.save();
+    res.status(201).json({ message: 'Suscripción registrada con éxito', codigo: nuevoCodigo });
+
+  } catch (error) {
+    console.error('Error al registrar suscripción:', error);
+    res.status(500).json({ message: 'Error al guardar la suscripción' });
+  }
+});
+
+// --- Obtener todas las suscripciones ---
+app.get('/api/suscripciones', async (req, res) => {
+  try {
+    const suscripciones = await Suscripcion.find().sort({ fechaRegistro: -1 });
+    res.json(suscripciones);
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener las suscripciones' });
+  }
+});
+
+// --- Obtener todos los cursos (para admin o testing) ---
+app.get('/api/cursos', async (req, res) => {
+  try {
+    const cursos = await Curso.find();
+    res.json(cursos);
+  } catch (error) {
+    console.error('Error al obtener los cursos:', error);
+    res.status(500).json({ message: 'Error al obtener los cursos' });
+  }
+});
+
+// --- Obtener cursos del usuario ---
+app.get('/api/usuario/:correo/cursos', async (req, res) => {
+  try {
+    const { correo } = req.params;
+    const usuario = await Usuario.findOne({ correo });
+
+    if (!usuario) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    res.json(usuario.cursos);
+  } catch (error) {
+    console.error('Error al obtener cursos del usuario:', error);
+    res.status(500).json({ message: 'Error al obtener cursos del usuario' });
+  }
+});
+
+// --- Actualizar estado de un curso del usuario ---
+app.put('/api/usuario/:correo/curso/:id', async (req, res) => {
+  try {
+    const { correo, id } = req.params;
+    const { estado } = req.body;
+
+    const usuario = await Usuario.findOne({ correo });
+    if (!usuario) return res.status(404).json({ message: 'Usuario no encontrado' });
+
+    const curso = usuario.cursos.find(c => c.id === id);
+    if (!curso) return res.status(404).json({ message: 'Curso no encontrado' });
+
+    curso.estado = estado;
+    await usuario.save();
+
+    res.json({ message: 'Estado del curso actualizado', curso });
+  } catch (error) {
+    console.error('Error al actualizar curso:', error);
+    res.status(500).json({ message: 'Error al actualizar curso' });
+  }
+});
+
+
+// ===== Iniciar servidor =====
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor backend corriendo en http://localhost:${PORT}`);
 });
