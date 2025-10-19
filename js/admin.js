@@ -352,6 +352,10 @@ document.getElementById("cerrar-fecha").addEventListener("click", () => {
     document.getElementById("modal-fechas").classList.add("hidden");
 });
 
+document.getElementById("limpiar-fecha").addEventListener("click", () => {
+  document.getElementById("fecha-inicio").value = "";
+  document.getElementById("fecha-fin").value = "";
+});
 
 // Filtros y Ordenar Datos
 function aplicarFiltrosYOrden() {

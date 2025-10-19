@@ -133,31 +133,51 @@
         © 2025 Panel de Administración - TikTok Business Academy
     </footer>
 
-    <div id="modal-planes" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-        <div class="bg-white p-4 rounded shadow-lg">
-            <h2 class="text-lg font-bold mb-2">Filtrar por plan</h2>
-            <div>
-                <label><input type="checkbox" value="basico" checked> Básico</label><br>
-                <label><input type="checkbox" value="intermedio" checked> Intermedio</label><br>
-                <label><input type="checkbox" value="premium" checked> Premium</label>
+    <div id="modal-planes" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-2xl w-11/12 max-w-md transition-transform transform scale-100">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800 text-center">Filtrar por Plan</h2>
+            <div class="space-y-3 text-lg">
+            <label class="flex items-center gap-2">
+                <input type="checkbox" value="basico" checked class="h-5 w-5 text-blue-600">
+                <span>Básico</span>
+            </label>
+            <label class="flex items-center gap-2">
+                <input type="checkbox" value="intermedio" checked class="h-5 w-5 text-blue-600">
+                <span>Intermedio</span>
+            </label>
+            <label class="flex items-center gap-2">
+                <input type="checkbox" value="premium" checked class="h-5 w-5 text-blue-600">
+                <span>Premium</span>
+            </label>
             </div>
-            <div class="mt-3 flex justify-end gap-2">
-                <button id="aplicar-plan" class="bg-blue-500 text-white px-3 py-1 rounded">Aplicar</button>
-                <button id="cerrar-plan" class="bg-gray-300 px-3 py-1 rounded">Cerrar</button>
+            <div class="mt-6 flex justify-end gap-3">
+            <button id="aplicar-plan" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Aplicar</button>
+            <button id="cerrar-plan" class="bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400 transition">Cerrar</button>
             </div>
         </div>
     </div>
 
-    <div id="modal-fechas" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-        <div class="bg-white p-4 rounded shadow-lg">
-            <h2 class="text-lg font-bold mb-2">Filtrar por fecha</h2>
-            <div class="flex flex-col gap-2">
-                <label>Desde: <input type="date" id="fecha-inicio" class="border p-1"></label>
-                <label>Hasta: <input type="date" id="fecha-fin" class="border p-1"></label>
+    <div id="modal-fechas" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-2xl w-11/12 max-w-md transition-transform transform scale-100">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800 text-center">Filtrar por Fecha</h2>
+            <div class="flex flex-col gap-4 text-lg">
+            <label class="flex flex-col">
+                <span class="mb-1 text-gray-700">Desde:</span>
+                <input type="date" id="fecha-inicio" class="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </label>
+            <label class="flex flex-col">
+                <span class="mb-1 text-gray-700">Hasta:</span>
+                <input type="date" id="fecha-fin" class="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </label>
             </div>
-            <div class="mt-3 flex justify-end gap-2">
-                <button id="aplicar-fecha" class="bg-blue-500 text-white px-3 py-1 rounded">Aplicar</button>
-                <button id="cerrar-fecha" class="bg-gray-300 px-3 py-1 rounded">Cerrar</button>
+            <div class="mt-6 flex justify-end gap-3">
+                <button id="limpiar-fecha" class="text-sm text-gray-500 underline hover:text-gray-700 transition">
+                    Limpiar fechas
+                </button>
+                <div class="flex gap-3">
+                    <button id="aplicar-fecha" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Aplicar</button>
+                    <button id="cerrar-fecha" class="bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400 transition">Cerrar</button>
+                </div>
             </div>
         </div>
     </div>
