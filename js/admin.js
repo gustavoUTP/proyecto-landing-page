@@ -469,3 +469,40 @@ document.getElementById("btn-exportar-suscriptor").addEventListener("click", () 
     doc.save("detalle_suscriptor.pdf");
 });
 
+//modal Perfil 
+document.addEventListener("DOMContentLoaded", () => {
+  const perfilModal = document.getElementById("perfil-modal");
+  const cerrarPerfil = document.getElementById("cerrar-perfil");
+  const miPerfilBtn = document.querySelector('#user-dropdown a:first-child');
+
+  // Abrir modal y cargar datos
+  miPerfilBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    await cargarPerfilAdmin();
+    perfilModal.classList.remove("hidden");
+  });
+
+  // Cerrar modal
+  cerrarPerfil.addEventListener("click", () => {
+    perfilModal.classList.add("hidden");
+  });
+});
+
+// Cargar datos del administrador desde la BD
+async function cargarPerfilAdmin() {
+  try {
+    const res = await fetch('http://localhost:3001/api/admin/datos');
+    if (!res.ok) throw new Error('Error al obtener datos del admin');
+    const admin = await res.json();
+
+    document.getElementById("perfil-nombre").textContent = admin.nombre;
+    document.getElementById("perfil-correo").textContent = admin.correo;
+    document.getElementById("perfil-rol").textContent = admin.rol;
+    document.getElementById("perfil-fecha").textContent = new Date(admin.fecha).toLocaleDateString();
+
+  } catch (error) {
+    console.error("❌ Error al cargar perfil:", error);
+  }
+}
+
+

@@ -221,6 +221,19 @@ app.put('/api/usuario/:correo/curso/:id', async (req, res) => {
   }
 });
 
+// --- Obtener datos del administrador ---
+app.get('/api/admin/datos', async (req, res) => {
+  try {
+    // Busca el primer usuario con rol 'admin'
+    const admin = await Usuario.findOne({ rol: 'admin' }).select('-password');
+    if (!admin) return res.status(404).json({ error: 'Administrador no encontrado' });
+
+    res.json(admin);
+  } catch (err) {
+    console.error('❌ Error al obtener datos del admin:', err);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+});
 
 // ===== Iniciar servidor =====
 app.listen(PORT, () => {
