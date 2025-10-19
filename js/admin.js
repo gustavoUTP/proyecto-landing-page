@@ -185,19 +185,50 @@ function mostrarTablaPaginada() {
 
 //evento para mostrar detalles
 function mostrarDetalleSus(s) {
-    const info = document.getElementById("info-sus");
-    const detalle = document.getElementById("detalle-sus");
-    info.innerHTML = `
-        <p><strong>Código:</strong> ${s.codigo}</p>
-        <p><strong>Nombre:</strong> ${s.nombreApellido}</p>
-        <p><strong>Correo:</strong> ${s.correo}</p>
-        <p><strong>Teléfono:</strong> ${s.telefono}</p>
-        <p><strong>Plan:</strong> ${s.plan}</p>
-        <p><strong>Precio:</strong> $${s.precio || obtenerPrecio(s.plan)}</p>
-        <p><strong>Fecha de Registro:</strong> ${new Date(s.fechaRegistro).toLocaleString()}</p>
-    `;
-    detalle.classList.remove("hidden");
+  const info = document.getElementById("info-sus");
+  const detalle = document.getElementById("detalle-sus");
+
+  info.innerHTML = `
+    <div class="p-3 bg-indigo-50 rounded-lg border border-indigo-100">
+      <p class="text-sm text-gray-500">Código</p>
+      <p class="font-semibold text-gray-800">${s.codigo}</p>
+    </div>
+
+    <div class="p-3 bg-indigo-50 rounded-lg border border-indigo-100">
+      <p class="text-sm text-gray-500">Nombre</p>
+      <p class="font-semibold text-gray-800">${s.nombreApellido}</p>
+    </div>
+
+    <div class="p-3 bg-indigo-50 rounded-lg border border-indigo-100">
+      <p class="text-sm text-gray-500">Correo</p>
+      <p class="font-semibold text-gray-800">${s.correo}</p>
+    </div>
+
+    <div class="p-3 bg-indigo-50 rounded-lg border border-indigo-100">
+      <p class="text-sm text-gray-500">Teléfono</p>
+      <p class="font-semibold text-gray-800">${s.telefono}</p>
+    </div>
+
+    <div class="p-3 bg-indigo-50 rounded-lg border border-indigo-100">
+      <p class="text-sm text-gray-500">Plan</p>
+      <p class="font-semibold text-gray-800">${s.plan}</p>
+    </div>
+
+    <div class="p-3 bg-indigo-50 rounded-lg border border-indigo-100">
+      <p class="text-sm text-gray-500">Precio</p>
+      <p class="font-semibold text-gray-800">$${s.precio || obtenerPrecio(s.plan)}</p>
+    </div>
+
+    <div class="p-3 bg-indigo-50 rounded-lg border border-indigo-100 sm:col-span-2">
+      <p class="text-sm text-gray-500">Fecha de Registro</p>
+      <p class="font-semibold text-gray-800">${new Date(s.fechaRegistro).toLocaleString()}</p>
+    </div>
+  `;
+
+  detalle.classList.remove("hidden");
+  detalle.classList.add("animate-fadeIn");
 }
+
 
 document.getElementById("prev").addEventListener("click", () => {
     if (paginaActual > 1) {

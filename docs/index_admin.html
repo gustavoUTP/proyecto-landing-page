@@ -46,12 +46,18 @@
             <h2 class="text-lg font-semibold mb-2">Total de Suscriptores</h2>
             <p class="text-3xl font-bold text-indigo-600" id="total-suscriptores">0</p>
             <!--Card Informacion del usuario-->
-            <div id="detalle-sus" class="bg-white p-4 sm:p-6 shadow rounded-lg mt-6 hidden">
-                <h2 class="text-lg font-semibold  mb-2 text-gray-800">Detalles del Suscriptor</h2>
-                <div id="info-sus" class="text-gray-700">
+            <div id="detalle-sus" class="hidden mt-6">
+                <div class="bg-white p-6 sm:p-8 shadow-lg rounded-2xl border border-gray-100 transition-all duration-300">
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-800 flex items-center gap-2">
+                    <i class="fas fa-user text-indigo-500"></i> Detalles del Suscriptor
+                    </h2>
 
+                    <div id="info-sus" class="text-gray-700 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Aquí se inyectarán los datos dinámicamente -->
+                    </div>
                 </div>
             </div>
+
             <button id="btn-exportar-suscriptor"
                 class="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition w-full">
                 📄 Exportar Datos del Suscriptor
