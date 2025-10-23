@@ -5,7 +5,7 @@ let cursosEnProgreso = 0;
 // --- Inicialización ---
 window.onload = async function () {
     await cargarPanelUsuario();
-    inicializarMenuUsuario(); // ← se agrega el manejo del menú aquí
+    inicializarMenuUsuario(); 
 };
 
 // --- Cargar Panel del Usuario ---
@@ -187,3 +187,14 @@ function soloFecha(d) {
     const f = new Date(d);
     return new Date(f.getFullYear(), f.getMonth(), f.getDate());
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    if (usuario && usuario.nombre) {
+        const span = document.getElementById("user-name");
+        if (span) {
+            span.innerText = usuario.nombre; 
+            span.classList.remove("hidden");
+        }
+    }
+});
