@@ -43,3 +43,15 @@
     canvas {
       max-width: 100%;
     }
+
+  
+.modal-active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+
+.modal-inactive {
+    transform: scale(0.95);
+    opacity: 0;
+}

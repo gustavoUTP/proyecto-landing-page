@@ -111,18 +111,23 @@
     <div class="overflow-x-auto">
       <table class="w-full border-collapse min-w-[700px]">
         <thead>
-          <tr class="bg-[#FF6600]/20 text-left text-[#FF6600]">
-            <th class="border border-[#FF6600]/20 p-2">#</th>
-            <th class="border border-[#FF6600]/20 p-2">Nombre</th>
-            <th class="border border-[#FF6600]/20 p-2">Correo</th>
+          <tr class="bg-[#FF6600]/20 text-left text-[#FF6600] font-semibold">
+            <th class="border border-[#FF6600]/20 p-2 cursor-pointer" data-col="codigo">#</th>
+            <th class="border border-[#FF6600]/20 p-2 cursor-pointer" data-col="nombre">Nombre</th>
+            <th class="border border-[#FF6600]/20 p-2 cursor-pointer" data-col="correo">Correo</th>
             <th class="border border-[#FF6600]/20 p-2">Teléfono</th>
-            <th class="border border-[#FF6600]/20 p-2">Plan</th>
-            <th class="border border-[#FF6600]/20 p-2">Fecha</th>
+            <th class="border border-[#FF6600]/20 p-2 cursor-pointer" data-col="plan">Plan</th>
+            <th class="border border-[#FF6600]/20 p-2 cursor-pointer" data-col="fecha">Fecha</th>
           </tr>
         </thead>
-        <tbody id="tabla-suscripciones" class="text-gray-300"></tbody>
+
+        <tbody id="tabla-suscripciones"
+          class="text-gray-300 divide-y divide-[#FF6600]/10">
+          <!-- Datos se cargan dinámicamente desde JS -->
+        </tbody>
       </table>
     </div>
+
 
     <div class="flex flex-col sm:flex-row justify-between items-center mt-4 gap-3">
       <p id="info-paginacion" class="text-sm text-gray-400">Mostrando 0 - 0</p>
@@ -140,6 +145,104 @@
     © 2025 Panel de Administración - TikTok Business Academy
   </footer>
 
+  <!-- ===== Modal Filtro Planes ===== -->
+  <div id="modal-planes"
+      class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+
+    <div class="modal-content bg-[#1a1a1a] p-6 sm:p-8 rounded-2xl 
+                shadow-[0_0_25px_rgba(255,102,0,0.25)]
+                w-11/12 max-w-md transform scale-100 opacity-100">
+
+      <h2 class="text-2xl font-bold mb-6 text-center text-white">
+        Filtrar por Plan
+      </h2>
+
+      <div class="space-y-4 text-lg text-gray-200">
+        <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" value="basico" checked class="accent-[#FF6600] h-5 w-5 rounded">
+            <span>Básico</span>
+        </label>
+
+        <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" value="intermedio" checked class="accent-[#FF6600] h-5 w-5 rounded">
+            <span>Intermedio</span>
+        </label>
+
+        <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" value="premium" checked class="accent-[#FF6600] h-5 w-5 rounded">
+            <span>Premium</span>
+        </label>
+      </div>
+
+      <div class="mt-8 flex justify-end gap-4">
+        <button id="aplicar-plan"
+                class="px-5 py-2 rounded-lg bg-[#FF6600] hover:bg-[#e55a00]
+                      text-white font-semibold transition shadow-md">
+            Aplicar
+        </button>
+
+        <button id="cerrar-plan"
+                class="px-5 py-2 rounded-lg bg-[#333333] hover:bg-[#444444]
+                      text-gray-200 font-semibold transition shadow-md">
+            Cerrar
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+
+    <!-- ===== Modal Filtro Fechas ===== -->
+    <div id="modal-fechas" class="hidden fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
+      <div class="bg-[#1e1e1e] p-6 sm:p-8 rounded-2xl shadow-[0_0_25px_rgba(255,102,0,0.2)] 
+                  w-11/12 max-w-md transition-transform transform scale-100 border border-[#FF6600]/30">
+
+        <h2 class="text-2xl font-bold mb-5 text-[#FF6600] text-center">
+          Filtrar por Fecha
+        </h2>
+
+        <div class="flex flex-col gap-5 text-lg text-white">
+          <label class="flex flex-col">
+            <span class="mb-1 text-gray-300">Desde:</span>
+            <input id="fecha-inicio" type="date"
+              class="bg-[#2a2a2a] border border-[#FF6600]/30 rounded-md p-2 
+                    focus:outline-none focus:ring-2 focus:ring-[#FF6600]">
+          </label>
+
+          <label class="flex flex-col">
+            <span class="mb-1 text-gray-300">Hasta:</span>
+            <input id="fecha-fin" type="date"
+              class="bg-[#2a2a2a] border border-[#FF6600]/30 rounded-md p-2
+                    focus:outline-none focus:ring-2 focus:ring-[#FF6600]">
+          </label>
+        </div>
+
+        <div class="mt-6 flex justify-between items-center gap-3">
+          <button id="limpiar-fecha"
+            class="text-sm text-gray-400 underline hover:text-[#FF6600] transition">
+            Limpiar fechas
+          </button>
+
+          <div class="flex gap-3">
+            <button id="aplicar-fecha"
+              class="bg-[#FF6600] text-white px-4 py-2 rounded-lg 
+                    hover:opacity-90 transition font-semibold shadow-md">
+              Aplicar
+            </button>
+
+            <button id="cerrar-fecha"
+              class="bg-[#2a2a2a] text-gray-300 px-4 py-2 rounded-lg 
+                    border border-[#FF6600]/30 hover:bg-[#FF6600]/20 transition font-medium">
+              Cerrar
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== Modal Filtro Planes ===== -->
   <script src="../js/admin.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
