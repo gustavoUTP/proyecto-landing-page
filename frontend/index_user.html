@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Usuario - TikTok Business Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="font-sans antialiased bg-[#0d0d0d] text-gray-200 min-h-screen flex flex-col">
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="bg-[#1A1A1A] text-white p-4 shadow-[0_0_25px_rgba(255,102,0,0.4)] sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <img src="./img/pumpkin.png" alt="Logo" class="w-12 h-auto">
+                <h1 class="text-xl font-bold text-[#FF6600] tracking-wide">TikTok Business Academy</h1>
+            </div>
+
+            <!-- Menú usuario -->
+            <div class="relative">
+                <button id="user-menu-button" class="flex items-center space-x-2 focus:outline-none">
+                    <img src="../img/admin1.png" alt="Usuario" class="w-10 h-10 rounded-full border-2 border-[#FF6600]">
+                    <span id="user-name" class="hidden sm:inline">Usuario</span>
+                    <svg class="w-4 h-4 text-[#FF6600]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+
+                <!-- Dropdown -->
+                <div id="user-dropdown"
+                    class="hidden absolute right-0 mt-2 w-44 bg-[#1A1A1A] text-gray-300 rounded-lg shadow-[0_0_15px_rgba(255,102,0,0.25)] overflow-hidden">
+                    <a href="#" class="block px-4 py-2 hover:bg-[#FF6600]/10 hover:text-[#FF6600] transition">Mi
+                        Perfil</a>
+                    <a href="../docs/index.html" id="logout-btn"
+                        class="block px-4 py-2 hover:bg-[#FF6600]/10 hover:text-[#FF6600] transition">Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+    <main class="flex-grow px-4 sm:px-6 py-10 relative overflow-hidden">
+
+        <!-- ===== Bienvenida ===== -->
+        <section class="text-center mb-10">
+            <h1 class="text-4xl font-extrabold text-[#FF6600] mb-2">¡Bienvenido de nuevo!</h1>
+            <p class="text-gray-400 max-w-2xl mx-auto">
+                Continúa tu camino en el marketing digital y conviértete en un experto en estrategias de TikTok.
+            </p>
+        </section>
+
+        <!-- ===== Dashboard de usuario ===== -->
+        <section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+            <div
+                class="bg-[#1A1A1A] p-6 rounded-2xl shadow-[0_0_20px_rgba(255,102,0,0.2)] text-center border border-[#FF6600]/10">
+                <p class="text-gray-400 mb-1">Cursos Completados</p>
+                <h3 class="text-3xl font-bold text-[#FF6600]" id="cursos-completados">0</h3>
+            </div>
+            <div
+                class="bg-[#1A1A1A] p-6 rounded-2xl shadow-[0_0_20px_rgba(255,102,0,0.2)] text-center border border-[#FF6600]/10">
+                <p class="text-gray-400 mb-1">Cursos en Progreso</p>
+                <h3 class="text-3xl font-bold text-[#FF6600]" id="cursos-progreso">0</h3>
+            </div>
+            <div
+                class="bg-[#1A1A1A] p-6 rounded-2xl shadow-[0_0_20px_rgba(255,102,0,0.2)] text-center border border-[#FF6600]/10">
+                <p class="text-gray-400 mb-1">Puntos Acumulados</p>
+                <h3 class="text-3xl font-bold text-[#FF6600]" id="puntos">1250</h3>
+            </div>
+            <div
+                class="bg-[#1A1A1A] p-6 rounded-2xl shadow-[0_0_20px_rgba(255,102,0,0.2)] text-center border border-[#FF6600]/10">
+                <p class="text-gray-400 mb-1">Nivel Actual</p>
+                <h3 class="text-3xl font-bold text-[#FF6600]" id="nivel">Experto</h3>
+            </div>
+        </section>
+
+        <!-- ===== Progreso general ===== -->
+        <section class="text-center mb-16">
+            <h2 class="text-2xl font-semibold mb-6 text-white">Tu progreso global</h2>
+            <div class="flex flex-col items-center">
+                <div
+                    class="w-[340px] h-[340px] sm:w-[400px] sm:h-[400px] mb-6 bg-[#1A1A1A] rounded-full flex justify-center items-center shadow-[0_0_40px_rgba(255,102,0,0.5)] p-8">
+                    <canvas id="chartProgreso"></canvas>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <!-- ===== Cursos dinámicos ===== -->
+        <section id="contenedorCursos"></section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer
+        class="bg-[#1A1A1A] text-gray-400 py-4 text-center text-sm mt-auto shadow-[0_0_15px_rgba(255,102,0,0.25)] border-t border-[#FF6600]/10">
+        © 2025 TikTok Business Academy — Plataforma de Aprendizaje Digital
+    </footer>
+
+    <script src="../js/user.js"></script>
+</body>
+
+</html>

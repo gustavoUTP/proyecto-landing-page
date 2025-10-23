@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard de Suscripciones - TikTok Business Academy</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="bg-[#111111] text-gray-200">
+
+  <!-- ===== Navbar ===== -->
+  <nav class="bg-black/80 backdrop-blur-md text-white p-4 shadow-[0_0_15px_rgba(255,102,0,0.3)]">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <img src="./img/pumpkin.png" alt="Logo" class="w-14 h-auto rounded-lg">
+        <span class="text-2xl font-bold text-[#FF6600]">Admin Panel</span>
+      </div>
+
+      <div class="relative">
+        <button id="user-menu-button" class="flex items-center space-x-2 focus:outline-none">
+          <img src="../img/admin1.png" alt="Foto admin" class="w-10 h-10 rounded-full border-2 border-[#FF6600]">
+          <span id="admin-name" class="hidden sm:inline">Admin</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <div id="user-dropdown"
+          class="hidden absolute right-0 mt-2 w-40 bg-[#1a1a1a] text-gray-300 rounded-md shadow-lg z-10 border border-[#FF6600]/30">
+          <a href="#" class="block px-4 py-2 hover:bg-[#FF6600]/20">Mi Perfil</a>
+          <a href="./index.html" id="logout-btn" class="block px-4 py-2 hover:bg-[#FF6600]/20">Cerrar Sesión</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== Título principal ===== -->
+  <h1 class="text-3xl font-bold text-center my-8 text-[#FF6600]">
+    Dashboard de Suscripciones
+  </h1>
+
+  <!-- ===== Tarjetas y gráficos ===== -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 sm:px-6">
+
+    <div class="bg-[#1a1a1a] p-6 rounded-2xl shadow-[0_0_25px_rgba(255,102,0,0.15)] hover:shadow-[0_0_30px_rgba(255,102,0,0.4)] transition">
+      <h2 class="text-lg font-semibold mb-2 text-white">Total de Suscriptores</h2>
+      <p class="text-4xl font-extrabold text-[#FF6600]" id="total-suscriptores">0</p>
+
+      <div id="detalle-sus" class="hidden mt-6">
+        <div class="bg-[#111111] p-6 rounded-2xl border border-[#FF6600]/30 shadow-md">
+          <h2 class="text-xl font-semibold mb-4 text-[#FF6600] flex items-center gap-2">
+            <i class="fas fa-user"></i> Detalles del Suscriptor
+          </h2>
+          <div id="info-sus" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-gray-300">
+          </div>
+        </div>
+      </div>
+
+      <button id="btn-exportar-suscriptor"
+        class="mt-5 bg-[#FF6600] text-white px-4 py-2 rounded-lg hover:bg-[#ff8533] transition w-full">
+        Exportar Datos del Suscriptor
+      </button>
+    </div>
+
+    <!-- ===== Gráfico ===== -->
+    <div class="md:col-span-2 bg-[#1a1a1a] p-6 rounded-2xl shadow-[0_0_25px_rgba(255,102,0,0.15)] flex flex-col items-center">
+      <h2 id="chart-title" class="text-xl font-semibold mb-3 text-white">Estadísticas de Suscripción</h2>
+
+      <div id="chart-carousel" class="w-full relative">
+        <div id="chart-page-1" class="chart-page">
+          <canvas id="chartPlanes" width="100" height="100"></canvas>
+        </div>
+        <div id="chart-page-2" class="chart-page hidden">
+          <canvas id="chartNuevosSuscriptores" width="200" height="200"></canvas>
+        </div>
+      </div>
+
+      <div class="flex justify-center items-center mt-4 space-x-4">
+        <button id="prev-chart"
+          class="px-4 py-2 rounded bg-[#222222] border border-[#FF6600]/30 hover:bg-[#FF6600]/20 transition">
+          ⬅
+        </button>
+        <span id="chart-index" class="text-sm font-medium text-gray-400">1 / 2</span>
+        <button id="next-chart"
+          class="px-4 py-2 rounded bg-[#222222] border border-[#FF6600]/30 hover:bg-[#FF6600]/20 transition">
+          ➡
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Tabla ===== -->
+  <div class="bg-[#1a1a1a] p-6 rounded-2xl shadow-[0_0_25px_rgba(255,102,0,0.15)] mx-4 sm:mx-6 my-8">
+
+    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
+      <input type="text" id="buscador" placeholder="Buscar por nombre o correo..."
+        class="w-full sm:w-1/2 p-2 rounded-md bg-[#111111] text-gray-200 border border-[#FF6600]/30 focus:outline-none focus:ring-2 focus:ring-[#FF6600]">
+
+      <button id="btn-pdf"
+        class="flex justify-center items-center bg-[#FF6600] text-white px-4 py-2 rounded-md hover:bg-[#ff8533] transition">
+        Exportar PDF
+      </button>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse min-w-[700px]">
+        <thead>
+          <tr class="bg-[#FF6600]/20 text-left text-[#FF6600]">
+            <th class="border border-[#FF6600]/20 p-2">#</th>
+            <th class="border border-[#FF6600]/20 p-2">Nombre</th>
+            <th class="border border-[#FF6600]/20 p-2">Correo</th>
+            <th class="border border-[#FF6600]/20 p-2">Teléfono</th>
+            <th class="border border-[#FF6600]/20 p-2">Plan</th>
+            <th class="border border-[#FF6600]/20 p-2">Fecha</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-suscripciones" class="text-gray-300"></tbody>
+      </table>
+    </div>
+
+    <div class="flex flex-col sm:flex-row justify-between items-center mt-4 gap-3">
+      <p id="info-paginacion" class="text-sm text-gray-400">Mostrando 0 - 0</p>
+      <div class="flex gap-2">
+        <button id="prev"
+          class="px-4 py-2 rounded bg-[#222222] border border-[#FF6600]/30 hover:bg-[#FF6600]/20 transition">⬅</button>
+        <button id="next"
+          class="px-4 py-2 rounded bg-[#222222] border border-[#FF6600]/30 hover:bg-[#FF6600]/20 transition">➡</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer class="bg-black text-gray-400 py-4 text-center text-sm border-t border-[#FF6600]/30">
+    © 2025 Panel de Administración - TikTok Business Academy
+  </footer>
+
+  <script src="../js/admin.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+</body>
+</html>

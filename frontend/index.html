@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Aprende marketing y estrategias virales en TikTok con la TikTok Business Academy. Domina contenido, branding y ventas.">
+    <title>TikTok Businnes Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="icon" href="img/tik-tok.png" type="image/png">
+</head>
+
+<body class="font-sans antialiased bg-gray-100">
+
+    <!-- ==================== NAVBAR ==================== -->
+    <header class="bg-[#0D0D0D] text-white sticky top-0 z-50 border-b border-[#1a1a1a]">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+                <img src="./img/pumpkin.png" alt="Logo TikTok Business Academy" class="w-10 h-10 rounded-full">
+                <h1 class="text-2xl font-bold tracking-wide text-[#FFFFFF]">TikTok Business Academy</h1>
+            </div>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#inicio" class="hover:text-[#FF6600] transition">Inicio</a>
+                <a href="#beneficios" class="hover:text-[#FF6600] transition">Beneficios</a>
+                <a href="#cursos" class="hover:text-[#FF6600] transition">Cursos</a>
+                <a href="#planes" class="hover:text-[#FF6600] transition">Planes</a>
+                <a href="#contacto" class="hover:text-[#FF6600] transition">Contacto</a>
+            </nav>
+
+            <!-- Botones -->
+            <div class="hidden md:flex space-x-4">
+                <button onclick="openModal('modal-signUp')"
+                    class="border border-[#FF6600] text-[#FFFFFF] hover:bg-[#FF6600] hover:text-white px-4 py-2 rounded-lg font-semibold transition">
+                    Crear cuenta
+                </button>
+                <button onclick="openModal('modal-signIn')"
+                    class="bg-[#FF6600] hover:opacity-90 text-white px-4 py-2 rounded-lg font-semibold shadow-[0_0_10px_#FF6600] transition">
+                    Iniciar sesión
+                </button>
+            </div>
+
+            <!-- Botón móvil -->
+            <button id="menu-btn" aria-label="Abrir menú de navegación" class="md:hidden focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-[#FF6600]" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- ==================== HERO ==================== -->
+    <section id="inicio" class="relative bg-[#0D0D0D] text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 py-24 flex flex-col md:flex-row items-center justify-between">
+            <!-- Texto -->
+            <div class="text-center md:text-left md:w-1/2">
+                <h2 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+                    Aprende <span class="text-[#FF6600] drop-shadow-[0_0_15px_#FF6600]">Marketing en TikTok</span> y haz
+                    crecer tu marca digital
+                </h2>
+                <p class="text-gray-400 text-lg mb-8">
+                    Domina estrategias virales, crea contenido poderoso y convierte tu audiencia en clientes.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#cursos"
+                        class="bg-[#FF6600] hover:opacity-90 px-6 py-3 rounded-lg font-semibold shadow-[0_0_15px_#FF6600] transition transform hover:scale-105">
+                        Ver Cursos
+                    </a>
+                    <a href="#planes"
+                        class="border border-[#FF6600] text-[#FFFFFF] hover:bg-[#FF6600] hover:text-white px-6 py-3 rounded-lg font-semibold transition">
+                        Ver Planes
+                    </a>
+                </div>
+            </div>
+
+            <!-- Imagen -->
+            <div class="mt-12 md:mt-0 md:w-1/2 flex justify-center">
+                <img src="./img/white-transparent-tiktok-logo-png-2.png" alt="Marketing en TikTok"
+                    class="w-80 md:w-[400px] drop-shadow-[0_0_25px_#FF6600] animate-float">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==================== Beneficios Clave ==================== -->
+    <section class="bg-[#0D0D0D] py-20" id="beneficios">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-10 text-center">
+
+            <!-- Card 1 -->
+            <div>
+                <div
+                    class="bg-[#111111] p-8 rounded-2xl shadow-[0_0_15px_rgba(255,102,0,0.15)] hover:shadow-[0_0_25px_rgba(255,102,0,0.3)] transition transform hover:-translate-y-2">
+                    <h3 class="text-2xl font-bold text-white mb-3">Vende Más</h3>
+                    <p class="text-gray-400">Domina estrategias para convertir tus vistas en clientes reales.</p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div>
+                <div
+                    class="bg-[#111111] p-8 rounded-2xl shadow-[0_0_15px_rgba(255,102,0,0.15)] hover:shadow-[0_0_25px_rgba(255,102,0,0.3)] transition transform hover:-translate-y-2">
+                    <h3 class="text-2xl font-bold text-white mb-3">Crea Contenido Viral</h3>
+                    <p class="text-gray-400">Aprende técnicas de storytelling y edición que conectan con tu público.</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div>
+                <div
+                    class="bg-[#111111] p-8 rounded-2xl shadow-[0_0_15px_rgba(255,102,0,0.15)] hover:shadow-[0_0_25px_rgba(255,102,0,0.3)] transition transform hover:-translate-y-2">
+                    <h3 class="text-2xl font-bold text-white mb-3">Crece tu Marca</h3>
+                    <p class="text-gray-400">Posiciona tu negocio en TikTok con estrategias profesionales.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==================== SECCIÓN CURSOS ==================== -->
+    <section id="cursos" class="py-20 bg-[#0D0D0D] text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-12">
+                Domina TikTok y haz crecer tu marca
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+
+                <!-- CURSO 1 -->
+                <div
+                    class="bg-[#111111] rounded-2xl overflow-hidden shadow-[0_0_20px_rgba(255,102,0,0.15)] hover:shadow-[0_0_30px_rgba(255,102,0,0.3)] transition">
+                    <img src="./img/imagen_curso_1.png" alt="Curso Básico" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-[#FF6600]">Curso Avanzado de Marketing y Ventas</h3>
+                        <p class="text-gray-400 mb-4">Aprende a crear contenido atractivo y dominar los fundamentos de
+                            TikTok.</p>
+
+                        <!-- Acordeón -->
+                        <details class="group border-t border-[#222] pt-2">
+                            <summary class="cursor-pointer text-white font-semibold flex items-center justify-between">
+                                Ver contenido
+                                <span class="transition-transform group-open:rotate-180">⌄</span>
+                            </summary>
+                            <p class="text-gray-400 mt-3 space-y-1 justify-center">Aprende desde cero cómo diseñar y producir videos que llamen la atención y se vuelvan virales en TikTok. Descubre las técnicas básicas para captar la audiencia, utilizar efectos y música, y sacar el máximo provecho de las tendencias, sin necesidad de experiencia previa.</p>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- CURSO 2 -->
+                <div
+                    class="bg-[#111111] rounded-2xl overflow-hidden shadow-[0_0_20px_rgba(255,102,0,0.15)] hover:shadow-[0_0_30px_rgba(255,102,0,0.3)] transition">
+                    <img src="./img/imagen_curso_2.png" alt="Curso Avanzado" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-[#FF6600]">Curso Avanzado de Marketing y Ventas</h3>
+                        <p class="text-gray-400 mb-4">Convierte seguidores en clientes aplicando estrategias virales.
+                        </p>
+
+                        <details class="group border-t border-[#222] pt-2">
+                            <summary class="cursor-pointer text-white font-semibold flex items-center justify-between">
+                                Ver contenido
+                                <span class="transition-transform group-open:rotate-180">⌄</span>
+                            </summary>
+                            <ul class="text-gray-400 mt-3 list-disc list-inside space-y-1">
+                                <li>Neuromarketing aplicado a TikTok</li>
+                                <li>Campañas efectivas</li>
+                                <li>Análisis de conversiones</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- CURSO 3 -->
+                <div
+                    class="bg-[#111111] rounded-2xl overflow-hidden shadow-[0_0_20px_rgba(255,102,0,0.15)] hover:shadow-[0_0_30px_rgba(255,102,0,0.3)] transition">
+                    <img src="./img/imagen_curso_3.png" alt="Curso Branding" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-[#FF6600]">Curso de Branding Personal</h3>
+                        <p class="text-gray-400 mb-4">Aprende a construir una marca personal fuerte y reconocible.</p>
+
+                        <details class="group border-t border-[#222] pt-2">
+                            <summary class="cursor-pointer text-white font-semibold flex items-center justify-between">
+                                Ver contenido
+                                <span class="transition-transform group-open:rotate-180">⌄</span>
+                            </summary>
+                            <ul class="text-gray-400 mt-3 list-disc list-inside space-y-1">
+                                <li>Definición de identidad visual</li>
+                                <li>Tono de comunicación</li>
+                                <li>Estrategia de posicionamiento</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+                <!-- CURSO 4 -->
+                <div
+                    class="bg-[#111111] rounded-2xl overflow-hidden shadow-[0_0_20px_rgba(255,102,0,0.15)] hover:shadow-[0_0_30px_rgba(255,102,0,0.3)] transition">
+                    <img src="./img/imagen_curso_4.png" alt="Curso Básico" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-[#FF6600]">Curso Básico de Creación de Contenido</h3>
+                        <p class="text-gray-400 mb-4">Aprende a crear contenido atractivo y dominar los fundamentos de
+                            TikTok.</p>
+
+                        <!-- Acordeón -->
+                        <details class="group border-t border-[#222] pt-2">
+                            <summary class="cursor-pointer text-white font-semibold flex items-center justify-between">
+                                Ver contenido
+                                <span class="transition-transform group-open:rotate-180">⌄</span>
+                            </summary>
+                            <ul class="text-gray-400 mt-3 list-disc list-inside space-y-1">
+                                <li>Cómo usar el algoritmo de TikTok</li>
+                                <li>Edición rápida desde el móvil</li>
+                                <li>Errores comunes al iniciar</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- CURSO 5 -->
+                <div
+                    class="bg-[#111111] rounded-2xl overflow-hidden shadow-[0_0_20px_rgba(255,102,0,0.15)] hover:shadow-[0_0_30px_rgba(255,102,0,0.3)] transition">
+                    <img src="./img/imagen_curso_5.png" alt="Curso Avanzado" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-[#FF6600]">Curso Avanzado de Marketing y Ventas</h3>
+                        <p class="text-gray-400 mb-4">Convierte seguidores en clientes aplicando estrategias virales.
+                        </p>
+
+                        <details class="group border-t border-[#222] pt-2">
+                            <summary class="cursor-pointer text-white font-semibold flex items-center justify-between">
+                                Ver contenido
+                                <span class="transition-transform group-open:rotate-180">⌄</span>
+                            </summary>
+                            <ul class="text-gray-400 mt-3 list-disc list-inside space-y-1">
+                                <li>Neuromarketing aplicado a TikTok</li>
+                                <li>Campañas efectivas</li>
+                                <li>Análisis de conversiones</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- CURSO 6 -->
+                <div
+                    class="bg-[#111111] rounded-2xl overflow-hidden shadow-[0_0_20px_rgba(255,102,0,0.15)] hover:shadow-[0_0_30px_rgba(255,102,0,0.3)] transition">
+                    <img src="./img/imagen_curso_6.png" alt="Curso Branding" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-[#FF6600]">Curso de Branding Personal</h3>
+                        <p class="text-gray-400 mb-4">Aprende a construir una marca personal fuerte y reconocible.</p>
+                        <details class="group border-t border-[#222] pt-2">
+                            <summary class="cursor-pointer text-white font-semibold flex items-center justify-between">
+                                Ver contenido
+                                <span class="transition-transform group-open:rotate-180">⌄</span>
+                            </summary>
+                            <ul class="text-gray-400 mt-3 list-disc list-inside space-y-1">
+                                <li>Definición de identidad visual</li>
+                                <li>Tono de comunicación</li>
+                                <li>Estrategia de posicionamiento</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+                <!-- Puedes duplicar este bloque para los demás cursos -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECCIÓN DE PLANES (SUSCRIPCIONES) ==================== -->
+    <section id="planes" class="bg-[#0D0D0D] text-white py-20">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-extrabold mb-12">Elige tu Plan</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+                <!-- PLAN BÁSICO -->
+                <div
+                    class="bg-[#111111] p-8 rounded-2xl shadow-[0_0_15px_rgba(255,102,0,0.15)] hover:shadow-[0_0_25px_rgba(255,102,0,0.3)] transition transform hover:-translate-y-2">
+                    <h3 class="text-2xl font-bold text-[#FF6600] mb-4">Plan Básico</h3>
+                    <p class="text-gray-400 mb-6">Ideal para quienes recién comienzan su marca en TikTok.</p>
+                    <p class="text-4xl font-extrabold mb-6">
+                        $9<span class="text-lg text-gray-400">/mes</span>
+                    </p>
+
+                    <ul class="text-gray-300 space-y-3 mb-8">
+                        <li>✔ Acceso a cursos introductorios</li>
+                        <li>✔ Comunidad privada</li>
+                        <li>✖ Mentorías personalizadas</li>
+                        <li>✖ Reportes de rendimiento</li>
+                    </ul>
+
+                    <button
+                        class="w-full border border-[#FF6600] text-white hover:bg-[#FF6600] hover:text-white py-3 rounded-lg font-semibold transition">
+                        Elegir Plan
+                    </button>
+                </div>
+
+                <!-- PLAN PRO -->
+                <div
+                    class="bg-[#111111] rounded-2xl p-8 border border-[#FF6600] shadow-[0_0_25px_rgba(255,102,0,0.15)] transform scale-105">
+                    <h3 class="text-2xl font-bold text-[#FF6600] mb-4">Plan Pro</h3>
+                    <p class="text-gray-400 mb-6">Para creadores y emprendedores que buscan crecer rápido.</p>
+                    <p class="text-4xl font-extrabold mb-6">
+                        $19<span class="text-lg text-gray-400">/mes</span>
+                    </p>
+
+                    <ul class="text-gray-300 space-y-3 mb-8">
+                        <li>✔ Todos los cursos</li>
+                        <li>✔ Comunidad y foros activos</li>
+                        <li>✔ Mentorías grupales</li>
+                        <li>✖ Soporte personalizado</li>
+                    </ul>
+
+                    <button
+                        class="w-full bg-[#FF6600] hover:opacity-90 text-white py-3 rounded-lg font-semibold shadow-[0_0_15px_#FF6600] transition transform hover:scale-105">
+                        Elegir Plan
+                    </button>
+                </div>
+
+                <!-- PLAN PREMIUM -->
+                <div
+                    class="bg-[#111111] p-8 rounded-2xl shadow-[0_0_15px_rgba(255,102,0,0.15)] hover:shadow-[0_0_25px_rgba(255,102,0,0.3)] transition transform hover:-translate-y-2">
+                    <h3 class="text-2xl font-bold text-[#FF6600] mb-4">Plan Premium</h3>
+                    <p class="text-gray-400 mb-6">Para marcas y creadores que buscan dominar TikTok.</p>
+                    <p class="text-4xl font-extrabold mb-6">
+                        $29<span class="text-lg text-gray-400">/mes</span>
+                    </p>
+
+                    <ul class="text-gray-300 space-y-3 mb-8">
+                        <li>✔ Acceso ilimitado a todos los cursos</li>
+                        <li>✔ Mentorías personalizadas 1 a 1</li>
+                        <li>✔ Análisis de rendimiento mensual</li>
+                        <li>✔ Certificación profesional</li>
+                    </ul>
+
+                    <button
+                        class="w-full border border-[#FF6600] text-white hover:bg-[#FF6600] hover:text-white py-3 rounded-lg font-semibold transition">
+                        Elegir Plan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-[#0D0D0D] text-gray-400 border-t border-[#1a1a1a] py-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center sm:text-left">
+
+            <!-- Logo y descripción -->
+            <div>
+                <div class="flex items-center justify-center sm:justify-start space-x-3 mb-4">
+                    <img src="./img/imagen_logo.webp" alt="Logo TikTok Business Academy" class="w-10 h-10 rounded-full">
+                    <h3 class="text-xl font-bold text-white">TikTok Business Academy</h3>
+                </div>
+                <p class="text-gray-400 text-sm">
+                    Aprende marketing, crecimiento y estrategias virales en la plataforma número uno del mundo.
+                </p>
+            </div>
+
+            <!-- Enlaces -->
+            <div>
+                <h4 class="text-white font-semibold mb-3">Enlaces Rápidos</h4>
+                <ul class="space-y-2">
+                    <li><a href="#inicio" class="hover:text-[#FF6600] transition">Inicio</a></li>
+                    <li><a href="#cursos" class="hover:text-[#FF6600] transition">Cursos</a></li>
+                    <li><a href="#planes" class="hover:text-[#FF6600] transition">Planes</a></li>
+                    <li><a href="#contacto" class="hover:text-[#FF6600] transition">Contacto</a></li>
+                </ul>
+            </div>
+
+            <!-- Redes sociales -->
+            <div>
+                <h4 class="text-white font-semibold mb-3">Síguenos</h4>
+                <div class="flex justify-center sm:justify-start space-x-4 text-[#FF6600]">
+                    <a href="#" class="hover:opacity-80 transition"><img src="./img/facebook.png" class="w-6 h-6"
+                            alt=""></a>
+                    <a href="#" class="hover:opacity-80 transition"><img src="./img/instagram.png" class="w-6 h-6"
+                            alt=""></a>
+                    <a href="#" class="hover:opacity-80 transition"><img src="./img/youtube.png" class="w-6 h-6"
+                            alt=""></a>
+                    <a href="#" class="hover:opacity-80 transition"><img src="./img/twitterx.png" class="w-6 h-6"
+                            alt=""></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Créditos -->
+        <div class="text-center text-gray-500 text-sm mt-10 pt-6">
+            © TikTok Business Academy. Todos los derechos reservados.
+        </div>
+    </footer>
+
+
+
+    <!-- ==================== Modals ==================== -->
+    <div id="modal1" class="reveal">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-4">Curso Avanzado de Marketing y Ventas</h3>
+            <p>Aprende desde cero cómo diseñar y producir videos que llamen la atención y se vuelvan virales en TikTok.
+                Descubre las técnicas básicas para captar la audiencia, utilizar efectos
+                y música, y sacar el máximo provecho de las tendencias, sin necesidad de experiencia previa.</p>
+            <button class="close-button" onclick="closeModal('modal1')">×</button>
+        </div>
+    </div>
+
+    <div id="modal2" class="reveal">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-4">Curso Avanzado de Marketing y Ventas</h3>
+            <p>Domina las estrategias avanzadas para transformar seguidores en clientes reales. Aprende a diseñar
+                funnels de ventas dentro de TikTok, crear llamados a la acción efectivos y
+                aprovechar las herramientas de la plataforma para aumentar tus ingresos de forma constante.</p>
+            <button class="close-button" onclick="closeModal('modal2')">×</button>
+        </div>
+    </div>
+
+    <div id="modal3" class="reveal">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-4">Curso de Branding Personal para Emprendedores</h3>
+            <p>Construye una marca auténtica y memorable que te permita destacar en TikTok. Descubre cómo comunicar tu
+                propuesta de valor, crear una identidad visual coherente y conectar
+                emocionalmente con tu audiencia para generar confianza y fidelidad.</p>
+            <button class="close-button" onclick="closeModal('modal3')">×</button>
+        </div>
+    </div>
+
+    <div id="modal4" class="reveal">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-4">Curso de Publicidad Efectiva</h3>
+            <p>Conviértete en un experto en la creación y gestión de campañas publicitarias en TikTok Ads. Aprende a
+                segmentar a tu audiencia ideal, diseñar anuncios que conviertan y optimizar tu inversión para obtener el
+                mejor retorno en ventas y crecimiento.</p>
+            <button class="close-button" onclick="closeModal('modal4')">×</button>
+        </div>
+    </div>
+
+    <div id="modal5" class="reveal">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-4">Curso de Storytelling para Emprendedores</h3>
+            <p>Aprende a contar historias que capturen la atención y generen conexión con tus seguidores. Descubre
+                técnicas narrativas y formatos ideales para TikTok que te ayudarán a humanizar tu marca, transmitir
+                valores y motivar a tu audiencia a tomar acción.</p>
+            <button class="close-button" onclick="closeModal('modal5')">×</button>
+        </div>
+    </div>
+
+    <div id="modal6" class="reveal">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-4">Curso de monetizacion para creadores de contenido</h3>
+            <p>Explora todas las formas posibles de generar ingresos con tu contenido en TikTok. Desde colaboraciones y
+                patrocinios hasta venta de productos digitales y servicios, aprende a diversificar tus fuentes de
+                ingreso y crear una comunidad rentable.</p>
+            <button class="close-button" onclick="closeModal('modal6')">×</button>
+        </div>
+    </div>
+
+    <!--Formulario de Inscripcion-->
+    <div id="modal-suscripcion" class="reveal">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-4 text-center">¡Inscríbete con Nosotros!</h3>
+            <p class="text-gray-700 text-center mb-6">
+                Completa este formulario con tus datos
+            </p>
+            <form id="form-suscripcion" class="space-y-4">
+                <div>
+                    <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre y Apellido</label>
+                    <input type="text" id="nombre_sus" name="nombre" placeholder=""
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" placeholder=""
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+                <div>
+                    <label for="telefono" class="block text-sm font-medium text-gray-700">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder=""
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+                <div>
+                    <select id="plan" name="plan"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <option value="" disabled selected>Selecciona un plan</option>
+                        <option value="basico">Plan Basico</option>
+                        <option value="intermedio">Plan Intermedio</option>
+                        <option value="premium">Plan Premium</option>
+                    </select>
+                </div>
+                <div class="flex justify-center mt-6">
+                    <button type="submit" class="button">Confirmar Suscripción</button>
+                </div>
+            </form>
+            <button class="close-button" onclick="closeModal('modal-suscripcion')">×</button>
+        </div>
+    </div>
+
+    <!-- Modal SignIn -->
+    <div id="modal-signIn"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm hidden">
+        <div
+            class="relative bg-[#111111] text-white rounded-2xl shadow-[0_0_25px_rgba(255,102,0,0.4)] w-full max-w-md p-8 border border-[#FF6600] transform transition-all scale-95 hover:scale-100">
+
+            <!-- Cerrar -->
+            <button class="absolute top-3 right-4 text-gray-400 hover:text-[#FF6600] text-2xl font-bold"
+                onclick="closeModal('modal-signIn')">
+                ×
+            </button>
+
+            <!-- Título -->
+            <h3 class="text-3xl font-bold mb-3 text-center text-[#FF6600]">Iniciar Sesión</h3>
+            <p class="text-gray-400 text-center mb-6">Ingresa tu correo y contraseña para continuar</p>
+
+            <!-- Formulario -->
+            <form id="loginForm" class="space-y-5">
+                <!-- Email -->
+                <div>
+                    <label for="login-email" class="block text-sm font-medium text-gray-300">Correo Electrónico</label>
+                    <input type="email" id="login-email" name="email" required
+                        class="mt-2 w-full rounded-md border border-[#FF6600]/30 bg-[#1A1A1A] text-white px-4 py-2 shadow-sm focus:border-[#FF6600] focus:ring-2 focus:ring-[#FF6600]/50 transition" />
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <label for="login-password" class="block text-sm font-medium text-gray-300">Contraseña</label>
+                    <input type="password" id="login-password" name="password" required
+                        class="mt-2 w-full rounded-md border border-[#FF6600]/30 bg-[#1A1A1A] text-white px-4 py-2 shadow-sm focus:border-[#FF6600] focus:ring-2 focus:ring-[#FF6600]/50 transition" />
+
+                    <div class="text-right mt-2">
+                        <a href="#modal-reset" onclick="openModal('modal-reset')"
+                            class="text-sm text-[#FF6600] hover:underline">
+                            ¿Olvidaste tu contraseña?
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Botón -->
+                <div class="flex justify-center mt-6">
+                    <button type="submit"
+                        class="bg-[#FF6600] text-white px-6 py-2 rounded-md font-semibold hover:bg-[#ff8533] shadow-[0_0_15px_rgba(255,102,0,0.3)] hover:shadow-[0_0_25px_rgba(255,102,0,0.5)] transition">
+                        Iniciar sesión
+                    </button>
+                </div>
+            </form>
+
+            <!-- Mensaje -->
+            <p id="loginMsg" class="text-center mt-4 text-sm text-red-500"></p>
+        </div>
+    </div>
+
+<!-- Modal SignUp -->
+<div id="modal-signUp"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm hidden">
+    <div
+        class="relative bg-[#111111] text-white rounded-2xl shadow-[0_0_25px_rgba(255,102,0,0.4)] w-full max-w-md p-8 border border-[#FF6600] transform transition-all scale-95 hover:scale-100">
+
+        <!-- Botón Cerrar -->
+        <button class="absolute top-3 right-4 text-gray-400 hover:text-[#FF6600] text-2xl font-bold"
+            onclick="closeModal('modal-signUp')">
+            ×
+        </button>
+
+        <!-- Título -->
+        <h3 class="text-3xl font-bold mb-3 text-center text-[#FF6600]">Crear Cuenta</h3>
+        <p class="text-gray-400 text-center mb-6">Regístrate para unirte a la comunidad</p>
+
+        <!-- Formulario -->
+        <form id="registerForm" class="space-y-5">
+            <!-- Nombre -->
+            <div>
+                <label for="nombre_log" class="block text-sm font-medium text-gray-300">Nombre Completo</label>
+                <input type="text" id="nombre_log" name="nombre" required
+                    class="mt-2 w-full rounded-md border border-[#FF6600]/30 bg-[#1A1A1A] text-white px-4 py-2 shadow-sm focus:border-[#FF6600] focus:ring-2 focus:ring-[#FF6600]/50 transition" />
+            </div>
+
+            <!-- Correo -->
+            <div>
+                <label for="correo" class="block text-sm font-medium text-gray-300">Correo Electrónico</label>
+                <input type="email" id="correo" name="correo" required
+                    class="mt-2 w-full rounded-md border border-[#FF6600]/30 bg-[#1A1A1A] text-white px-4 py-2 shadow-sm focus:border-[#FF6600] focus:ring-2 focus:ring-[#FF6600]/50 transition" />
+            </div>
+
+            <!-- Contraseña -->
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-300">Contraseña</label>
+                <input type="password" id="password" name="password" required minlength="6"
+                    class="mt-2 w-full rounded-md border border-[#FF6600]/30 bg-[#1A1A1A] text-white px-4 py-2 shadow-sm focus:border-[#FF6600] focus:ring-2 focus:ring-[#FF6600]/50 transition" />
+            </div>
+
+            <!-- Botón -->
+            <div class="flex justify-center mt-6">
+                <button type="submit"
+                    class="bg-[#FF6600] text-white px-6 py-2 rounded-md font-semibold hover:bg-[#ff8533] shadow-[0_0_15px_rgba(255,102,0,0.3)] hover:shadow-[0_0_25px_rgba(255,102,0,0.5)] transition">
+                    Crear Cuenta
+                </button>
+            </div>
+        </form>
+
+        <!-- Mensaje -->
+        <p id="msg" class="text-center mt-4 text-sm text-red-500"></p>
+    </div>
+</div>
+
+    <!-- Modal Reset Password -->
+    <div id="modal-reset" class="reveal" style="display:none;">
+        <div class="reveal-content">
+            <h3 class="text-2xl font-bold mb-4 text-center">Recuperar contraseña</h3>
+            <form action="/send-reset-link" method="POST" class="space-y-4">
+                <label for="reset-email">Ingresa tu correo:</label>
+                <input type="email" id="reset-email" name="email" required
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <div class="flex justify-center mt-6">
+                    <button type="submit" class="button">Enviar link de recuperación</button>
+                </div>
+            </form>
+            <button class="close-button" onclick="closeModal('modal-reset')">×</button>
+        </div>
+    </div>
+
+    <!-- ==================== MURCIÉLAGOS ==================== -->
+    <div class="fixed inset-0 pointer-events-none z-[9999] overflow-hidden">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-90"
+            style="top:5%; left:3%; width:50px; transform:rotate(-10deg);">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-85"
+            style="top:15%; left:6%; width:45px; transform:rotate(8deg); animation-delay:0.5s;">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-80"
+            style="top:25%; left:10%; width:55px; transform:rotate(-12deg); animation-delay:1s;">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-75"
+            style="top:40%; left:2%; width:40px; transform:rotate(5deg); animation-delay:1.5s;">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-90"
+            style="top:50%; left:8%; width:60px; transform:rotate(-7deg); animation-delay:2s;">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-80"
+            style="top:65%; left:4%; width:50px; transform:rotate(11deg); animation-delay:2.5s;">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-85"
+            style="top:75%; left:12%; width:55px; transform:rotate(-9deg); animation-delay:3s;">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-75"
+            style="top:82%; left:6%; width:45px; transform:rotate(13deg); animation-delay:3.5s;">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-90"
+            style="top:90%; left:9%; width:50px; transform:rotate(-6deg); animation-delay:4s;">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-80"
+            style="top:95%; left:5%; width:40px; transform:rotate(7deg); animation-delay:4.5s;">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-85"
+            style="top:7%; right:4%; width:45px; transform:rotate(9deg);">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-80"
+            style="top:20%; right:8%; width:55px; transform:rotate(-11deg); animation-delay:0.5s;">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-90"
+            style="top:32%; right:2%; width:50px; transform:rotate(6deg); animation-delay:1s;">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-75"
+            style="top:45%; right:10%; width:60px; transform:rotate(-9deg); animation-delay:1.5s;">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-80"
+            style="top:55%; right:6%; width:45px; transform:rotate(10deg); animation-delay:2s;">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-85"
+            style="top:68%; right:12%; width:55px; transform:rotate(-8deg); animation-delay:2.5s;">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-90"
+            style="top:78%; right:4%; width:50px; transform:rotate(12deg); animation-delay:3s;">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-75"
+            style="top:86%; right:9%; width:60px; transform:rotate(-5deg); animation-delay:3.5s;">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-80"
+            style="top:93%; right:6%; width:50px; transform:rotate(7deg); animation-delay:4s;">
+        <img src="./img/bat.png" class="absolute animate-bat-fly opacity-85"
+            style="top:97%; right:11%; width:45px; transform:rotate(-10deg); animation-delay:4.5s;">
+
+        <img src="./img/fog.png" class="absolute bottom-0 left-0 w-full opacity-20" alt="Niebla Halloween">
+    </div>
+    
+    <!-- ==================== Scripts ==================== -->
+    <script src="./js/main.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="./js/scripts.js"></script>
+</body>
+</html>

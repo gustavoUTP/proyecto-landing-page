@@ -1,0 +1,138 @@
+/* ==================== General ==================== */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ==================== Botones ==================== */
+.button {
+    background-color: darkblue;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 300ms ease, transform 200ms ease;
+}
+
+.button:hover {
+    background-color: blue;
+    transform: scale(1.05);
+}
+
+/* ==================== Tarjetas y secciones ==================== */
+.card-divider {
+    background-color: red;
+    color: white;
+    padding: 1rem;
+    font-weight: bold;
+}
+
+.card-section {
+    padding: 1rem;
+}
+
+/* ==================== Modales ==================== */
+.reveal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(31, 41, 55, 0.75);
+    display: none;
+    /* Los modales inician ocultos */
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    padding: 1rem;
+}
+
+.reveal-content {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    max-width: 28rem;
+    width: 100%;
+    position: relative;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.reveal.show .reveal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #4b5563;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #1f2937;
+}
+
+/* ==================== Animaciones Globales ==================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+/* ==================== Hero y Beneficios ==================== */
+.hero-text {
+    text-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+.hero-button {
+    transition: all 0.3s ease;
+}
+
+.hero-button:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+.benefit-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes bat-fly {
+  0% { transform: translateY(0) rotate(0deg) scale(1); }
+  25% { transform: translateY(-6px) rotate(5deg) scale(1.05); }
+  50% { transform: translateY(8px) rotate(-4deg) scale(0.95); }
+  75% { transform: translateY(-5px) rotate(3deg) scale(1.02); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+.animate-bat-fly {
+  animation: bat-fly 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px #FF6600);
+}
+
+
