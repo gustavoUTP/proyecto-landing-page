@@ -55,6 +55,26 @@
                 </svg>
             </button>
         </div>
+        <div id="menu-mobile" class="hidden md:hidden flex-col bg-[#0D0D0D] border-t border-[#1a1a1a]">
+            <nav class="flex flex-col space-y-2 p-5 text-white font-medium">
+                <a href="#inicio" class="hover:text-[#FF6600] transition">Inicio</a>
+                <a href="#beneficios" class="hover:text-[#FF6600] transition">Beneficios</a>
+                <a href="#cursos" class="hover:text-[#FF6600] transition">Cursos</a>
+                <a href="#planes" class="hover:text-[#FF6600] transition">Planes</a>
+                <a href="#contacto" class="hover:text-[#FF6600] transition">Contacto</a>
+
+                <div class="border-t border-[#1a1a1a] pt-4 mt-3 flex flex-col space-y-3">
+                <button onclick="openModal('modal-signIn')"
+                    class="w-full border border-[#FF6600] text-white hover:bg-[#FF6600] hover:text-white py-3 rounded-lg font-semibold transition">
+                    Iniciar sesión
+                </button>
+                <button onclick="openModal('modal-signUp')"
+                    class="w-full bg-[#FF6600] hover:opacity-90 text-white py-3 rounded-lg font-semibold shadow-[0_0_10px_#FF6600] transition">
+                    Crear cuenta
+                </button>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <!-- ==================== HERO ==================== -->
