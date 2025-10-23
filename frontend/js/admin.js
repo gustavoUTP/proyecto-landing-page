@@ -9,7 +9,7 @@ const totalGraficos = 2;
 async function cargarDashboard() {
     try {
         // Fetch de datos de la API
-        const res = await fetch("http://localhost:3001/api/suscripciones");
+        const res = await fetch("https://proyecto-landing-page.onrender.com/api/suscripciones");
         const data = await res.json();
         suscripcionesData = data;
         suscripcionesFiltrados = data;
@@ -512,7 +512,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Cargar datos del administrador desde la BD
 async function cargarPerfilAdmin() {
   try {
-    const res = await fetch('http://localhost:3001/api/admin/datos');
+    const res = await fetch('https://proyecto-landing-page.onrender.com/api/admin/datos');
     if (!res.ok) throw new Error('Error al obtener datos del admin');
     const admin = await res.json();
 

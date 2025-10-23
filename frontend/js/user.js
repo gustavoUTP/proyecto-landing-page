@@ -18,7 +18,7 @@ async function cargarPanelUsuario() {
             return;
         }
 
-        const res = await fetch("http://localhost:3001/api/cursos");
+        const res = await fetch("https://proyecto-landing-page.onrender.com/api/cursos");
         const data = await res.json();
 
         cursosData = data;

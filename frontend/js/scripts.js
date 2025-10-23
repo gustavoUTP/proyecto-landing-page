@@ -11,7 +11,7 @@ registerForm.addEventListener('submit', async (e) => {
     const password = document.getElementById('password').value.trim();
 
     try {
-        const res = await fetch('http://localhost:3001/api/registro', {
+        const res = await fetch('https://proyecto-landing-page.onrender.com/api/registro', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ nombre, correo, password })
@@ -54,7 +54,7 @@ document.getElementById("form-suscripcion").addEventListener("submit", async fun
 
     try {
         // Enviar datos al backend
-        const response = await fetch("http://localhost:3001/api/suscripciones", {
+        const response = await fetch("https://proyecto-landing-page.onrender.com/api/suscripciones", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nombreApellido, correo, telefono, plan, precio })
