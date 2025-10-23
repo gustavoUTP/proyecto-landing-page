@@ -6,8 +6,9 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+//permitir que front mande request al back
 const corsOptions = {
-    origin: 'https://mi-landing-page.netlify.app', // reemplaza con tu URL de Netlify
+    origin: 'https://tiktok-landing-page.netlify.app', 
     credentials: true,
 };
 app.use(cors(corsOptions));
