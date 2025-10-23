@@ -6,7 +6,11 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors());
+const corsOptions = {
+    origin: 'https://mi-landing-page.netlify.app', // reemplaza con tu URL de Netlify
+    credentials: true,
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // ===== Conexión a MongoDB =====
