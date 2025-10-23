@@ -16,6 +16,9 @@
 
     <!-- ==================== NAVBAR ==================== -->
     <header class="bg-[#0D0D0D] text-white sticky top-0 z-50 border-b border-[#1a1a1a]">
+        <div class="bg-orange-600 text-white p-2 text-center font-bold text-lg">
+        🎃 ¡Ofertas por Halloween! Descuentos hasta el 31/10 👻
+        </div>
         <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
             <!-- Logo -->
             <div class="flex items-center space-x-3">
@@ -279,9 +282,12 @@
                     class="bg-[#111111] p-8 rounded-2xl shadow-[0_0_15px_rgba(255,102,0,0.15)] hover:shadow-[0_0_25px_rgba(255,102,0,0.3)] transition transform hover:-translate-y-2">
                     <h3 class="text-2xl font-bold text-[#FF6600] mb-4">Plan Básico</h3>
                     <p class="text-gray-400 mb-6">Ideal para quienes recién comienzan su marca en TikTok.</p>
-                    <p class="text-4xl font-extrabold mb-6">
-                        $9<span class="text-lg text-gray-400">/mes</span>
-                    </p>
+                    <div class="mb-4">
+                        <p class="text-lg text-gray-500 line-through mb-1">$25</p>
+                        <p class="text-4xl font-extrabold mb-6">
+                            $19<span class="text-lg text-gray-400">/mes</span>
+                        </p>
+                    </div>
 
                     <ul class="text-gray-300 space-y-3 mb-8">
                         <li>✔ Acceso a cursos introductorios</li>
@@ -291,6 +297,7 @@
                     </ul>
 
                     <button
+                        onclick="openModal('modal-suscripcion')"
                         class="w-full border border-[#FF6600] text-white hover:bg-[#FF6600] hover:text-white py-3 rounded-lg font-semibold transition">
                         Elegir Plan
                     </button>
@@ -301,10 +308,13 @@
                     class="bg-[#111111] rounded-2xl p-8 border border-[#FF6600] shadow-[0_0_25px_rgba(255,102,0,0.15)] transform scale-105">
                     <h3 class="text-2xl font-bold text-[#FF6600] mb-4">Plan Pro</h3>
                     <p class="text-gray-400 mb-6">Para creadores y emprendedores que buscan crecer rápido.</p>
-                    <p class="text-4xl font-extrabold mb-6">
-                        $19<span class="text-lg text-gray-400">/mes</span>
-                    </p>
-
+                    <div class="mb-4">
+                        <p class="text-lg text-gray-500 line-through mb-1">$60</p>
+                        <p class="text-4xl font-extrabold mb-6">
+                            $49<span class="text-lg text-gray-400">/mes</span>
+                        </p>
+                    </div>
+                    
                     <ul class="text-gray-300 space-y-3 mb-8">
                         <li>✔ Todos los cursos</li>
                         <li>✔ Comunidad y foros activos</li>
@@ -313,6 +323,7 @@
                     </ul>
 
                     <button
+                        onclick="openModal('modal-suscripcion')"
                         class="w-full bg-[#FF6600] hover:opacity-90 text-white py-3 rounded-lg font-semibold shadow-[0_0_15px_#FF6600] transition transform hover:scale-105">
                         Elegir Plan
                     </button>
@@ -323,9 +334,12 @@
                     class="bg-[#111111] p-8 rounded-2xl shadow-[0_0_15px_rgba(255,102,0,0.15)] hover:shadow-[0_0_25px_rgba(255,102,0,0.3)] transition transform hover:-translate-y-2">
                     <h3 class="text-2xl font-bold text-[#FF6600] mb-4">Plan Premium</h3>
                     <p class="text-gray-400 mb-6">Para marcas y creadores que buscan dominar TikTok.</p>
-                    <p class="text-4xl font-extrabold mb-6">
-                        $29<span class="text-lg text-gray-400">/mes</span>
-                    </p>
+                    <div class="mb-4">
+                        <p class="text-lg text-gray-500 line-through mb-1">$120</p>
+                        <p class="text-4xl font-extrabold mb-6">
+                            $99<span class="text-lg text-gray-400">/mes</span>
+                        </p>
+                    </div>
 
                     <ul class="text-gray-300 space-y-3 mb-8">
                         <li>✔ Acceso ilimitado a todos los cursos</li>
@@ -335,6 +349,7 @@
                     </ul>
 
                     <button
+                        onclick="openModal('modal-suscripcion')"
                         class="w-full border border-[#FF6600] text-white hover:bg-[#FF6600] hover:text-white py-3 rounded-lg font-semibold transition">
                         Elegir Plan
                     </button>
@@ -464,36 +479,53 @@
             </p>
             <form id="form-suscripcion" class="space-y-4">
                 <div>
-                    <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre y Apellido</label>
-                    <input type="text" id="nombre_sus" name="nombre" placeholder=""
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    <label for="nombre_sus" class="block text-sm font-medium text-gray-700">
+                        Nombre y Apellido
+                    </label>
+                    <input type="text" id="nombre_sus" name="nombre"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-400 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
                 </div>
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
-                    <input type="email" id="email" name="email" placeholder=""
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    <label for="email" class="block text-sm font-medium text-gray-700">
+                        Correo Electrónico
+                    </label>
+                    <input type="email" id="email" name="email"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-400 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
                 </div>
                 <div>
-                    <label for="telefono" class="block text-sm font-medium text-gray-700">Teléfono</label>
-                    <input type="tel" id="telefono" name="telefono" placeholder=""
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    <label for="telefono" class="block text-sm font-medium text-gray-700">
+                        Teléfono
+                    </label>
+                    <input type="tel" id="telefono" name="telefono"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-400 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
                 </div>
                 <div>
+                    <label for="plan" class="block text-sm font-medium text-gray-700">
+                        Selecciona tu Plan
+                    </label>
                     <select id="plan" name="plan"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        onchange="actualizarPrecio(this.value)"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-400 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
                         <option value="" disabled selected>Selecciona un plan</option>
-                        <option value="basico">Plan Basico</option>
+                        <option value="basico">Plan Básico</option>
                         <option value="intermedio">Plan Intermedio</option>
                         <option value="premium">Plan Premium</option>
                     </select>
                 </div>
+                <input type="hidden" id="precio" name="precio">
                 <div class="flex justify-center mt-6">
-                    <button type="submit" class="button">Confirmar Suscripción</button>
+                    <button type="submit"
+                        class="bg-[#FF6600] text-white py-2 px-6 rounded-lg font-semibold hover:bg-orange-500 transition">
+                        Confirmar Suscripción
+                    </button>
                 </div>
             </form>
+
+            <!-- Botón de cierre -->
             <button class="close-button" onclick="closeModal('modal-suscripcion')">×</button>
         </div>
     </div>
+
 
     <!-- Modal SignIn -->
     <div id="modal-signIn"
@@ -663,9 +695,20 @@
         <img src="./img/fog.png" class="absolute bottom-0 left-0 w-full opacity-20" alt="Niebla Halloween">
     </div>
     
-    <!-- ==================== Scripts ==================== -->
+    <!-- ==================== Scripts Links ==================== -->
     <script src="./js/main.js"></script>
     <script src="./js/login.js"></script>
     <script src="./js/scripts.js"></script>
+
+    <!-- ==================== Scripts Necesarios ==================== -->
+    <script>
+        function actualizarPrecio(plan){
+            let precio=0;
+            if (plan ==="basico")precio =19;
+            else if(plan === "intermedio")precio =49;
+            else if(plan === "premium")precio=99;
+            document.getElementById("precio").value = precio;
+        }
+    </script>
 </body>
 </html>

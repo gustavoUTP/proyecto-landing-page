@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", () => {
 // ==================== Registro de Usuario ====================
 const registerForm = document.getElementById('registerForm');
 const registerMsg = document.getElementById('msg');
@@ -34,41 +35,43 @@ registerForm.addEventListener('submit', async (e) => {
     }
 });
 
-// ==================== Registro de Suscripción ====================
-const susForm = document.getElementById("form-suscripcion");
+// ==================== Registro de Suscripcion ====================
+document.getElementById("form-suscripcion").addEventListener("submit", async function(e) {
+    e.preventDefault(); 
 
-susForm.addEventListener("submit", async function(e) {
-    e.preventDefault();
-
+    
     const nombreApellido = document.getElementById("nombre_sus").value;
     const correo = document.getElementById("email").value;
     const telefono = document.getElementById("telefono").value;
     const plan = document.getElementById("plan").value;
+    const precio= document.getElementById("precio").value;
 
+    // Validación 
     if (!nombreApellido || !correo || !telefono || !plan) {
         alert("Por favor completa todos los campos.");
         return;
     }
 
     try {
+        // Enviar datos al backend
         const response = await fetch("http://localhost:3001/api/suscripciones", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ nombreApellido, correo, telefono, plan })
+            body: JSON.stringify({ nombreApellido, correo, telefono, plan, precio })
         });
 
         const data = await response.json();
 
         if (response.ok) {
             alert("Suscripción registrada con éxito");
-            susForm.reset();
-            closeModal('modal-suscripcion');
+            document.getElementById("form-suscripcion").reset(); 
+            closeModal('modal-suscripcion'); 
         } else {
             alert("Error: " + data.message);
         }
     } catch (error) {
         console.error("Error en la suscripción:", error);
-        alert("No se pudo enviar la suscripción");
+        alert(" No se pudo enviar la suscripción");
     }
 });
 
@@ -88,4 +91,4 @@ const revealOnScroll = () => {
 
 window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', revealOnScroll);
-
+});
