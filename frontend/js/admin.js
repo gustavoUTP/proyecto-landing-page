@@ -437,37 +437,58 @@ document.getElementById("btn-pdf").addEventListener("click", () => {
     // Guardar el archivo
     doc.save("recuento_suscripciones.pdf");
 });
+
 // --- EXPORTAR DATOS DEL SUSCRIPTOR ---
 document.getElementById("btn-exportar-suscriptor").addEventListener("click", () => {
-    const detalle = document.getElementById("info-sus");
-
-    // Verificar si hay datos visibles
-    if (!detalle || detalle.innerHTML.trim() === "") {
+    const info = document.getElementById("info-sus");
+    if (!info || info.innerHTML.trim() === "") {
         alert("Primero selecciona un suscriptor de la tabla.");
         return;
     }
 
-    // Obtener los datos del HTML
-    const lineas = detalle.querySelectorAll("p");
-    const datos = Array.from(lineas).map(p => p.innerText);
-
-    // Crear el PDF
+    const bloques = info.querySelectorAll("div");
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    const doc = new jsPDF({ unit: "pt", format: "a4" });
 
-    doc.setFontSize(16);
-    doc.text("Detalles del Suscriptor", 14, 20);
+    const margen = 40;
+    let y = 60;
+
+    // Encabezado
+    doc.setFontSize(20);
+    doc.setFont("helvetica", "bold");
+    doc.text("Detalles del Suscriptor", doc.internal.pageSize.getWidth() / 2, y, { align: "center" });
+    y += 30;
+
+    // Separador
+    doc.setLineWidth(1);
+    doc.line(margen, y, doc.internal.pageSize.getWidth() - margen, y);
+    y += 20;
+
     doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
 
-    let y = 35;
-    datos.forEach(linea => {
-        doc.text(linea, 14, y);
-        y += 10;
+    bloques.forEach(div => {
+        const campos = div.querySelectorAll("p");
+        if (campos.length >= 2) {
+            const campo = campos[0].innerText;
+            const valor = campos[1].innerText;
+
+            doc.text(campo, margen, y);
+            doc.setFont("helvetica", "normal");
+            doc.text(valor, margen + 120, y);
+            doc.setFont("helvetica", "bold");
+            y += 20;
+
+            if (y > doc.internal.pageSize.getHeight() - margen) {
+                doc.addPage();
+                y = margen;
+            }
+        }
     });
 
-    // Guardar PDF
     doc.save("detalle_suscriptor.pdf");
 });
+
 
 //modal Perfil 
 document.addEventListener("DOMContentLoaded", () => {
